@@ -1,0 +1,2 @@
+# shwild
+SHell-compatible WILDcards
