@@ -1,0 +1,200 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "doc"=.\doc\doc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "example_c_1"=.\examples\c\example_c_1\vc6\example_c_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shwild.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_cpp_1"=.\examples\cpp\example_cpp_1\vc6\example_cpp_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "example_cpp_2"=.\examples\cpp\example_cpp_2\vc6\example_cpp_2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sample_c_1"=.\samples\c\sample_c_1\vc6\sample_c_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sample_c_2"=.\samples\c\sample_c_2\vc6\sample_c_2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sample_cpp_1"=.\samples\cpp\sample_cpp_1\vc6\sample_cpp_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sample_cpp_2"=.\samples\cpp\sample_cpp_2\vc6\sample_cpp_2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "shwild.core"=.\projects\core\vc6\shwild.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.pattern_1"=.\test\scratch\test.scratch.pattern_1\vc6\test.scratch.pattern_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shwild
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_c_1"=.\test\c\test_c_1\vc6\test_c_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shwild
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_cpp_1"=.\test\cpp\test_cpp_1\vc6\test_cpp_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shwild
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_cpp_2"=.\test\cpp\test_cpp_2\vc6\test_cpp_2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name shwild
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "website"=..\website\website.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

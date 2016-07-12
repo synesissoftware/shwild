@@ -1,0 +1,86 @@
+
+# directories (by name)
+
+_internal/
+
+bin/
+lib/
+
+ipch/
+
+include/xcontract/
+include/xcover/
+include/xtests/
+
+src/xcontract/
+src/xcover/
+src/xtests/
+
+Debug/
+DebugMt/
+DebugDll/
+Debug Multithreaded/
+Debug Multithreaded Dll/
+Release/
+ReleaseMt/
+ReleaseDll/
+Release Multithreaded/
+Release Multithreaded Dll/
+
+UDebug/
+UDebugMt/
+URelease/
+UReleaseMt/
+Unicode Debug Multithreaded/
+Unicode Debug Multithreaded Dll/
+Unicode Release Multithreaded/
+Unicode Release Multithreaded Dll/
+
+x64/
+Win32/
+
+build/CMakeFiles/
+
+# directories (by pattern)
+
+# files (by name)
+
+.update_deps
+
+update_deps.cmd
+
+logging-bailout.txt
+
+build/CMakeCache.txt
+
+build/makefile.tmpl
+build/makefile.tools.xml
+build/shwild.tmplgen
+test/testpatterns.orj
+
+# files (by pattern)
+
+*~
+*.a
+*.app
+*.dll
+*.dylib
+*.exe
+*.gch
+*.lib
+*.ncb
+*.o
+*.obj
+*.opensdf
+*.opt
+*.out
+*.pch
+*.pdb
+*.sbr
+*.scc
+*.sdf
+*.so
+*.suo
+*.vcproj.user
+*.vcxproj.user
+
