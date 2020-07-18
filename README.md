@@ -1,2 +1,2 @@
 # shwild
-SHell-compatible WILDcards
+**SH**ell-compatible **WILD**cards

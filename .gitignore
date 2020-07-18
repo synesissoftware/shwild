@@ -50,6 +50,8 @@ build/CMakeFiles/
 
 # files (by name)
 
+.DS_Store
+
 .update_deps
 
 update_deps.cmd
@@ -86,6 +88,8 @@ test/testpatterns.orj
 *.sdf
 *.so
 *.suo
+*.swp
+*.tmp
 *.vcproj.user
 *.vcxproj.user
 
