@@ -4,11 +4,11 @@
  * Purpose: Implementation of the shwild API
  *
  * Created: 17th June 2005
- * Updated: 5th February 2012
+ * Updated: 18th July 2020
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -590,3 +590,4 @@ int PatternMatcher::match(slice_t const* string) const
 #endif /* SHWILD_API_USE_ANONYMOUS_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

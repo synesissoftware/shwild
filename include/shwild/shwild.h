@@ -4,11 +4,11 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 12th July 2016
+ * Updated: 18th July 2020
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,14 +46,14 @@
 #define SHWILD_INCL_SHWILD_H_SHWILD
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    3
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        34
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    5
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        36
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -96,22 +96,23 @@
 # define SHWILD_VER_0_10_1      0x000a01ff
 # define SHWILD_VER_0_10_2      0x000a02ff
 # define SHWILD_VER_0_10_3      0x000a03ff
+# define SHWILD_VER_0_11_1      0x000b01ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR        0
-#define SHWILD_VER_MINOR        10
-#define SHWILD_VER_REVISION     3
+#define SHWILD_VER_MINOR        11
+#define SHWILD_VER_REVISION     1
 
-#define SHWILD_VER              SHWILD_VER_0_10_3
+#define SHWILD_VER              SHWILD_VER_0_11_1
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <stddef.h>     /* for size_t */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__shwild_api shwild API
@@ -128,7 +129,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Handle type for use in declaring opaque handles to compiled patterns
@@ -163,7 +164,7 @@ public:
     /** Copies members from another slice instance */
     shwild_slice_t(shwild_slice_t const& rhs);
     /** Initialises members from the given parameters
-     * 
+     *
      * \param n The number of characters in the string to be sliced
      * \param s Pointer to the first character in the string to be sliced. May be NULL only if n == 0.
      */
@@ -175,7 +176,7 @@ typedef struct shwild_slice_t   shwild_slice_t;
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants and definitions
  */
 
 /** \defgroup group__shwild_api__flags Pattern Control Flags
@@ -185,19 +186,19 @@ typedef struct shwild_slice_t   shwild_slice_t;
  * 1. Escape character. This is to recognise \ as an escape character, escaping
  *     any following character.
  *
- *     This is on by default, but may be suppressed by 
+ *     This is on by default, but may be suppressed by
  *     SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE.
  *
- * 2. Range support. This recognises [] as delimiting a range of possible 
+ * 2. Range support. This recognises [] as delimiting a range of possible
  *      characters that may sustitute for a single character.
  *
- *     This is on by default, but may be suppressed by 
+ *     This is on by default, but may be suppressed by
  *     SHWILD_F_SUPPRESS_RANGE_SUPPORT.
  *
  * 3. Range continuum support. This recognises a continuum of characters or
  *     numbers, e.g. [3-5m-q] === [345mnopq]
  *
- *     This is on by default, but may be suppressed by 
+ *     This is on by default, but may be suppressed by
  *     SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT.
  * @{
  */
@@ -223,7 +224,7 @@ typedef struct shwild_slice_t   shwild_slice_t;
 
 /** \defgroup group__shwild_api__result_codes shwild Results Codes
  * \ingroup group__shwild_api
- * These codes represent the 
+ * These codes represent the
  *
  * @{
  */
@@ -299,9 +300,9 @@ shwild_match_s(
  *
  * \return Status indicating whether the operating completed successfully
  * \retval <0 The operation failed
- * \retval >=0 The operation succeeded. The value indicates the number of match 
+ * \retval >=0 The operation succeeded. The value indicates the number of match
  *   sub-components created to represent the pattern. The compiled pattern must
- *   be destroyed when it is no longer needed, by shwild_destroy_pattern(), to 
+ *   be destroyed when it is no longer needed, by shwild_destroy_pattern(), to
  *   avoid memory leaks.
  */
 int
@@ -361,7 +362,7 @@ shwild_destroy_pattern(
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(__cplusplus) && \
@@ -371,7 +372,7 @@ shwild_destroy_pattern(
 #endif /* __cplusplus, etc. */
 
 #if !defined(SHWILD_NO_NAMESPACE)
-/** The shwild/C++ namespace - \c shwild - that contains wrappers for the 
+/** The shwild/C++ namespace - \c shwild - that contains wrappers for the
  * \link group__shwild_api__c_api C API\endlink. */
 namespace shwild
 {
@@ -385,7 +386,7 @@ namespace shwild
 
 /** \defgroup group__shwild_api__cpp_api C++ API
  * \ingroup group__shwild_api
- * The C++ API provides convenient overloads of the 
+ * The C++ API provides convenient overloads of the
  *   \ref group__shwild_api__c_api functions for use in C++, along with the
  *   Pattern class that provides a convenient interface to compiled patterns.
  * @{
@@ -451,7 +452,7 @@ destroy_pattern(
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -459,7 +460,7 @@ destroy_pattern(
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
@@ -497,8 +498,15 @@ shwild_slice_t::shwild_slice_t(size_t n, char const* s)
 
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !SHWILD_INCL_SHWILD_H_SHWILD */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

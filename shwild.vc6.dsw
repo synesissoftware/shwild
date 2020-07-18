@@ -3,19 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "doc"=.\doc\doc.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "example_c_1"=.\examples\c\example_c_1\vc6\example_c_1.dsp - Package Owner=<4>
+Project: "example.cpp.1"=.\examples\cpp\example.cpp.1\vc6\example.cpp.1.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -26,78 +14,6 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name shwild.core
     End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "example_cpp_1"=.\examples\cpp\example_cpp_1\vc6\example_cpp_1.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "example_cpp_2"=.\examples\cpp\example_cpp_2\vc6\example_cpp_2.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "sample_c_1"=.\samples\c\sample_c_1\vc6\sample_c_1.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "sample_c_2"=.\samples\c\sample_c_2\vc6\sample_c_2.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "sample_cpp_1"=.\samples\cpp\sample_cpp_1\vc6\sample_cpp_1.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "sample_cpp_2"=.\samples\cpp\sample_cpp_2\vc6\sample_cpp_2.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
 }}}
 
 ###############################################################################
@@ -123,13 +39,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name shwild
+    Project_Dep_Name shwild.core
     End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "test_c_1"=.\test\c\test_c_1\vc6\test_c_1.dsp - Package Owner=<4>
+Project: "test.unit.internal"=.\test\unit\test.unit.internal\vc6\test.unit.internal.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -138,13 +54,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name shwild
+    Project_Dep_Name shwild.core
     End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "test_cpp_1"=.\test\cpp\test_cpp_1\vc6\test_cpp_1.dsp - Package Owner=<4>
+Project: "test.unit.shwild.match"=.\test\unit\test.unit.shwild.match\vc6\test.unit.shwild.match.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -153,13 +69,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name shwild
+    Project_Dep_Name shwild.core
     End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "test_cpp_2"=.\test\cpp\test_cpp_2\vc6\test_cpp_2.dsp - Package Owner=<4>
+Project: "test.unit.shwild.pattern"=.\test\unit\test.unit.shwild.pattern\vc6\test.unit.shwild.pattern.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -168,13 +84,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name shwild
+    Project_Dep_Name shwild.core
     End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "website"=..\website\website.dsp - Package Owner=<4>
+Project: "test.unit.shwild_match"=.\test\unit\test.unit.shwild_match\vc6\test.unit.shwild_match.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -182,6 +98,9 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name shwild.core
+    End Project Dependency
 }}}
 
 ###############################################################################

@@ -36,6 +36,11 @@ Unicode Debug Multithreaded Dll/
 Unicode Release Multithreaded/
 Unicode Release Multithreaded Dll/
 
+DebugUNIX/
+DebugMTDLL/
+DebugUNIX/
+ReleaseMTDLL/
+
 x64/
 Win32/
 

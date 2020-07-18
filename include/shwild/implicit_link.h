@@ -4,14 +4,15 @@
  * Purpose: Implicit linking for the shwild API.
  *
  * Created: 27th April 2006
- * Updated: 11th July 2016
+ * Updated: 18th July 2020
  *
  * Home:    http://synesis.com.au/software/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * - Neither the names of Matthew Wilson and Synesis Information Systems nor
+ *   the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -56,8 +58,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MAJOR      1
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MINOR      5
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   2
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       13
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   4
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       15
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -142,7 +144,7 @@
 
 #  define SHWILD_IMPL_LINK_MAJOR_VERSION_s_(x)      #x
 #  define SHWILD_IMPL_LINK_MAJOR_VERSION_s(x)       SHWILD_IMPL_LINK_MAJOR_VERSION_s_(x)
-#  define SHWILD_IMPL_LINK_MAJOR_VERSION            "." SHWILD_IMPL_LINK_MAJOR_VERSION_s(SHWILD_VER_MAJOR) 
+#  define SHWILD_IMPL_LINK_MAJOR_VERSION            "." SHWILD_IMPL_LINK_MAJOR_VERSION_s(SHWILD_VER_MAJOR)
 
   /* module name */
 
@@ -227,10 +229,18 @@
 #    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc12"
 #   elif _MSC_VER == 1900
 #    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc14"
+#   elif _MSC_VER >= 1910
+#    if 0
+#    elif _MSC_VER < 1920
+#     define SHWILD_IMPL_LINK_COMPILER_NAME         "vc15"
+#    elif _MSC_VER <= 1926
+#     define SHWILD_IMPL_LINK_COMPILER_NAME         "vc16"
+#    else
+#     error Visual C++ version that is >= vc16 is not recognised
+#    endif
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
-
 #  else /* ? compiler */
 #   error Unrecognised compiler
 #  endif /* compiler */
@@ -253,22 +263,22 @@
 
 #  if defined(SHWILD_ARCH_IS_X86)
 #   define SHWILD_IMPL_LINK_ARCH_TAG                ""
-#  elif defined(SHWILD_ARCH_IS_X64)            
+#  elif defined(SHWILD_ARCH_IS_X64)
 #   define SHWILD_IMPL_LINK_ARCH_TAG                ".x64"
-#  elif defined(SHWILD_ARCH_IS_IA64)           
+#  elif defined(SHWILD_ARCH_IS_IA64)
 #   define SHWILD_IMPL_LINK_ARCH_TAG                ".ia64"
-#  endif /* arch */                                 
-                                                    
-#  if !defined(SHWILD_IMPL_LINK_ARCH_TAG)           
+#  endif /* arch */
+
+#  if !defined(SHWILD_IMPL_LINK_ARCH_TAG)
 #   define SHWILD_IMPL_LINK_ARCH_TAG                ""
-#  endif /* !SHWILD_IMPL_LINK_ARCH_TAG */           
-                                                    
-                                                    
-  /* encoding tag */                                
-                                                    
-#  if defined(SHWILD_USE_WIDE_STRINGS)              
+#  endif /* !SHWILD_IMPL_LINK_ARCH_TAG */
+
+
+  /* encoding tag */
+
+#  if defined(SHWILD_USE_WIDE_STRINGS)
 #   define SHWILD_IMPL_LINK_ENCODING_TAG            ".widestring"
-#  else /* ? SHWILD_USE_WIDE_STRINGS */             
+#  else /* ? SHWILD_USE_WIDE_STRINGS */
 #   define SHWILD_IMPL_LINK_ENCODING_TAG            ""
 #  endif /* SHWILD_USE_WIDE_STRINGS */
 
@@ -330,7 +340,7 @@
                                                     SHWILD_IMPL_LINK_NOX_TYPE \
                                                     SHWILD_IMPL_LINK_DEBUG_TAG \
                                                     SHWILD_IMPL_LINK_SUFFIX
-                                                        
+
 
 #  pragma message("lib: " SHWILD_IMPL_LINK_LIBRARY_NAME)
 
@@ -340,8 +350,15 @@
 
 #endif /* Win-32 || Win-64 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* SHWILD_INCL_SHWILD_H_IMPLICIT_LINK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

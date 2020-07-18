@@ -4,14 +4,14 @@
  * Purpose: String class for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 5th February 2012
+ * Updated: 18th July 2020
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -127,3 +127,4 @@ typedef SHWILD_CUSTOM_STRING_CLASS  shwild_string_t;
 #endif /* !SHWILD_INCL_HPP_SHWILD_STRING */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

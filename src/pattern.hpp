@@ -4,14 +4,14 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 20th December 2011
+ * Updated: 18th July 2020
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2011, Sean Kelly and Matthew Wilson
+ * Copyright (c) 2005-2020, Sean Kelly and Matthew Wilson
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -55,7 +55,7 @@
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1400
 /* For some weird reason, when used with VC++ 8, pattern.cpp ends up with a
- * definition of std::allocator<>::allocate() and 
+ * definition of std::allocator<>::allocate() and
  * std::allocator<>::deallocate(), which breaks the linker with LNK2005
  * (multiple definitions).
  *
@@ -130,3 +130,4 @@ int get_node( node_t* node, node_buffer_t &buffer, char const* buf, size_t* len,
 #endif /* !SHWILD_INCL_HPP_PATTERN */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

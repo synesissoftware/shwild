@@ -4,11 +4,11 @@
  * Purpose: C++ root file for the shwild C-API
  *
  * Created: 17th June 2005
- * Updated: 11th July 2016
+ * Updated: 18th July 2020
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
 # define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  1
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      10
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      11
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -294,8 +294,15 @@ inline bool Pattern::match(slice_t const& string) const
 } // namespace shwild
 #endif /* !SHWILD_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
 
-#endif /* !SHWILD_INCL_SHWILD_HPP_SHWILD */
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+
+#endif /* !SHWILD_INCL_SHWILD_H_SHWILD */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

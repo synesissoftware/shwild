@@ -5,7 +5,7 @@
 #           compiler, on Win32
 #
 # Created:  15th Feburary 2005
-# Updated:  5th August 2015
+# Updated:  18th July 2020
 #
 ################################################################################
 
@@ -58,7 +58,7 @@ CC_INCLUDES = \
 
 CC_INCLUDES_TEST=\
  $(CC_INCLUDES)\
- -I"$(OPENRJ_ROOT)\include"
+ \
 
 
 CPPC_INCLUDES = \
@@ -70,7 +70,7 @@ CPPC_INCLUDES = \
 
 CPPC_INCLUDES_TEST=\
  $(CPPC_INCLUDES)\
- -I"$(OPENRJ_ROOT)\include"
+ \
 
 
 3PTY_LIBS__ST_D = \
@@ -78,7 +78,6 @@ CPPC_INCLUDES_TEST=\
 
 3PTY_LIBS__ST_D_TEST = \
  $(3PTY_LIBS__ST_D)\
- openrj.1.$(COMP_TAG).debug.lib\
  \
 
 3PTY_LIBS__ST_R = \
@@ -86,7 +85,6 @@ CPPC_INCLUDES_TEST=\
 
 3PTY_LIBS__ST_R_TEST = \
  $(3PTY_LIBS__ST_R)\
- openrj.1.$(COMP_TAG).lib\
  \
 
 
@@ -95,7 +93,6 @@ LIB_PATHS =\
 
 LIB_PATHS_TEST =\
  $(LIB_PATHS)\
- $(OPENRJ_ROOT)\lib\
  \
 
 LIBS_LEADER         =   

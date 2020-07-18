@@ -4,8 +4,8 @@
 # Purpose:  Makefile for the shwild project, for the Arturius C/C++ Compiler Multiplexer
 #           compiler, on Win32
 #
-# Created:  15th February 2005
-# Updated:  11th July 2006
+# Created:  29th April 2006
+# Updated:  18th July 2020
 #
 ############################################################################
 
@@ -19,17 +19,14 @@
 COMP_TAG            =   ar
 ARCH_TAG            =   
 OS_TAG              =   
-PROJ_TAG            =   shwild
+PROJ_TAG			=	shwild
 PROJ_VER_MAJOR      =   0
 PROJ_MOD_TAG        =   core
-PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR).$(PROJ_MOD_TAG)
+PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
 COMP_ARCH_OS_TAG    =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
 ########################################
 # dependencies
-
-XTESTS_VER_MAJOR    =   0
-XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
 
 UNIXEM_VER_MAJOR    =   1
 UNIXEM_TAG_VER      =   unixem.$(UNIXEM_VER_MAJOR)
@@ -55,7 +52,6 @@ PROJ_LIB_DIR            =   $(PROJ_BASE_DIR)\lib
 PROJ_OBJ_DIR            =   .
 PROJ_SRC_DIR            =   $(PROJ_BASE_DIR)\src
 PROJ_EXAMPLES_DIR       =   $(PROJ_BASE_DIR)\examples
-PROJ_SAMPLES_DIR        =   $(PROJ_BASE_DIR)\samples
 PROJ_TEST_ROOT_DIR      =   $(PROJ_BASE_DIR)\test
 PROJ_TEST_COMPONENT_DIR =   $(PROJ_TEST_ROOT_DIR)\component
 PROJ_TEST_SCRATCH_DIR   =   $(PROJ_TEST_ROOT_DIR)\scratch
@@ -63,10 +59,6 @@ PROJ_TEST_UNIT_DIR      =   $(PROJ_TEST_ROOT_DIR)\unit
 
 ########################################
 # 3rd-party directories
-
-XTESTS_PROJ_INCLUDE		=	
-XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
-XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)\xtests
 
 ############################################################################
 # tools
@@ -96,7 +88,6 @@ STLSOFT_INCLUDES		=\
  \
 
 THIRDPARTY_INCLUDES		=\
- $(XTESTS_PROJ_INCLUDE)\
  \
 
 # CC
@@ -131,22 +122,8 @@ CC_SHWILD_INCLUDES_RELEASE =\
  \
 
 
-CC_XTESTS_INCLUDES_BASE =\
- $(CC_INCLUDES_BASE)\
- \
-
-CC_XTESTS_INCLUDES_DEBUG =\
- $(CC_XTESTS_INCLUDES_BASE)\
- \
-
-CC_XTESTS_INCLUDES_RELEASE =\
- $(CC_XTESTS_INCLUDES_BASE)\
- \
-
-
 CC_INCLUDES_TEST=\
  $(CC_INCLUDES_BASE)\
- -I"$(OPENRJ_ROOT)\include"\
  \
 
 # CPPC
@@ -181,22 +158,8 @@ CPPC_SHWILD_INCLUDES_RELEASE =\
  \
 
 
-CPPC_XTESTS_INCLUDES_BASE =\
- $(CPPC_INCLUDES_BASE)\
- \
-
-CPPC_XTESTS_INCLUDES_DEBUG =\
- $(CPPC_XTESTS_INCLUDES_BASE)\
- \
-
-CPPC_XTESTS_INCLUDES_RELEASE =\
- $(CPPC_XTESTS_INCLUDES_BASE)\
- \
-
-
 CPPC_INCLUDES_TEST=\
  $(CPPC_INCLUDES_BASE)\
- -I"$(OPENRJ_ROOT)\include"\
  \
 
 ########################################
@@ -418,7 +381,6 @@ LIBPATHS=\
 
 LIBPATHS_TEST =\
  $(LIBPATHS)\
- $(OPENRJ_ROOT)\lib\
  \
 
 ########################################
@@ -477,26 +439,6 @@ OBJS_CORE =\
  $(OBJS_CORE_RELEASE)\
  \
 
-# xTests - testing only
-
-OBJ_xt_core_DEBUG         =   $(PROJ_OBJ_DIR)\xtests.core.debug.obj
-
-OBJS_XTESTS_DEBUG=\
- $(OBJ_xt_core_DEBUG)\
- \
-
-OBJ_xt_core_RELEASE         =   $(PROJ_OBJ_DIR)\xtests.core.obj
-
-OBJS_XTESTS_RELEASE=\
- $(OBJ_xt_core_RELEASE)\
- \
-
-
-OBJS_XTESTS=\
- $(OBJS_XTESTS_DEBUG)\
- $(OBJS_XTESTS_RELEASE)\
- \
-
 # *
 
 OBJS_LIBS =\
@@ -506,66 +448,35 @@ OBJS_LIBS =\
 ########################################
 # examples
 
-OBJ_EXAMPLE_C_1_DEBUG = $(PROJ_OBJ_DIR)\example_c_1.debug.obj
-OBJ_EXAMPLE_C_2_DEBUG = $(PROJ_OBJ_DIR)\example_c_2.debug.obj
-OBJ_EXAMPLE_CPP_1_DEBUG = $(PROJ_OBJ_DIR)\example_cpp_1.debug.obj
-OBJ_EXAMPLE_CPP_2_DEBUG = $(PROJ_OBJ_DIR)\example_cpp_2.debug.obj
-OBJ_EXAMPLE_C_1_RELEASE = $(PROJ_OBJ_DIR)\example_c_1.obj
-OBJ_EXAMPLE_C_2_RELEASE = $(PROJ_OBJ_DIR)\example_c_2.obj
-OBJ_EXAMPLE_CPP_1_RELEASE = $(PROJ_OBJ_DIR)\example_cpp_1.obj
-OBJ_EXAMPLE_CPP_2_RELEASE = $(PROJ_OBJ_DIR)\example_cpp_2.obj
+OBJ_EXAMPLE_CPP_1_DEBUG = $(PROJ_OBJ_DIR)\example.cpp.1.debug.obj
+OBJ_EXAMPLE_CPP_1_RELEASE = $(PROJ_OBJ_DIR)\example.cpp.1.obj
 
 OBJS_EXAMPLES =\
- $(OBJ_EXAMPLE_C_1_DEBUG)\
- $(OBJ_EXAMPLE_C_2_DEBUG)\
- $(OBJ_EXAMPLE_C_1_RELEASE)\
- $(OBJ_EXAMPLE_C_2_RELEASE)\
  $(OBJ_EXAMPLE_CPP_1_DEBUG)\
- $(OBJ_EXAMPLE_CPP_2_DEBUG)\
  $(OBJ_EXAMPLE_CPP_1_RELEASE)\
- $(OBJ_EXAMPLE_CPP_2_RELEASE)\
- \
-
-########################################
-# samples
-
-OBJ_SAMPLE_C_1_DEBUG = $(PROJ_OBJ_DIR)\sample_c_1.debug.obj
-OBJ_SAMPLE_C_2_DEBUG = $(PROJ_OBJ_DIR)\sample_c_2.debug.obj
-OBJ_SAMPLE_CPP_1_DEBUG = $(PROJ_OBJ_DIR)\sample_cpp_1.debug.obj
-OBJ_SAMPLE_CPP_2_DEBUG = $(PROJ_OBJ_DIR)\sample_cpp_2.debug.obj
-OBJ_SAMPLE_C_1_RELEASE = $(PROJ_OBJ_DIR)\sample_c_1.obj
-OBJ_SAMPLE_C_2_RELEASE = $(PROJ_OBJ_DIR)\sample_c_2.obj
-OBJ_SAMPLE_CPP_1_RELEASE = $(PROJ_OBJ_DIR)\sample_cpp_1.obj
-OBJ_SAMPLE_CPP_2_RELEASE = $(PROJ_OBJ_DIR)\sample_cpp_2.obj
-
-OBJS_SAMPLES =\
- $(OBJ_SAMPLE_C_1_DEBUG)\
- $(OBJ_SAMPLE_C_2_DEBUG)\
- $(OBJ_SAMPLE_C_1_RELEASE)\
- $(OBJ_SAMPLE_C_2_RELEASE)\
- $(OBJ_SAMPLE_CPP_1_DEBUG)\
- $(OBJ_SAMPLE_CPP_2_DEBUG)\
- $(OBJ_SAMPLE_CPP_1_RELEASE)\
- $(OBJ_SAMPLE_CPP_2_RELEASE)\
  \
 
 ########################################
 # tests
 
-OBJ_TEST_C_1_DEBUG = $(PROJ_OBJ_DIR)\test_c_1.debug.obj
-OBJ_TEST_CPP_1_DEBUG = $(PROJ_OBJ_DIR)\test_cpp_1.debug.obj
-OBJ_TEST_CPP_2_DEBUG = $(PROJ_OBJ_DIR)\test_cpp_2.debug.obj
-OBJ_TEST_C_1_RELEASE = $(PROJ_OBJ_DIR)\test_c_1.obj
-OBJ_TEST_CPP_1_RELEASE = $(PROJ_OBJ_DIR)\test_cpp_1.obj
-OBJ_TEST_CPP_2_RELEASE = $(PROJ_OBJ_DIR)\test_cpp_2.obj
+OBJ_TEST_C_1_DEBUG = $(PROJ_OBJ_DIR)\test.unit.c.1.debug.obj
+OBJ_TEST_CPP_1_DEBUG = $(PROJ_OBJ_DIR)\test.unit.cpp.1.debug.obj
+OBJ_TEST_CPP_2_DEBUG = $(PROJ_OBJ_DIR)\test.unit.cpp.2.debug.obj
+OBJ_TEST_CPP_3_DEBUG = $(PROJ_OBJ_DIR)\test.unit.cpp.3.debug.obj
+OBJ_TEST_C_1_RELEASE = $(PROJ_OBJ_DIR)\test.unit.c.1.obj
+OBJ_TEST_CPP_1_RELEASE = $(PROJ_OBJ_DIR)\test.unit.cpp.1.obj
+OBJ_TEST_CPP_2_RELEASE = $(PROJ_OBJ_DIR)\test.unit.cpp.2.obj
+OBJ_TEST_CPP_3_RELEASE = $(PROJ_OBJ_DIR)\test.unit.cpp.3.obj
 
-OBJS_TESTS =\
+OBJS_TEST_UNIT =\
  $(OBJ_TEST_C_1_DEBUG)\
  $(OBJ_TEST_C_1_RELEASE)\
  $(OBJ_TEST_CPP_1_DEBUG)\
  $(OBJ_TEST_CPP_2_DEBUG)\
+ $(OBJ_TEST_CPP_3_DEBUG)\
  $(OBJ_TEST_CPP_1_RELEASE)\
  $(OBJ_TEST_CPP_2_RELEASE)\
+ $(OBJ_TEST_CPP_3_RELEASE)\
  \
 
 ########################################
@@ -575,8 +486,7 @@ OBJS =\
  $(OBJS_LIBS)\
  \
  $(OBJS_EXAMPLES)\
- $(OBJS_SAMPLES)\
- $(OBJS_TESTS)\
+ $(OBJS_TEST_UNIT)\
  \
 
 ############################################################################
@@ -587,31 +497,12 @@ OBJS =\
 
 # core
 
-LIB_CORE_DEBUG                 =   $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).debug.lib
-LIB_CORE_UN_DEBUG              =   $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_ARCH_OS_TAG).debug.lib
-LIB_CORE_RELEASE                 =   $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).lib
-LIB_CORE_UN_RELEASE              =   $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_ARCH_OS_TAG).lib
+LIB_CORE_DEBUG                 =   $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(PROJ_MOD_TAG).$(COMP_ARCH_OS_TAG).debug.lib
+LIB_CORE_RELEASE                 =   $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(PROJ_MOD_TAG).$(COMP_ARCH_OS_TAG).lib
 
 TARGETS_LIB_CORE=\
  $(LIB_CORE_DEBUG)\
- $(LIB_CORE_UN_DEBUG)\
  $(LIB_CORE_RELEASE)\
- $(LIB_CORE_UN_RELEASE)\
- \
-
-# xCover
-
-LIB_XCOVER_DEBUG               =
-LIB_XCOVER_RELEASE               =
-TARGETS_LIB_XCOVER                          =
-# xTests - testing only
-
-LIB_XTESTS_DEBUG               =   $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).shw.$(COMP_ARCH_OS_TAG).debug.lib
-LIB_XTESTS_RELEASE               =   $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).shw.$(COMP_ARCH_OS_TAG).lib
-
-TARGETS_LIB_XTESTS=\
- $(LIB_XTESTS_DEBUG)\
- $(LIB_XTESTS_RELEASE)\
  \
 
 # *
@@ -622,73 +513,40 @@ TARGETS_LIB_ALL=\
 
 TARGETS_LIBS=\
  $(TARGETS_LIB_CORE)\
- $(TARGETS_LIB_XCOVER)\
- $(TARGETS_LIB_XTESTS)\
  \
 
 ########################################
 # examples
 
-TARGET_EXAMPLE_C_1_DEBUG   =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_c_1.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_EXAMPLE_C_2_DEBUG   =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_c_2.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_EXAMPLE_CPP_1_DEBUG =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_cpp_1.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_EXAMPLE_CPP_2_DEBUG =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_cpp_2.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_EXAMPLE_C_1_RELEASE   =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_c_1.$(COMP_ARCH_OS_TAG).exe
-TARGET_EXAMPLE_C_2_RELEASE   =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_c_2.$(COMP_ARCH_OS_TAG).exe
-TARGET_EXAMPLE_CPP_1_RELEASE =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_cpp_1.$(COMP_ARCH_OS_TAG).exe
-TARGET_EXAMPLE_CPP_2_RELEASE =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_cpp_2.$(COMP_ARCH_OS_TAG).exe
+TARGET_EXAMPLE_CPP_1_DEBUG =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.cpp.1.$(COMP_ARCH_OS_TAG).debug.exe
+TARGET_EXAMPLE_CPP_1_RELEASE =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.cpp.1.$(COMP_ARCH_OS_TAG).exe
 
 TARGETS_EXAMPLES =\
- $(TARGET_EXAMPLE_C_1_DEBUG)\
- $(TARGET_EXAMPLE_C_2_DEBUG)\
  $(TARGET_EXAMPLE_CPP_1_DEBUG)\
- $(TARGET_EXAMPLE_CPP_2_DEBUG)\
- $(TARGET_EXAMPLE_C_1_RELEASE)\
- $(TARGET_EXAMPLE_C_2_RELEASE)\
  $(TARGET_EXAMPLE_CPP_1_RELEASE)\
- $(TARGET_EXAMPLE_CPP_2_RELEASE)\
- \
-
-########################################
-# samples
-
-TARGET_SAMPLE_C_1_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_c_1.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_SAMPLE_C_2_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_c_2.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_SAMPLE_CPP_1_DEBUG  =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_cpp_1.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_SAMPLE_CPP_2_DEBUG  =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_cpp_2.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_SAMPLE_C_1_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_c_1.$(COMP_ARCH_OS_TAG).exe
-TARGET_SAMPLE_C_2_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_c_2.$(COMP_ARCH_OS_TAG).exe
-TARGET_SAMPLE_CPP_1_RELEASE  =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_cpp_1.$(COMP_ARCH_OS_TAG).exe
-TARGET_SAMPLE_CPP_2_RELEASE  =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_cpp_2.$(COMP_ARCH_OS_TAG).exe
-
-TARGETS_SAMPLES =\
- $(TARGET_SAMPLE_C_1_DEBUG)\
- $(TARGET_SAMPLE_C_2_DEBUG)\
- $(TARGET_SAMPLE_CPP_1_DEBUG)\
- $(TARGET_SAMPLE_CPP_2_DEBUG)\
- $(TARGET_SAMPLE_C_1_RELEASE)\
- $(TARGET_SAMPLE_C_2_RELEASE)\
- $(TARGET_SAMPLE_CPP_1_RELEASE)\
- $(TARGET_SAMPLE_CPP_2_RELEASE)\
  \
 
 ########################################
 # tests
 
-TARGET_TEST_C_1_DEBUG      =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test_c_1.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_TEST_CPP_1_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test_cpp_1.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_TEST_CPP_2_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test_cpp_2.$(COMP_ARCH_OS_TAG).debug.exe
-TARGET_TEST_C_1_RELEASE      =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test_c_1.$(COMP_ARCH_OS_TAG).exe
-TARGET_TEST_CPP_1_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test_cpp_1.$(COMP_ARCH_OS_TAG).exe
-TARGET_TEST_CPP_2_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test_cpp_2.$(COMP_ARCH_OS_TAG).exe
+TARGET_TEST_C_1_DEBUG      =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.c.1.$(COMP_ARCH_OS_TAG).debug.exe
+TARGET_TEST_CPP_1_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.cpp.1.$(COMP_ARCH_OS_TAG).debug.exe
+TARGET_TEST_CPP_2_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.cpp.2.$(COMP_ARCH_OS_TAG).debug.exe
+TARGET_TEST_CPP_3_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.cpp.3.$(COMP_ARCH_OS_TAG).debug.exe
+TARGET_TEST_C_1_RELEASE      =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.c.1.$(COMP_ARCH_OS_TAG).exe
+TARGET_TEST_CPP_1_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.cpp.1.$(COMP_ARCH_OS_TAG).exe
+TARGET_TEST_CPP_2_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.cpp.2.$(COMP_ARCH_OS_TAG).exe
+TARGET_TEST_CPP_3_RELEASE    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.cpp.3.$(COMP_ARCH_OS_TAG).exe
 
-TARGETS_TESTS =\
+TARGETS_TEST_UNIT =\
  $(TARGET_TEST_C_1_DEBUG)\
  $(TARGET_TEST_CPP_1_DEBUG)\
  $(TARGET_TEST_CPP_2_DEBUG)\
+ $(TARGET_TEST_CPP_3_DEBUG)\
  $(TARGET_TEST_C_1_RELEASE)\
  $(TARGET_TEST_CPP_1_RELEASE)\
  $(TARGET_TEST_CPP_2_RELEASE)\
+ $(TARGET_TEST_CPP_3_RELEASE)\
  \
 
 ########################################
@@ -697,9 +555,8 @@ TARGETS_TESTS =\
 TARGETS =\
  $(TARGETS_LIBS)\
  \
- $(TARGETS_TESTS)\
+ $(TARGETS_TEST_UNIT)\
  $(TARGETS_EXAMPLES)\
- $(TARGETS_SAMPLES)\
  \
 
 ############################################################
@@ -719,7 +576,6 @@ LIBS_3PTY_DEBUG =\
 
 LIBS_3PTY_DEBUG_TEST =\
  $(LIBS_3PTY_DEBUG)\
- openrj.1.$(COMP_ARCH_OS_TAG).debug.lib\
  \
 
 LIBS_3PTY_RELEASE =\
@@ -727,7 +583,6 @@ LIBS_3PTY_RELEASE =\
 
 LIBS_3PTY_RELEASE_TEST =\
  $(LIBS_3PTY_RELEASE)\
- openrj.1.$(COMP_ARCH_OS_TAG).lib\
  \
 
 
@@ -741,25 +596,13 @@ LIBS_EXAMPLES_RELEASE=\
  \
 
 
-LIBS_SAMPLES_DEBUG=\
- $(LIB_CORE_DEBUG)\
- \
-
-
-LIBS_SAMPLES_RELEASE=\
- $(LIB_CORE_RELEASE)\
- \
-
-
 LIBS_TESTS_DEBUG=\
  $(LIB_CORE_DEBUG)\
- $(LIB_XTESTS_DEBUG)\
  \
 
 
 LIBS_TESTS_RELEASE=\
  $(LIB_CORE_RELEASE)\
- $(LIB_XTESTS_RELEASE)\
  \
 
 
@@ -791,15 +634,11 @@ compile.libs.shwild:								compile.libs.core
 
 compile.libs:										compile.libs.core
 
-compile.libs.xtests:		$(PROJ_MAKEFILE_NAME)	$(OBJS_XTESTS)
-
-compile.libs.3pty:									compile.libs.xtests
+compile.libs.3pty:			$(PROJ_MAKEFILE_NAME)
 
 compile.libs.all:                                   compile.libs compile.libs.3pty
 
 compile.examples:			$(PROJ_MAKEFILE_NAME)	$(OBJS_EXAMPLES)
-
-compile.samples:			$(PROJ_MAKEFILE_NAME)	$(OBJS_SAMPLES)
 
 compile.test.component:		$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_COMPONENT)
 
@@ -809,7 +648,7 @@ compile.test.unit:			$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_UNIT)
 
 compile.test:										compile.test.unit compile.test.component compile.test.scratch
 
-compile:											compile.libs compile.libs.3pty compile.test compile.examples compile.samples
+compile:											compile.libs compile.libs.3pty compile.test compile.examples
 
 compile.all:										compile
 
@@ -824,15 +663,11 @@ build.libs.shwild:									build.libs.core
 
 build.libs:											build.libs.core
 
-build.libs.xtests:			check.lib.dir			$(TARGETS_LIB_XTESTS)
-
-build.libs.3pty:									build.libs.xtests
+build.libs.3pty:			check.bin.dir
 
 build.libs.all:										build.libs build.libs.3pty
 
 build.examples:				check.bin.dir			$(TARGETS_EXAMPLES)
-
-build.samples:				check.bin.dir			$(TARGETS_SAMPLES)
 
 build.test.component:		check.bin.dir			$(TARGETS_TEST_COMPONENT)
 
@@ -842,7 +677,7 @@ build.test.unit:			check.bin.dir			$(TARGETS_TEST_UNIT)
 
 build.test:											build.test.unit build.test.component build.test.scratch
 
-build:												build.libs build.test build.examples build.samples
+build:												build.libs build.test build.examples
 
 build.all:											build build.libs.all
 
@@ -858,6 +693,14 @@ test.scratch_:
 
 test.unit_:
 	@echo Running Test:Unit programs ...
+ $(TARGET_TEST_C_1_DEBUG)
+ $(TARGET_TEST_CPP_1_DEBUG)
+ $(TARGET_TEST_CPP_2_DEBUG)
+ $(TARGET_TEST_CPP_3_DEBUG)
+ $(TARGET_TEST_C_1_RELEASE)
+ $(TARGET_TEST_CPP_1_RELEASE)
+ $(TARGET_TEST_CPP_2_RELEASE)
+ $(TARGET_TEST_CPP_3_RELEASE)
 
 test.component:			$(PROJ_MAKEFILE_NAME)	build.test.component test.component_
 
@@ -876,50 +719,42 @@ test-all:				test.all
 clean.libs.core:
 	@echo Cleaning Core libraries ...
 	@-if exist $(LIB_CORE_DEBUG) $(RM) $(LIB_CORE_DEBUG)
-	@-if exist $(LIB_CORE_UN_DEBUG) $(RM) $(LIB_CORE_UN_DEBUG)
 	@-if exist $(LIB_CORE_RELEASE) $(RM) $(LIB_CORE_RELEASE)
-	@-if exist $(LIB_CORE_UN_RELEASE) $(RM) $(LIB_CORE_UN_RELEASE)
 	@-if exist core.obj $(RM) core.obj
 	@-if exist core.*.obj $(RM) core.*.obj
 	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG)*.lib
 
 clean.libs.shwild:	clean.libs.core
 
-clean.libs.xtests:
-	@echo Cleaning xTests libraries ...
-	@-if exist $(LIB_XTESTS_DEBUG) $(RM) $(LIB_XTESTS_DEBUG)
-	@-if exist $(LIB_XTESTS_RELEASE) $(RM) $(LIB_XTESTS_RELEASE)
-	@-if exist xtests.*.obj $(RM) xtests.*.obj
-	@-if exist $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).shw.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).shw.$(COMP_ARCH_OS_TAG)*.lib
-
 clean.test.component:
 	@echo cleaning Test:Component programs ...
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.$(COMP_ARCH_OS_TAG)*.exe
+	@-for %f in (test.component.*.obj) do @$(RM) %f
 
 clean.test.scratch:
 	@echo cleaning Test:Scratch programs ...
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.$(COMP_ARCH_OS_TAG)*.exe
+	@-for %f in (test.scratch.*.obj) do @$(RM) %f
 
 clean.test.unit:
 	@echo cleaning Test:Unit programs ...
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.*.$(COMP_ARCH_OS_TAG)*.exe
+	@-for %f in (test.unit.*.obj) do @$(RM) %f
 
 clean.libs: 									clean.libs.core
 
-clean.libs.3pty:								clean.libs.xtests
+clean.libs.3pty:
 
 clean.libs.all: 								clean.libs clean.libs.3pty
 
 clean.examples:
 	@echo cleaning example programs ...
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example_*.$(COMP_ARCH_OS_TAG)*.exe
-	@-if exist example_*.obj $(RM) example_*.obj
-
-clean.samples:
-	@echo cleaning sample programs ...
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).sample_*.$(COMP_ARCH_OS_TAG)*.exe
-	@-if exist sample_*.obj $(RM) sample_*.obj
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.*.$(COMP_ARCH_OS_TAG)*.exe
+	@-for %f in (example.*.obj) do @$(RM) %f
 
 clean.test:										clean.test.component clean.test.scratch clean.test.unit
 
-clean:					$(PROJ_MAKEFILE_NAME)	clean.libs.all clean.test clean.examples clean.samples
+clean:					$(PROJ_MAKEFILE_NAME)	clean.libs.all clean.test clean.examples
 
 clean.all:										clean
 
@@ -930,28 +765,8 @@ clean.all:										clean
 # libraries
 
 ########################################
-# xTests library - 'xtests.X.core.a'
-
-$(LIB_XTESTS_DEBUG): $(OBJS_XTESTS_DEBUG) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) $@ $(OBJS_XTESTS_DEBUG)
-
-$(OBJ_xt_core_DEBUG): $(XTESTS_SRC_DIR)\xtests.core.cpp $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DEBUG) $(CPPC_XTESTS_INCLUDES_DEBUG) --output-path=$@ $(XTESTS_SRC_DIR)\xtests.core.cpp
-
-$(LIB_XTESTS_RELEASE): $(OBJS_XTESTS_RELEASE) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) $@ $(OBJS_XTESTS_RELEASE)
-
-$(OBJ_xt_core_RELEASE): $(XTESTS_SRC_DIR)\xtests.core.cpp $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_RELEASE) $(CPPC_XTESTS_INCLUDES_RELEASE) --output-path=$@ $(XTESTS_SRC_DIR)\xtests.core.cpp
-
-########################################
 # core
 
-
-$(LIB_CORE_UN_DEBUG): $(LIB_CORE_DEBUG)
-	@$(CP) $(LIB_CORE_DEBUG) $@
 
 $(LIB_CORE_DEBUG): $(OBJS_CORE_DEBUG) makefile
 	$(AR) $(AR_ARGS) $@ $(OBJS_CORE_DEBUG)
@@ -963,9 +778,6 @@ $(OBJ_CORE_pattern__DEBUG): $(PROJ_SRC_DIR)\pattern.cpp $(SRCS_HDR_CORE) makefil
 $(OBJ_CORE_api__DEBUG): $(PROJ_SRC_DIR)\api.cpp $(SRCS_HDR_CORE) makefile
 	$(CPPC) $(CPPC_ARGS_DEBUG) --output-path=$@ $(PROJ_SRC_DIR)\api.cpp
 
-
-$(LIB_CORE_UN_RELEASE): $(LIB_CORE_RELEASE)
-	@$(CP) $(LIB_CORE_RELEASE) $@
 
 $(LIB_CORE_RELEASE): $(OBJS_CORE_RELEASE) makefile
 	$(AR) $(AR_ARGS) $@ $(OBJS_CORE_RELEASE)
@@ -981,155 +793,73 @@ $(OBJ_CORE_api__RELEASE): $(PROJ_SRC_DIR)\api.cpp $(SRCS_HDR_CORE) makefile
 ########################################
 # examples
 
-# C example client
-
-$(TARGET_EXAMPLE_C_1_DEBUG):	$(OBJ_EXAMPLE_C_1_DEBUG) $(LIBS_EXAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_EXAMPLE_C_1_DEBUG) $(LIBS_EXAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_EXAMPLE_C_1_DEBUG):	$(PROJ_EXAMPLES_DIR)\c\example_c_1\example_c_1.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_DEBUG) --output-path=$@ $(PROJ_EXAMPLES_DIR)\c\example_c_1\example_c_1.c
-
-$(TARGET_EXAMPLE_C_2_DEBUG):	$(OBJ_EXAMPLE_C_2_DEBUG) $(LIBS_EXAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_EXAMPLE_C_2_DEBUG) $(LIBS_EXAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_EXAMPLE_C_2_DEBUG):	$(PROJ_EXAMPLES_DIR)\c\example_c_2\example_c_2.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_DEBUG) --output-path=$@ $(PROJ_EXAMPLES_DIR)\c\example_c_2\example_c_2.c
-
-$(TARGET_EXAMPLE_C_1_RELEASE):	$(OBJ_EXAMPLE_C_1_RELEASE) $(LIBS_EXAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_EXAMPLE_C_1_RELEASE) $(LIBS_EXAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_EXAMPLE_C_1_RELEASE):	$(PROJ_EXAMPLES_DIR)\c\example_c_1\example_c_1.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_RELEASE) --output-path=$@ $(PROJ_EXAMPLES_DIR)\c\example_c_1\example_c_1.c
-
-$(TARGET_EXAMPLE_C_2_RELEASE):	$(OBJ_EXAMPLE_C_2_RELEASE) $(LIBS_EXAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_EXAMPLE_C_2_RELEASE) $(LIBS_EXAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_EXAMPLE_C_2_RELEASE):	$(PROJ_EXAMPLES_DIR)\c\example_c_2\example_c_2.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_RELEASE) --output-path=$@ $(PROJ_EXAMPLES_DIR)\c\example_c_2\example_c_2.c
-
 # C++ example client
 
 $(TARGET_EXAMPLE_CPP_1_DEBUG):	$(OBJ_EXAMPLE_CPP_1_DEBUG) $(LIBS_EXAMPLES_DEBUG) makefile
 	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_EXAMPLE_CPP_1_DEBUG) $(LIBS_EXAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
 
-$(OBJ_EXAMPLE_CPP_1_DEBUG):	$(PROJ_EXAMPLES_DIR)\cpp\example_cpp_1\example_cpp_1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_DEBUG) --output-path=$@ $(PROJ_EXAMPLES_DIR)\cpp\example_cpp_1\example_cpp_1.cpp
-
-$(TARGET_EXAMPLE_CPP_2_DEBUG):	$(OBJ_EXAMPLE_CPP_2_DEBUG) $(LIBS_EXAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_EXAMPLE_CPP_2_DEBUG) $(LIBS_EXAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_EXAMPLE_CPP_2_DEBUG):	$(PROJ_EXAMPLES_DIR)\cpp\example_cpp_2\example_cpp_2.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_DEBUG) --output-path=$@ $(PROJ_EXAMPLES_DIR)\cpp\example_cpp_2\example_cpp_2.cpp
+$(OBJ_EXAMPLE_CPP_1_DEBUG):	$(PROJ_EXAMPLES_DIR)\cpp\example.cpp.1\example.cpp.1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_DEBUG) --output-path=$@ $(PROJ_EXAMPLES_DIR)\cpp\example.cpp.1\example.cpp.1.cpp
 
 $(TARGET_EXAMPLE_CPP_1_RELEASE):	$(OBJ_EXAMPLE_CPP_1_RELEASE) $(LIBS_EXAMPLES_RELEASE) makefile
 	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_EXAMPLE_CPP_1_RELEASE) $(LIBS_EXAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
 
-$(OBJ_EXAMPLE_CPP_1_RELEASE):	$(PROJ_EXAMPLES_DIR)\cpp\example_cpp_1\example_cpp_1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_RELEASE) --output-path=$@ $(PROJ_EXAMPLES_DIR)\cpp\example_cpp_1\example_cpp_1.cpp
-
-$(TARGET_EXAMPLE_CPP_2_RELEASE):	$(OBJ_EXAMPLE_CPP_2_RELEASE) $(LIBS_EXAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_EXAMPLE_CPP_2_RELEASE) $(LIBS_EXAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_EXAMPLE_CPP_2_RELEASE):	$(PROJ_EXAMPLES_DIR)\cpp\example_cpp_2\example_cpp_2.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_RELEASE) --output-path=$@ $(PROJ_EXAMPLES_DIR)\cpp\example_cpp_2\example_cpp_2.cpp
-
-########################################
-# samples
-
-# C sample client
-
-$(TARGET_SAMPLE_C_1_DEBUG):	$(OBJ_SAMPLE_C_1_DEBUG) $(LIBS_SAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_SAMPLE_C_1_DEBUG) $(LIBS_SAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_SAMPLE_C_1_DEBUG):	$(PROJ_SAMPLES_DIR)\c\sample_c_1\sample_c_1.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_DEBUG) --output-path=$@ $(PROJ_SAMPLES_DIR)\c\sample_c_1\sample_c_1.c
-
-$(TARGET_SAMPLE_C_2_DEBUG):	$(OBJ_SAMPLE_C_2_DEBUG) $(LIBS_SAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_SAMPLE_C_2_DEBUG) $(LIBS_SAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_SAMPLE_C_2_DEBUG):	$(PROJ_SAMPLES_DIR)\c\sample_c_2\sample_c_2.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_DEBUG) --output-path=$@ $(PROJ_SAMPLES_DIR)\c\sample_c_2\sample_c_2.c
-
-$(TARGET_SAMPLE_C_1_RELEASE):	$(OBJ_SAMPLE_C_1_RELEASE) $(LIBS_SAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_SAMPLE_C_1_RELEASE) $(LIBS_SAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_SAMPLE_C_1_RELEASE):	$(PROJ_SAMPLES_DIR)\c\sample_c_1\sample_c_1.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_RELEASE) --output-path=$@ $(PROJ_SAMPLES_DIR)\c\sample_c_1\sample_c_1.c
-
-$(TARGET_SAMPLE_C_2_RELEASE):	$(OBJ_SAMPLE_C_2_RELEASE) $(LIBS_SAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_SAMPLE_C_2_RELEASE) $(LIBS_SAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_SAMPLE_C_2_RELEASE):	$(PROJ_SAMPLES_DIR)\c\sample_c_2\sample_c_2.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_RELEASE) --output-path=$@ $(PROJ_SAMPLES_DIR)\c\sample_c_2\sample_c_2.c
-
-# C++ sample client
-
-$(TARGET_SAMPLE_CPP_1_DEBUG):	$(OBJ_SAMPLE_CPP_1_DEBUG) $(LIBS_SAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_SAMPLE_CPP_1_DEBUG) $(LIBS_SAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_SAMPLE_CPP_1_DEBUG):	$(PROJ_SAMPLES_DIR)\cpp\sample_cpp_1\sample_cpp_1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_DEBUG) --output-path=$@ $(PROJ_SAMPLES_DIR)\cpp\sample_cpp_1\sample_cpp_1.cpp
-
-$(TARGET_SAMPLE_CPP_2_DEBUG):	$(OBJ_SAMPLE_CPP_2_DEBUG) $(LIBS_SAMPLES_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG) $@ $(OBJ_SAMPLE_CPP_2_DEBUG) $(LIBS_SAMPLES_DEBUG) $(LIBS_3PTY_DEBUG) $(LIBS_EXPLICIT_DEBUG)
-
-$(OBJ_SAMPLE_CPP_2_DEBUG):	$(PROJ_SAMPLES_DIR)\cpp\sample_cpp_2\sample_cpp_2.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_DEBUG) --output-path=$@ $(PROJ_SAMPLES_DIR)\cpp\sample_cpp_2\sample_cpp_2.cpp
-
-$(TARGET_SAMPLE_CPP_1_RELEASE):	$(OBJ_SAMPLE_CPP_1_RELEASE) $(LIBS_SAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_SAMPLE_CPP_1_RELEASE) $(LIBS_SAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_SAMPLE_CPP_1_RELEASE):	$(PROJ_SAMPLES_DIR)\cpp\sample_cpp_1\sample_cpp_1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_RELEASE) --output-path=$@ $(PROJ_SAMPLES_DIR)\cpp\sample_cpp_1\sample_cpp_1.cpp
-
-$(TARGET_SAMPLE_CPP_2_RELEASE):	$(OBJ_SAMPLE_CPP_2_RELEASE) $(LIBS_SAMPLES_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE) $@ $(OBJ_SAMPLE_CPP_2_RELEASE) $(LIBS_SAMPLES_RELEASE) $(LIBS_3PTY_RELEASE) $(LIBS_EXPLICIT_RELEASE)
-
-$(OBJ_SAMPLE_CPP_2_RELEASE):	$(PROJ_SAMPLES_DIR)\cpp\sample_cpp_2\sample_cpp_2.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_RELEASE) --output-path=$@ $(PROJ_SAMPLES_DIR)\cpp\sample_cpp_2\sample_cpp_2.cpp
-
+$(OBJ_EXAMPLE_CPP_1_RELEASE):	$(PROJ_EXAMPLES_DIR)\cpp\example.cpp.1\example.cpp.1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_RELEASE) --output-path=$@ $(PROJ_EXAMPLES_DIR)\cpp\example.cpp.1\example.cpp.1.cpp
 
 ########################################
 # test
 
 # C test client
 
-$(TARGET_TEST_C_1_DEBUG):	$(OBJ_TEST_C_1_DEBUG) $(LIBS_TEST_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_C_1_DEBUG) $(LIBS_TEST_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
+$(TARGET_TEST_C_1_DEBUG):	$(OBJ_TEST_C_1_DEBUG) $(LIB_CORE_DEBUG) makefile
+	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_C_1_DEBUG) $(LIB_CORE_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
 
-$(OBJ_TEST_C_1_DEBUG):	$(PROJ_TESTS_DIR)\c\test_c_1\test_c_1.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TESTS_DIR)\c\test_c_1\test_c_1.c
+$(OBJ_TEST_C_1_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.shwild_match\test.unit.shwild_match.c $(SRCS_HDR_CORE) makefile
+	$(CC) $(CC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.shwild_match\test.unit.shwild_match.c
 
-$(TARGET_TEST_C_1_RELEASE):	$(OBJ_TEST_C_1_RELEASE) $(LIBS_TEST_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_C_1_RELEASE) $(LIBS_TEST_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
+$(TARGET_TEST_C_1_RELEASE):	$(OBJ_TEST_C_1_RELEASE) $(LIB_CORE_RELEASE) makefile
+	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_C_1_RELEASE) $(LIB_CORE_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
 
-$(OBJ_TEST_C_1_RELEASE):	$(PROJ_TESTS_DIR)\c\test_c_1\test_c_1.c $(SRCS_HDR_CORE) makefile
-	$(CC) $(CC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TESTS_DIR)\c\test_c_1\test_c_1.c
+$(OBJ_TEST_C_1_RELEASE):	$(PROJ_TEST_UNIT_DIR)\test.unit.shwild_match\test.unit.shwild_match.c $(SRCS_HDR_CORE) makefile
+	$(CC) $(CC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.shwild_match\test.unit.shwild_match.c
 
 # C++ test client
 
-$(TARGET_TEST_CPP_1_DEBUG):	$(OBJ_TEST_CPP_1_DEBUG) $(LIBS_TEST_DEBUG) $(LIB_XCOVER_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_CPP_1_DEBUG) $(LIBS_TEST_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
+$(TARGET_TEST_CPP_1_DEBUG):	$(OBJ_TEST_CPP_1_DEBUG) $(LIB_CORE_DEBUG) makefile
+	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_CPP_1_DEBUG) $(LIB_CORE_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
 
-$(OBJ_TEST_CPP_1_DEBUG):	$(PROJ_TESTS_DIR)\cpp\test_cpp_1\test_cpp_1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TESTS_DIR)\cpp\test_cpp_1\test_cpp_1.cpp
+$(OBJ_TEST_CPP_1_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.shwild.match\test.unit.shwild.match.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.shwild.match\test.unit.shwild.match.cpp
 
-$(TARGET_TEST_CPP_2_DEBUG):	$(OBJ_TEST_CPP_2_DEBUG) $(LIBS_TEST_DEBUG) $(LIB_XCOVER_DEBUG) makefile
-	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_CPP_2_DEBUG) $(LIBS_TEST_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
+$(TARGET_TEST_CPP_2_DEBUG):	$(OBJ_TEST_CPP_2_DEBUG) $(LIB_CORE_DEBUG) makefile
+	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_CPP_2_DEBUG) $(LIB_CORE_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
 
-$(OBJ_TEST_CPP_2_DEBUG):	$(PROJ_TESTS_DIR)\cpp\test_cpp_2\test_cpp_2.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TESTS_DIR)\cpp\test_cpp_2\test_cpp_2.cpp
+$(OBJ_TEST_CPP_2_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.shwild.pattern\test.unit.shwild.pattern.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.shwild.pattern\test.unit.shwild.pattern.cpp
 
-$(TARGET_TEST_CPP_1_RELEASE):	$(OBJ_TEST_CPP_1_RELEASE) $(LIBS_TEST_RELEASE) $(LIB_XCOVER_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_CPP_1_RELEASE) $(LIBS_TEST_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
+$(TARGET_TEST_CPP_3_DEBUG):	$(OBJ_TEST_CPP_3_DEBUG) $(LIB_CORE_DEBUG) makefile
+	$(LD) $(LD_ARGS_DEBUG_TEST) $@ $(OBJ_TEST_CPP_3_DEBUG) $(LIB_CORE_DEBUG) $(LIBS_3PTY_DEBUG_TEST) $(LIBS_EXPLICIT_DEBUG)
 
-$(OBJ_TEST_CPP_1_RELEASE):	$(PROJ_TESTS_DIR)\cpp\test_cpp_1\test_cpp_1.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TESTS_DIR)\cpp\test_cpp_1\test_cpp_1.cpp
+$(OBJ_TEST_CPP_3_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.internal\test.unit.internal.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_DEBUG_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.internal\test.unit.internal.cpp
 
-$(TARGET_TEST_CPP_2_RELEASE):	$(OBJ_TEST_CPP_2_RELEASE) $(LIBS_TEST_RELEASE) $(LIB_XCOVER_RELEASE) makefile
-	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_CPP_2_RELEASE) $(LIBS_TEST_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
+$(TARGET_TEST_CPP_1_RELEASE):	$(OBJ_TEST_CPP_1_RELEASE) $(LIB_CORE_RELEASE) makefile
+	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_CPP_1_RELEASE) $(LIB_CORE_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
 
-$(OBJ_TEST_CPP_2_RELEASE):	$(PROJ_TESTS_DIR)\cpp\test_cpp_2\test_cpp_2.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
-	$(CPPC) $(CPPC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TESTS_DIR)\cpp\test_cpp_2\test_cpp_2.cpp
+$(OBJ_TEST_CPP_1_RELEASE):	$(PROJ_TEST_UNIT_DIR)\test.unit.shwild.match\test.unit.shwild.match.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.shwild.match\test.unit.shwild.match.cpp
+
+$(TARGET_TEST_CPP_2_RELEASE):	$(OBJ_TEST_CPP_2_RELEASE) $(LIB_CORE_RELEASE) makefile
+	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_CPP_2_RELEASE) $(LIB_CORE_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
+
+$(OBJ_TEST_CPP_2_RELEASE):	$(PROJ_TEST_UNIT_DIR)\test.unit.shwild.pattern\test.unit.shwild.pattern.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.shwild.pattern\test.unit.shwild.pattern.cpp
+
+$(TARGET_TEST_CPP_3_RELEASE):	$(OBJ_TEST_CPP_3_RELEASE) $(LIB_CORE_RELEASE) makefile
+	$(LD) $(LD_ARGS_RELEASE_TEST) $@ $(OBJ_TEST_CPP_3_RELEASE) $(LIB_CORE_RELEASE) $(LIBS_3PTY_RELEASE_TEST) $(LIBS_EXPLICIT_RELEASE)
+
+$(OBJ_TEST_CPP_3_RELEASE):	$(PROJ_TEST_UNIT_DIR)\test.unit.internal\test.unit.internal.cpp $(SRCS_HDR_CORE) $(SRCS_HDR_MAPPING) makefile
+	$(CPPC) $(CPPC_ARGS_RELEASE_TEST) --output-path=$@ $(PROJ_TEST_UNIT_DIR)\test.unit.internal\test.unit.internal.cpp
 
 ############################### end of file ################################
