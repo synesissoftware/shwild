@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Implementation Files">
+      <UniqueIdentifier>{D235CB96-B7A2-46AC-B7DC-310587E1D366}</UniqueIdentifier>
+      <Extensions>c;cc;cpp;cxx;</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\unit\test.unit.internal\test.unit.internal.cpp">
+      <Filter>Implementation Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\unit\test.unit.internal\implicit_link.cpp">
+      <Filter>Implementation Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\shwild\implicit_link.h" />
+    <ClInclude Include="..\..\..\..\include\shwild\shwild.h" />
+    <ClInclude Include="..\..\..\..\include\shwild\shwild.hpp" />
+    <ClInclude Include="..\..\..\..\include\shwild\bdt\bdt.h" />
+    <ClInclude Include="..\..\..\..\include\shwild\internal\warnings.msvc.10+.h" />
+    <ClInclude Include="..\..\..\..\include\shwild\internal\warnings.msvc.6.h" />
+  </ItemGroup>
+</Project>
