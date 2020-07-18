@@ -713,14 +713,14 @@ test.scratch_:
 
 test.unit_:
 	@echo Running Test:Unit programs ...
- $(TARGET_TEST_C_1_UX_MT_D)
- $(TARGET_TEST_CPP_1_UX_MT_D)
- $(TARGET_TEST_CPP_2_UX_MT_D)
- $(TARGET_TEST_CPP_3_UX_MT_D)
- $(TARGET_TEST_C_1_UX_MT_R)
- $(TARGET_TEST_CPP_1_UX_MT_R)
- $(TARGET_TEST_CPP_2_UX_MT_R)
- $(TARGET_TEST_CPP_3_UX_MT_R)
+	$(TARGET_TEST_C_1_UX_MT_D)
+	$(TARGET_TEST_CPP_1_UX_MT_D)
+	$(TARGET_TEST_CPP_2_UX_MT_D)
+	$(TARGET_TEST_CPP_3_UX_MT_D)
+	$(TARGET_TEST_C_1_UX_MT_R)
+	$(TARGET_TEST_CPP_1_UX_MT_R)
+	$(TARGET_TEST_CPP_2_UX_MT_R)
+	$(TARGET_TEST_CPP_3_UX_MT_R)
 
 test.component:			$(PROJ_MAKEFILE_NAME)	build.test.component test.component_
 

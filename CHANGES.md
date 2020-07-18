@@ -1,5 +1,9 @@
 #  **shwild** Changes
 
+## 0.11.2 - 18th July 2020
+
+ * fixed makefiles whitespace
+
 ## 0.11.1 - 18th July 2020
 
  * added support for Visual C++ 15 & 16
