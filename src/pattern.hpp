@@ -117,13 +117,13 @@ typedef stlsoft::auto_buffer<   char
  */
 
 /** \brief Initialises a node. */
-void node_init( node_t* node );
+void node_init(node_t* node);
 
 /** \brief Uninitialises a node, releasing any associated resources. */
-void node_reset( node_t* node );
+void node_reset(node_t* node);
 
 /** \brief Parses the next node */
-int get_node( node_t* node, node_buffer_t &buffer, char const* buf, size_t* len, unsigned flags );
+int get_node(node_t* node, node_buffer_t& buffer, char const* buf, size_t* len, unsigned flags);
 
 /* ////////////////////////////////////////////////////////////////////// */
 

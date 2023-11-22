@@ -1,6 +1,6 @@
 
 // Created: 29th April 2006
-// Updated: 18th July 2020
+// Updated: 23rd November 2023
 
 #include <shwild/shwild.hpp>
 
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
     {
         { for(int i = 1; i < argc; ++i)
         {
-            char const  *arg    =   argv[i];
+            char const* arg = argv[i];
 
             if('-' == arg[0])
             {

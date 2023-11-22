@@ -4,11 +4,11 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 21st August 2015
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2015, Sean Kelly and Matthew Wilson
+ * Copyright (c) 2005-2023, Sean Kelly and Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -180,7 +180,7 @@ static int get_token(char const* buf, size_t* len , unsigned flags)
     return TOK_END;
 }
 
-static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char const* buf, size_t* len, unsigned flags, int bInRange )
+static int get_literal( shwild_slice_t& content, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags, int bInRange )
 {
     SHWILD_ASSERT( NULL != buf && 0 != len );
 
@@ -263,7 +263,7 @@ static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char co
     return tok;
 }
 
-int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len, unsigned flags )
+int get_node( node_t* node, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags )
 {
     SHWILD_ASSERT( node && buf && len );
 
@@ -339,9 +339,9 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
             SHWILD_COVER_MARK_LINE();
 
             /* Search for the first '-', ignoring the first ... */
-            char const          *first  =   node->data.ptr;
-            char const          *minus  =   strnchr(first + 1, node->data.len - 1, '-');
-            char const *const   last    =   node->data.ptr + (node->data.len - 1);
+            char const*         first   =   node->data.ptr;
+            char const*         minus   =   strnchr(first + 1, node->data.len - 1, '-');
+            char const* const   last    =   node->data.ptr + (node->data.len - 1);
 
             if(SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT == (flags & SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT))
             {
