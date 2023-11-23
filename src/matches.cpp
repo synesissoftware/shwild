@@ -67,6 +67,10 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -82,12 +86,12 @@ namespace impl
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
-char* STLSOFT_CDECL shwild_strchr(char const*, int);
-char* STLSOFT_CDECL shwild_strichr(char const*, int);
-char* STLSOFT_CDECL shwild_strstr(char const*, char const*);
-char* STLSOFT_CDECL shwild_stristr(char const*, char const*);
-int STLSOFT_CDECL   shwild_strncmp(char const*, char const*, size_t);
-int STLSOFT_CDECL   shwild_strnicmp(char const*, char const*, size_t);
+char* shwild_strchr(char const*, int);
+char* shwild_strichr(char const*, int);
+char* shwild_strstr(char const*, char const*);
+char* shwild_stristr(char const*, char const*);
+int shwild_strncmp(char const*, char const*, size_t);
+int shwild_strnicmp(char const*, char const*, size_t);
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -263,7 +267,7 @@ bool MatchRange::matchContents(char ch) const
 {
     SHWILD_COVER_MARK_LINE();
 
-    typedef char* (STLSOFT_CDECL *pfn_t)(char const*, int);
+    typedef char* (*pfn_t)(char const*, int);
 
     pfn_t   pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
                         ? shwild_strichr
@@ -433,7 +437,7 @@ bool MatchLiteral::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    typedef int (STLSOFT_CDECL *pfn_t)(char const*, char const*, size_t);
+    typedef int (*pfn_t)(char const*, char const*, size_t);
 
     const size_t    len =   m_contents.length();
 
@@ -471,7 +475,7 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* n
 //# error This assumes *last == '\0', which is NOT VALID!
 #endif
 
-    typedef char* (STLSOFT_CDECL *pfn_t)(char const*, char const*);
+    typedef char* (*pfn_t)(char const*, char const*);
 
     char const* next;
     pfn_t       pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
@@ -499,14 +503,14 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* n
  * utility functions
  */
 
-char* STLSOFT_CDECL shwild_strchr(char const* s, int ch)
+char* shwild_strchr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strchr(const_cast<char*>(s), ch);
 }
 
-char* STLSOFT_CDECL shwild_strichr(char const* s, int ch)
+char* shwild_strichr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -525,14 +529,14 @@ char* STLSOFT_CDECL shwild_strichr(char const* s, int ch)
     return NULL;
 }
 
-char* STLSOFT_CDECL shwild_strstr(char const* s1, char const* s2)
+char* shwild_strstr(char const* s1, char const* s2)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strstr(const_cast<char*>(s1), s2);
 }
 
-char* STLSOFT_CDECL shwild_stristr(char const* s1, char const* s2)
+char* shwild_stristr(char const* s1, char const* s2)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -553,14 +557,14 @@ char* STLSOFT_CDECL shwild_stristr(char const* s1, char const* s2)
     return NULL;
 }
 
-int STLSOFT_CDECL shwild_strncmp(char const* s1, char const* s2, size_t n)
+int shwild_strncmp(char const* s1, char const* s2, size_t n)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strncmp(s1, s2, n);
 }
 
-int STLSOFT_CDECL shwild_strnicmp(char const* s1, char const* s2, size_t n)
+int shwild_strnicmp(char const* s1, char const* s2, size_t n)
 {
     SHWILD_COVER_MARK_LINE();
 

@@ -66,7 +66,11 @@
 # define STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR
 #endif /* compiler */
 
-#include <stlsoft/memory/auto_buffer.hpp>
+#ifndef SHWILD_NO_STLSOFT
+# include <stlsoft/memory/auto_buffer.hpp>
+#else /* ? SHWILD_NO_STLSOFT */
+# include <vector>
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* Standard C Header Files */
 #include <limits.h>
@@ -107,11 +111,16 @@ struct node_t
 };
 
 /** \brief Buffer used when necessary. */
+#ifndef SHWILD_NO_STLSOFT
 typedef stlsoft::auto_buffer<
     char
 ,   1024
-//,   ss_typename_type_def_k allocator_selector<T>::allocator_type
 >   node_buffer_t;
+#else /* ? SHWILD_NO_STLSOFT */
+typedef std::vector<
+    char
+>   node_buffer_t;
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

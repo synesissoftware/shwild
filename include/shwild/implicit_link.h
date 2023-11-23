@@ -41,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file shwild/implicit_link.h \brief [C/C++] Implicit linking for the shwild API
+/** \file shwild/implicit_link.h \brief [C/C++] Implicit linking for **shwild** library
  *
  * Inclusion of this file causes the appropriate library file to be automatically
  * linked for compilers that support implicit linking: Borland, Metrowerks

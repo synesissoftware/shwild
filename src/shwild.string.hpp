@@ -50,7 +50,8 @@
 
 #include "shwild.stlsoft.h"
 
-#if defined(STLSOFT_CF_std_NAMESPACE) || \
+#if defined(SHWILD_NO_STLSOFT) || \
+    defined(STLSOFT_CF_std_NAMESPACE) || \
     defined(STLSOFT_CF_std_NAMESPACE)
 
 # if !defined(SHWILD_CUSTOM_STRING_CLASS)
