@@ -28,6 +28,8 @@
 typedef std::string             string_t;
 typedef std::vector<string_t>   strings_t;
 
+using platformstl::readdir_sequence;
+
 using std::cout;
 using std::cerr;
 using std::endl;
@@ -57,9 +59,9 @@ int main(int argc, char* argv[])
         }}
     }
 
-    platformstl::readdir_sequence   files(".", platformstl::readdir_sequence::files);
+    readdir_sequence const files(".", readdir_sequence::files);
 
-    { for (platformstl::readdir_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
+    { for (readdir_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         { for (strings_t::const_iterator b1 = patterns.begin(); b1 != patterns.end(); ++b1)
         {
