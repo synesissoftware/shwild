@@ -121,18 +121,21 @@ static int get_token(char const* buf, size_t* len, unsigned flags)
     {
         SHWILD_COVER_MARK_LINE();
 
-        switch( tok )
+        switch (tok)
         {
             case '\\':
                 SHWILD_COVER_MARK_LINE();
+
                 if (0 != (flags & SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE))
                 {
                     return tok;
                 }
+
                 ++buf;
                 ++*len;
                 tok = *buf;
-                switch( tok )
+
+                switch (tok)
                 {
                 case '\\':
                 case '?':
@@ -146,30 +149,37 @@ static int get_token(char const* buf, size_t* len, unsigned flags)
                 }
             case '?':
                 SHWILD_COVER_MARK_LINE();
+
                 return TOK_WILD_1;
             case '*':
                 SHWILD_COVER_MARK_LINE();
+
                 return TOK_WILD_N;
             case '[':
                 SHWILD_COVER_MARK_LINE();
+
                 if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_SUPPORT))
                 {
                     SHWILD_COVER_MARK_LINE();
 
                     return tok;
                 }
+
                 return TOK_RANGE_BEG;
             case ']':
                 SHWILD_COVER_MARK_LINE();
+
                 if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_SUPPORT))
                 {
                     SHWILD_COVER_MARK_LINE();
 
                     return tok;
                 }
+
                 return TOK_RANGE_END;
             default:
                 SHWILD_COVER_MARK_LINE();
+
                 return tok;
         }
     }
@@ -269,12 +279,13 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
     SHWILD_COVER_MARK_LINE();
 
-    int         tok;
-    size_t      tok_len;
+    int     tok;
+    size_t  tok_len;
 
     *len = 0;
+
     /* memset( node, 0, sizeof( node_t ) ); */
-    switch( tok = get_token( buf, &tok_len, flags ) )
+    switch (tok = get_token(buf, &tok_len, flags))
     {
     case TOK_INVALID:
         SHWILD_COVER_MARK_LINE();
@@ -515,7 +526,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
                             {
                                 SHWILD_COVER_MARK_LINE();
 
-                                const size_t sz3 = xstr.size();
+                                size_t const sz3 = xstr.size();
 
                                 if (!xstr.resize(1 + sz3))
                                 {
@@ -537,7 +548,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
                             {
                                 SHWILD_COVER_MARK_LINE();
 
-                                const size_t sz4 = xstr.size();
+                                size_t const sz4 = xstr.size();
 
                                 if (!xstr.resize(1 + sz4))
                                 {
@@ -624,7 +635,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
     return 0;
 }
 
-void node_init( node_t* node )
+void node_init(node_t* node)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -632,7 +643,7 @@ void node_init( node_t* node )
     node->data.len  =   0;
 }
 
-void node_reset( node_t* node )
+void node_reset(node_t* node)
 {
     SHWILD_COVER_MARK_LINE();
 

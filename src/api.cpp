@@ -126,14 +126,21 @@ static bool shwild_match_(Matches const& matches, slice_t const* string);
 class PatternMatcher
     : public shwild_handle_t_
 {
+/// \name Member Types
+/// @{
+public:
+    /// This type
+    typedef PatternMatcher  class_type;
+/// @}
+
 /// \name Construction
 /// @{
 public:
     PatternMatcher();
     ~PatternMatcher();
 private:
-    PatternMatcher(PatternMatcher const&);
-    void operator =(PatternMatcher const&);
+    PatternMatcher(class_type const&);
+    void operator =(class_type const&);
 /// @}
 
 public:
@@ -226,6 +233,7 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
                     break;
                 }
             }
+
             if (b == e)
             {
                 SHWILD_COVER_MARK_LINE();
@@ -268,7 +276,7 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-int shwild_compile_pattern(char const* pattern, unsigned flags, shwild_handle_t *phCompiledPattern)
+int shwild_compile_pattern(char const* pattern, unsigned flags, shwild_handle_t* phCompiledPattern)
 {
     SHWILD_ASSERT(NULL != pattern);
 
@@ -279,7 +287,7 @@ int shwild_compile_pattern(char const* pattern, unsigned flags, shwild_handle_t 
     return shwild_compile_pattern_s(&pattern_slice, flags, phCompiledPattern);
 }
 
-int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwild_handle_t *phCompiledPattern)
+int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwild_handle_t* phCompiledPattern)
 {
     SHWILD_ASSERT(NULL != pattern);
     SHWILD_ASSERT(NULL != phCompiledPattern);
@@ -461,7 +469,7 @@ static int shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsign
         {
             SHWILD_COVER_MARK_LINE();
 
-            switch(node.type)
+            switch (node.type)
             {
                 case    NODE_NOTHING:
                     SHWILD_COVER_MARK_LINE();
