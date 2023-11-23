@@ -4,11 +4,11 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Sean Kelly and Matthew Wilson
+ * Copyright (c) 2005-2023, Sean Kelly and Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -107,10 +107,11 @@ struct node_t
 };
 
 /** \brief Buffer used when necessary. */
-typedef stlsoft::auto_buffer<   char
-                            ,   1024
-//                          ,   ss_typename_type_def_k allocator_selector<T>::allocator_type
-                            >    node_buffer_t;
+typedef stlsoft::auto_buffer<
+    char
+,   1024
+//,   ss_typename_type_def_k allocator_selector<T>::allocator_type
+>   node_buffer_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

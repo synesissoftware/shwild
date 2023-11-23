@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    shwild/shwild.hpp
  *
- * Purpose: C++ root file for the shwild C-API
+ * Purpose: C++ root file for the shwild C++-API
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
-# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  1
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      11
+# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  2
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      12
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,7 @@ public:
     {
         char const* const wh = parent_class_type::what();
 
-        if( NULL != wh &&
+        if (NULL != wh &&
             '\0' != wh[0])
         {
             return wh;
@@ -205,7 +205,7 @@ inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned
 
     numMatches = shwild_compile_pattern(pattern, flags, &hCompiledPattern);
 
-    if(numMatches < 0)
+    if (numMatches < 0)
     {
         hCompiledPattern    =   NULL;
 
@@ -221,7 +221,7 @@ inline /* static */ shwild_handle_t Pattern::init_(slice_t const* pattern, unsig
 
     numMatches = shwild_compile_pattern_s(pattern, flags, &hCompiledPattern);
 
-    if(numMatches < 0)
+    if (numMatches < 0)
     {
         hCompiledPattern    =   NULL;
 
@@ -252,7 +252,7 @@ inline bool Pattern::match(char const* string) const
 {
     int r = shwild_match_pattern(m_hCompiledPattern, string);
 
-    if(r < 0)
+    if (r < 0)
     {
         throw PatternException("Match failed", r);
     }
@@ -264,7 +264,7 @@ inline bool Pattern::match(slice_t const* string) const
 {
     int r = shwild_match_pattern_s(m_hCompiledPattern, string);
 
-    if(r < 0)
+    if (r < 0)
     {
         throw PatternException("Match failed", r);
     }
@@ -276,7 +276,7 @@ inline bool Pattern::match(slice_t const& string) const
 {
     int r = shwild_match_pattern_s(m_hCompiledPattern, &string);
 
-    if(r < 0)
+    if (r < 0)
     {
         throw PatternException("Match failed", r);
     }
