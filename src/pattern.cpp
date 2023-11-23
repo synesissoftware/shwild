@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -65,11 +65,11 @@
 #endif /* _MSC_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler features
+ * compiler features
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Checks
+ * checks
  */
 
 #if CHAR_MAX >= INT_MAX || \
@@ -78,7 +78,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 namespace
@@ -179,7 +179,7 @@ static int get_token(char const* buf, size_t* len, unsigned flags)
     return TOK_END;
 }
 
-static int get_literal( shwild_slice_t& content, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags, int bInRange )
+static int get_literal(shwild_slice_t& content, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags, int bInRange)
 {
     SHWILD_ASSERT( NULL != buf && 0 != len );
 
@@ -263,7 +263,7 @@ static int get_literal( shwild_slice_t& content, node_buffer_t& scratch, char co
     return tok;
 }
 
-int get_node( node_t* node, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags )
+int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags)
 {
     SHWILD_ASSERT( node && buf && len );
 

@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -59,7 +59,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler warnings
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -67,7 +67,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -78,7 +78,7 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -160,6 +160,7 @@ char const* MatchWild::nextSub(char const* /* first */, char const* /* last */, 
     return NULL;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * MatchWild1
  */
@@ -217,6 +218,7 @@ char const* MatchWild1::nextSub(char const* first, char const* /* last */, size_
 
     return first;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchRange
@@ -296,6 +298,7 @@ char const* MatchRange::nextSub(char const* first, char const* /* last */, size_
 
     return first;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchNotRange
@@ -383,6 +386,7 @@ char const* MatchEnd::nextSub(char const* /* first */, char const* last, size_t*
 
     return last;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchLiteral
@@ -477,8 +481,9 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* n
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * utility functions
  */
 
 char* STLSOFT_CDECL shwild_strchr(char const* s, int ch)
@@ -588,8 +593,9 @@ int STLSOFT_CDECL shwild_strnicmp(char const* s1, char const* s2, size_t n)
 #endif /* compiler */
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)

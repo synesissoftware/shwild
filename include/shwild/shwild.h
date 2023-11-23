@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file shwild/shwild.h [C/C++] This is the root file of the shwild C-API
+/** \file shwild/shwild.h [C/C++] Root file of the **shwild C-API**
  */
 
 #ifndef SHWILD_INCL_SHWILD_H_SHWILD
@@ -57,19 +57,19 @@
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
- * The major version number of shwild
+ * The major version number of **shwild**
  */
 
 /** \def SHWILD_VER_MINOR
- * The minor version number of shwild
+ * The minor version number of **shwild**
  */
 
 /** \def SHWILD_VER_REVISION
- * The revision version number of shwild
+ * The revision version number of **shwild**
  */
 
 /** \def SHWILD_VER
- * The current composite version number of shwild
+ * The current composite version number of **shwild**
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
@@ -119,28 +119,41 @@
  */
 
 /** \defgroup group__shwild_api shwild API
- * The shwild Public API
+ * The **shwild** Public API
  *
- * The types, constants and functions that constitute the shwild API. Users of
- * the shwild library will use only these functions to effect pattern creation
- * and matching.
+ * The types, constants and functions that comprise the **shwild** API. Users
+ * of the library will use only these functions to effect pattern creation and
+ * matching.
  */
 
 /** \defgroup group__shwild_api__c_api C API
+ *
  * \ingroup group__shwild_api
- * These types, constants and functions form the core of the shwild API.
+ *
+ * These types, constants and functions form the core of the **shwild** API.
+ */
+
+/** \defgroup group__shwild_api__cpp_api C++ API
+ *
+ * \ingroup group__shwild_api
+ *
+ * C++ facades arouns the \ref group__shwild_api.
  */
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 /** Handle type for use in declaring opaque handles to compiled patterns
+ *
  * \ingroup group__shwild_api__c_api
  */
 struct shwild_handle_t_;
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
-/** Handle to compiled pattern.
+/** Opaque handle to compiled pattern.
+ *
  * \ingroup group__shwild_api__c_api
  *
  * Used by shwild_compile_pattern(), shwild_match_pattern() and shwild_destroy_pattern()
@@ -148,6 +161,7 @@ struct shwild_handle_t_;
 typedef struct shwild_handle_t_* shwild_handle_t;
 
 /** Length-aware string.
+ *
  * \ingroup group__shwild_api__c_api
  *
  * This structure is used within the library to provide higher efficiency. In order
@@ -161,6 +175,9 @@ struct shwild_slice_t
     char const* ptr;    /*!< Pointer to the first character in the slice. May be NULL if len == 0. */
 
 #ifdef __cplusplus
+/** \name Construction
+ * @{
+ */
 public:
     /** Initialises members to default value */
     shwild_slice_t();
@@ -172,6 +189,7 @@ public:
      * \param s Pointer to the first character in the string to be sliced. May be NULL only if n == 0.
      */
     shwild_slice_t(size_t n, char const* s);
+/** @} */
 #endif /* __cplusplus */
 };
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
@@ -183,7 +201,9 @@ typedef struct shwild_slice_t   shwild_slice_t;
  */
 
 /** \defgroup group__shwild_api__flags Pattern Control Flags
+ *
  * \ingroup group__shwild_api
+ *
  * These flags control the pattern matching behaviour:
  *
  * 1. Escape character. This is to recognise \ as an escape character, escaping
@@ -206,37 +226,39 @@ typedef struct shwild_slice_t   shwild_slice_t;
  * @{
  */
 
-#define SHWILD_F_SUPPRESS_RANGE_SUPPORT                             (0x0001)    /*!< Suppresses the recognition of ranges. [ and ] are treated as literal characters (and need no escaping). */
-#define SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE                          (0x0002)    /*!< Suppresses the use of backslash interpretation as escape. \ is treated as a literal character. */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT                   (0x0004)    /*!< Suppresses the recognition of range continuums, i.e. [0-9]. */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT           (0x0008)    /*!< Suppresses the recognition of reverse range continuums, i.e. [9-0], [M-D]. */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT         (0x0010)    /*!< Suppresses the recognition of cross-case range continuums, i.e. [h-J] === [hijHIJ]. */
-#define SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT            (0x0020)    /*!< Suppresses the recognition of ? and * as literal inside range. */
-#define SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT    (0x0040)    /*!< Suppresses the recognition of leading/trailing hyphens as literal inside range. */
-#define SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT                         (0x0400)    /*!< Suppresses the use of a leading ^ to mean not any of the following, i.e. [^0-9] means do not match a digit. */
-#define SHWILD_F_IGNORE_CASE                                        (0x0200)    /*!< Comparison is case-insensitive. */
+#define SHWILD_F_SUPPRESS_RANGE_SUPPORT                             (0x0001)    /*!< Suppresses the recognition of ranges. [ and ] are treated as literal characters (and need no escaping) */
+#define SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE                          (0x0002)    /*!< Suppresses the use of backslash interpretation as escape. \ is treated as a literal character */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT                   (0x0004)    /*!< Suppresses the recognition of range continuums, i.e. [0-9] */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT           (0x0008)    /*!< Suppresses the recognition of reverse range continuums, i.e. [9-0], [M-D] */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT         (0x0010)    /*!< Suppresses the recognition of cross-case range continuums, i.e. [h-J] === [hijHIJ] */
+#define SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT            (0x0020)    /*!< Suppresses the recognition of ? and * as literal inside range */
+#define SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT    (0x0040)    /*!< Suppresses the recognition of leading/trailing hyphens as literal inside range */
+#define SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT                         (0x0400)    /*!< Suppresses the use of a leading ^ to mean not any of the following, i.e. [^0-9] means do not match a digit */
+#define SHWILD_F_IGNORE_CASE                                        (0x0200)    /*!< Comparison is case-insensitive */
 
 #if 0
 /* Not currently supported. */
-#define SHWILD_F_ALLOW_RANGE_LITERAL_BRACKET_SUPPORT                (0x0080)    /*!< Treats [ and ] as literal inside range. ] only literal if immediately preceeds closing ]. NOT CURRENTLY SUPPORTED. */
-#define SHWILD_F_ALLOW_RANGE_QUANTIFICATION_SUPPORT                 (0x0100)    /*!< Allows quantification of the wildcards, with trailing escaped numbers, as in [a-Z]\2-10. All chars in 0-9- become range specifiers. These are separated from actual pattern digits by []. NOT CURRENTLY SUPPORTED. */
-#define SHWILD_F_FNM_PATHNAME_SEMANTICS                             (0x0800)    /*!< Will only match / (and \ on Win32) characters with literals, not via any wildcard substitutions. */
+#define SHWILD_F_ALLOW_RANGE_LITERAL_BRACKET_SUPPORT                (0x0080)    /*!< Treats [ and ] as literal inside range. ] only literal if immediately preceeds closing ]. NOT CURRENTLY SUPPORTED */
+#define SHWILD_F_ALLOW_RANGE_QUANTIFICATION_SUPPORT                 (0x0100)    /*!< Allows quantification of the wildcards, with trailing escaped numbers, as in [a-Z]\2-10. All chars in 0-9- become range specifiers. These are separated from actual pattern digits by []. NOT CURRENTLY SUPPORTED */
+#define SHWILD_F_FNM_PATHNAME_SEMANTICS                             (0x0800)    /*!< Will only match / (and \ on Win32) characters with literals, not via any wildcard substitutions */
 #endif /* 0 */
 
 /** @} */
 
-/** \defgroup group__shwild_api__result_codes shwild Results Codes
+/** \defgroup group__shwild_api__result_codes **shwild** Results Codes
+ *
  * \ingroup group__shwild_api
- * These codes represent the
+ *
+ * These codes represent the result statuses of the **shwild C-API**
  *
  * @{
  */
 
 #define SHWILD_RC_SUCCESS               (0)                             /*!< Operating completed successfully */
 #define SHWILD_RC_ERROR_BASE_           (-2000)
-#define SHWILD_RC_ALLOC_ERROR           (SHWILD_RC_ERROR_BASE_ - 1)     /*!< Memory exhaustion. */
-#define SHWILD_RC_PARSE_ERROR           (SHWILD_RC_ERROR_BASE_ - 2)     /*!< Parsing error. */
-#define SHWILD_RC_UNSPECIFIED           (SHWILD_RC_ERROR_BASE_ - 3)     /*!< Unspecified exception. */
+#define SHWILD_RC_ALLOC_ERROR           (SHWILD_RC_ERROR_BASE_ - 1)     /*!< Memory exhaustion */
+#define SHWILD_RC_PARSE_ERROR           (SHWILD_RC_ERROR_BASE_ - 2)     /*!< Parsing error */
+#define SHWILD_RC_UNSPECIFIED           (SHWILD_RC_ERROR_BASE_ - 3)     /*!< Unspecified exception */
 
 /** @} */
 
@@ -249,31 +271,32 @@ extern "C"
 {
 #endif /* __cplusplus */
 
-/** Initialises the shwild API
+/** Initialises the **shwild** API
  *
  * \return Status indicating whether initialisation was successful
- * \retval <0 An error
+ * \retval <0 Initialisation failed
  * \retval >=0 Initialisation was successful
  */
 int
 shwild_init(void);
 
-/** Uninitialises the shwild API
+/** Uninitialises the **shwild** API
  *
  * \remarks Must be called once for each successful call to shwild_init().
  */
 void
 shwild_uninit(void);
 
-/** Matches a string against an shwild pattern
+/** Matches a string against an **shwild** pattern
+ *
  * \ingroup group__shwild_api__c_api
  *
- * \param pattern The shwild pattern against which matching will be performed
+ * \param pattern The **shwild** pattern against which matching will be performed
  * \param string The string to match against the pattern
- * \param flags Flags which moderate the search.
+ * \param flags Flags which moderate the search
  *
  * \return Status indicating whether the string matched against the given pattern
- * \retval <0 An error code (one of SHWILD_RC_*)
+ * \retval <0 An error code (one of `SHWILD_RC_*`)
  * \retval 0 The string matched the pattern
  * \retval non-0 The string did not match the pattern
  */
@@ -285,6 +308,7 @@ shwild_match(
 );
 
 /** Synonym for shwild_match() using length-aware string arguments
+ *
  * \ingroup group__shwild_api__c_api
  */
 int
@@ -295,9 +319,10 @@ shwild_match_s(
 );
 
 /** Compiles a pattern into an efficient form for use in multiple match operations
+ *
  * \ingroup group__shwild_api__c_api
  *
- * \param pattern The shwild pattern against which matching will be performed
+ * \param pattern The **shwild** pattern against which matching will be performed
  * \param flags Flags which moderate the search.
  * \param phCompiledPattern Pointer to a variable to hold the compiled pattern
  *
@@ -316,6 +341,7 @@ shwild_compile_pattern(
 );
 
 /** Synonym for shwild_compile_pattern() using length-aware string arguments
+ *
  * \ingroup group__shwild_api__c_api
  */
 int
@@ -325,10 +351,11 @@ shwild_compile_pattern_s(
 ,   shwild_handle_t*        phCompiledPattern
 );
 
-/** Matches a string against against a pre-compiled shwild pattern
+/** Matches a string against against a pre-compiled **shwild** pattern
+ *
  * \ingroup group__shwild_api__c_api
  *
- * \param hCompiledPattern The precompiled shwild pattern against which matching will be performed
+ * \param hCompiledPattern The precompiled **shwild** pattern against which matching will be performed
  * \param string The string to match against the pattern
  *
  * \return Status indicating whether the string matched against the given pattern
@@ -342,6 +369,7 @@ shwild_match_pattern(
 );
 
 /** Synonym for shwild_match_pattern() using length-aware string arguments
+ *
  * \ingroup group__shwild_api__c_api
  */
 int
@@ -350,7 +378,8 @@ shwild_match_pattern_s(
 ,   shwild_slice_t const*   string
 );
 
-/** Releases all resources associated with a pre-compiled shwild pattern
+/** Releases all resources associated with a pre-compiled **shwild** pattern
+ *
  * \ingroup group__shwild_api__c_api
  *
  * \param hCompiledPattern The pattern to be destroyed.
@@ -376,7 +405,9 @@ shwild_destroy_pattern(
 
 #if !defined(SHWILD_NO_NAMESPACE)
 /** The shwild/C++ namespace - \c shwild - that contains wrappers for the
- * \link group__shwild_api__c_api C API\endlink. */
+ *
+ * \link group__shwild_api__c_api C API\endlink.
+ */
 namespace shwild
 {
 #endif /* !SHWILD_NO_NAMESPACE */
@@ -388,7 +419,9 @@ namespace shwild
 #ifdef __cplusplus
 
 /** \defgroup group__shwild_api__cpp_api C++ API
+ *
  * \ingroup group__shwild_api
+ *
  * The C++ API provides convenient overloads of the
  *   \ref group__shwild_api__c_api functions for use in C++, along with the
  *   Pattern class that provides a convenient interface to compiled patterns.
@@ -396,11 +429,13 @@ namespace shwild
  */
 
 /** C++ synonym for shwild_slice_t
+ *
  * \ingroup group__shwild_api__cpp_api
  */
 typedef shwild_slice_t  slice_t;
 
 /** C++ overload synonym for shwild_match()
+ *
  * \ingroup group__shwild_api__cpp_api
  */
 inline
@@ -413,7 +448,9 @@ match(
 {
     return shwild_match(pattern, string, flags);
 }
+
 /** C++ overload synonym for shwild_compile_pattern()
+ *
  * \ingroup group__shwild_api__cpp_api
  */
 inline
@@ -426,7 +463,9 @@ compile_pattern(
 {
     return shwild_compile_pattern(pattern, flags, phCompiledPattern);
 }
+
 /** C++ overload synonym for shwild_match_pattern()
+ *
  * \ingroup group__shwild_api__cpp_api
  */
 inline
@@ -438,7 +477,9 @@ match_pattern(
 {
     return shwild_match_pattern(hCompiledPattern, string);
 }
+
 /** C++ overload synonym for shwild_destroy_pattern()
+ *
  * \ingroup group__shwild_api__cpp_api
  */
 inline
@@ -474,7 +515,6 @@ destroy_pattern(
       __BORLANDC__ >= 0x0582
 #   pragma warn -8026
 #  endif /* compiler */
-
 
 inline
 shwild_slice_t::shwild_slice_t()
