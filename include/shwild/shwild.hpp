@@ -4,7 +4,7 @@
  * Purpose: C++ root file for the shwild C++ API
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th  November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -52,9 +52,17 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
-# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  2
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      12
+# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  3
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      13
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#ifndef __cplusplus
+# error This file can only be used in C++ compilation units
+#endif /* !__cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

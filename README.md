@@ -41,12 +41,12 @@ and used as in the following simple example:
 
 . . .
 
-let r = shwild_init();
+int r = shwild_init();
 if (r < 0) {
     . . . // report failure and exit
 } else {
   shwild_handle_t hCompiledPattern;
-  let r2 = shwild_compile_pattern("X[0-9]*", 0, &hCompiledPattern);
+  int r2 = shwild_compile_pattern("X[0-9]*", 0, &hCompiledPattern);
   if (r2 < 0) {
     . . . // report failure and exit
   } else {
