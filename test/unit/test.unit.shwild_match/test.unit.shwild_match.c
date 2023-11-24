@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for the test.unit.shwild_match project.
  *
  * Created:     27th April 2006
- * Updated:     18th July 2020
+ * Updated:     24th November 2023
  *
  * Status:      Wizard-generated
  *
- * Copyright (c) 2006-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2006-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
