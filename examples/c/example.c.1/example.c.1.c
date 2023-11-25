@@ -1,5 +1,6 @@
 /** \file example.c.1.c
- *
+ */
+/*
  * Created: 24th November 2023
  * Updated: 24th November 2023
  */

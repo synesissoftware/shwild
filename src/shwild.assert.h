@@ -4,7 +4,7 @@
  * Purpose:     Contract Programming enforcement definitions.
  *
  * Created:     8th February 2008
- * Updated:     23rd November 2023
+ * Updated:     24th November 2023
  *
  * Author:      Matthew Wilson
  *
@@ -45,6 +45,9 @@
 #ifndef SHWILD_INCL_H_SHWILD_ASSERT
 #define SHWILD_INCL_H_SHWILD_ASSERT
 
+/** \file shwild.assert.h \brief [INTERNAL] Assertions
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -60,16 +63,26 @@
  * macros
  */
 
+/** \def SHWILD_ASSERT(expr)
+ *
+ * Simple assertion construct.
+ */
+
+/** \def SHWILD_MESSAGE_ASSERT(expr, msg)
+ *
+ * Simple assertion construct with qualifying message.
+ */
+
 #ifdef SHWILD_NO_STLSOFT
 
 # define SHWILD_ASSERT(expr)                                assert(expr)
 
-# define SHWILD_MESSAGE_ASSERT(msg, expr)                   assert(expr)
+# define SHWILD_MESSAGE_ASSERT(expr, msg)                   assert(expr)
 #else /* ? SHWILD_NO_STLSOFT */
 
 # define SHWILD_ASSERT(expr)                                STLSOFT_ASSERT(expr)
 
-# define SHWILD_MESSAGE_ASSERT(msg, expr)                   STLSOFT_MESSAGE_ASSERT(msg, expr)
+# define SHWILD_MESSAGE_ASSERT(expr, msg)                   STLSOFT_MESSAGE_ASSERT(msg, expr)
 #endif /* SHWILD_NO_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////

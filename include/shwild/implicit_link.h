@@ -4,7 +4,7 @@
  * Purpose: Implicit linking for the shwild API.
  *
  * Created: 27th April 2006
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://synesis.com.au/software/
  *

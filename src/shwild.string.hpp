@@ -4,7 +4,7 @@
  * Purpose: String class for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -41,6 +41,9 @@
 
 #ifndef SHWILD_INCL_HPP_SHWILD_STRING
 #define SHWILD_INCL_HPP_SHWILD_STRING
+
+/** \file shwild.string.hpp \brief [INTERNAL] string generator
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -107,6 +110,7 @@ public:
 # endif /* ? compiler */
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
+/// Internal string type
 #if !defined(SHWILD_CUSTOM_STRING_CLASS)
 typedef std::string                 shwild_string_t;
 #else /* ? SHWILD_CUSTOM_STRING_CLASS */

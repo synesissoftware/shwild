@@ -4,7 +4,7 @@
  * Purpose: Definition of Match interface class and concrete match classes
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -41,6 +41,9 @@
 
 #ifndef SHWILD_INCL_SRC_HPP_MATCHES
 #define SHWILD_INCL_SRC_HPP_MATCHES
+
+/** \file matches.hpp \brief [INTERNAL] Match protocol class and specific implementations
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -108,6 +111,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs instance
     explicit MatchWild(unsigned flags);
     virtual ~MatchWild();
 
@@ -141,6 +145,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs instance
     explicit MatchWild1(unsigned flags);
     virtual ~MatchWild1();
 
@@ -174,6 +179,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs instance
     MatchRange(size_t len, char const* chars, unsigned flags);
     virtual ~MatchRange();
 
@@ -187,12 +193,15 @@ public:
     virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const;
 
 protected:
+    /// [UNDOCUMENTED]
     bool matchContents(char ch) const;
 
 /// \name Fields
 /// @{
 protected:
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
     Match*                  m_next;
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 private:
     shwild_string_t const   m_chars;
     unsigned const          m_flags;
@@ -215,6 +224,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs instance
     MatchNotRange(size_t len, char const* chars, unsigned flags);
     virtual ~MatchNotRange();
 private:
@@ -239,6 +249,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs instance
     explicit MatchEnd(unsigned flags);
     virtual ~MatchEnd();
 
@@ -272,6 +283,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs instance
     MatchLiteral(size_t cchContents, char const* contents, unsigned flags);
     virtual ~MatchLiteral();
 
