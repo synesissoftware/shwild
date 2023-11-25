@@ -13,19 +13,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * warning suppression
- */
-
-#if 0
-#elif defined(__BORLANDC__)
-#elif defined(__COMO__)
-#elif defined(__DMC__)
-#elif defined(__INTEL_COMPILER)
-# pragma warning(disable : 383)     /* Suppresses: "value copied to temporary, reference to temporary used" */
-#elif defined(_MSC_VER)
-#endif /* compiler */
-
 /* ////////////////////////////////////////////////////////////////////// */
 
 int list_for_pattern(
@@ -73,7 +60,7 @@ int list_for_pattern(
 
 int main(int argc, char* argv[])
 {
-    int r = shwild_init();
+    int const r = shwild_init();
 
     if (r < 0)
     {
@@ -91,7 +78,7 @@ int main(int argc, char* argv[])
         {
             { for (int i = 1; i < argc; ++i)
             {
-                char const* arg = argv[i];
+                char const* const arg = argv[i];
 
                 if ('-' == arg[0])
                 {
@@ -99,7 +86,7 @@ int main(int argc, char* argv[])
                 }
                 else
                 {
-                    int r2 = list_for_pattern(".", arg);
+                    int const r2 = list_for_pattern(".", arg);
 
                     if (EXIT_SUCCESS != r2)
                     {

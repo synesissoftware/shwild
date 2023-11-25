@@ -86,8 +86,11 @@
  * classes
  */
 
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+
 struct shwild_handle_t_
 {};
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
