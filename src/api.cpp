@@ -57,7 +57,7 @@
 #include "shwild.cover.h"
 
 #include <stlsoft/smartptr/shared_ptr.hpp>
-#define SHWILD_ASSERT   stlsoft_assert
+#define SHWILD_ASSERT                                       stlsoft_assert
 
 #include <algorithm>
 
