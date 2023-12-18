@@ -600,3 +600,4 @@ int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
