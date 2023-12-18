@@ -57,8 +57,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MAJOR      1
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MINOR      5
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   4
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       16
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   5
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       17
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -232,7 +232,7 @@
 #    if 0
 #    elif _MSC_VER < 1920
 #     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc15"
-#    elif _MSC_VER <= 1926
+#    elif _MSC_VER <= 1929
 #     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc16"
 #    else
 #     error Visual C++ version that is >= vc16 is not recognised
