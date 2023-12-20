@@ -4,11 +4,11 @@
  * Purpose: Implementation of Match interface class and concrete match classes
  *
  * Created: 17th June 2005
- * Updated: 5th February 2012
+ * Updated: 21st December 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -600,3 +600,4 @@ int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

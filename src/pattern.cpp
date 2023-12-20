@@ -4,11 +4,11 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 21st August 2015
+ * Updated: 21st December 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2015, Sean Kelly and Matthew Wilson
+ * Copyright (c) 2005-2023, Sean Kelly and Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -621,3 +621,4 @@ void node_reset( node_t* node )
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
