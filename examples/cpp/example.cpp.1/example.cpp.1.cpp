@@ -1,7 +1,7 @@
 /// \file example.cpp.1.cpp
 //
 // Created: 29th April 2006
-// Updated: 24th November 2023
+// Updated: 21st December 2023
 
 #include <shwild/shwild.hpp>
 
