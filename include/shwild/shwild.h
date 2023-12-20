@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file shwild/shwild.h [C/C++] Root file of the **shwild C-API**
+/** \file shwild/shwild.h \brief [C/C++] Root file of the **shwild C API**
  */
 
 #ifndef SHWILD_INCL_SHWILD_H_SHWILD
@@ -100,13 +100,14 @@
 # define SHWILD_VER_0_11_2      0x000b02ff
 # define SHWILD_VER_0_11_3      0x000b03ff
 # define SHWILD_VER_0_11_4_a1   0x000b0401
+# define SHWILD_VER_0_11_4_a2   0x000b0402
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR        0
 #define SHWILD_VER_MINOR        11
 #define SHWILD_VER_REVISION     4
 
-#define SHWILD_VER              SHWILD_VER_0_11_4_a1
+#define SHWILD_VER              SHWILD_VER_0_11_4_a2
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -245,11 +246,11 @@ typedef struct shwild_slice_t   shwild_slice_t;
 
 /** @} */
 
-/** \defgroup group__shwild_api__result_codes **shwild** Results Codes
+/** \defgroup group__shwild_api__result_codes shwild Result Codes
  *
  * \ingroup group__shwild_api
  *
- * These codes represent the result statuses of the **shwild C-API**
+ * These codes represent the result statuses of the **shwild C API**
  *
  * @{
  */

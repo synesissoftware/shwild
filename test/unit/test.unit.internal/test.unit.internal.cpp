@@ -4,11 +4,11 @@
  * Purpose:     C++ test file for the shwild library
  *
  * Created:     17th June 2005
- * Updated:     18th July 2020
+ * Updated:     23rd November 2023
  *
  * Home:        http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,11 @@
 
 #include "../../../src/matches.hpp"
 
-#include <stlsoft/smartptr/shared_ptr.hpp>
+#ifndef SHWILD_NO_STLSOFT
+# include <stlsoft/smartptr/shared_ptr.hpp>
+#else /* ? SHWILD_NO_STLSOFT */
+# include <memory>
+#endif /* !SHWILD_NO_STLSOFT */
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
 # include <vector>
@@ -71,7 +75,11 @@
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
+#ifndef SHWILD_NO_STLSOFT
 typedef stlsoft::shared_ptr<shwild::impl::Match>    Match_ptr;
+#else /* ? SHWILD_NO_STLSOFT */
+typedef std::shared_ptr<shwild::impl::Match>        Match_ptr;
+#endif /* !SHWILD_NO_STLSOFT */
 typedef std::vector<Match_ptr>                      Matches;
 #endif /* 0 */
 

@@ -52,12 +52,16 @@
 #endif /* NoX && VC++ */
 
 #include "matches.hpp"
-#include "shwild.vector.hpp"
 #include "pattern.hpp"
+#include "shwild.assert.h"
+#include "shwild.vector.hpp"
 #include "shwild.cover.h"
 
-#include <stlsoft/smartptr/shared_ptr.hpp>
-#define SHWILD_ASSERT   stlsoft_assert
+#ifndef SHWILD_NO_STLSOFT
+# include <stlsoft/smartptr/shared_ptr.hpp>
+#else /* ? SHWILD_NO_STLSOFT */
+# include <memory>
+#endif /* !SHWILD_NO_STLSOFT */
 
 #include <algorithm>
 
@@ -106,7 +110,11 @@ namespace
  * typedefs
  */
 
+#ifndef SHWILD_NO_STLSOFT
 typedef stlsoft::shared_ptr<Match>                      Match_ptr;
+#else /* ? SHWILD_NO_STLSOFT */
+typedef std::shared_ptr<Match>                          Match_ptr;
+#endif /* !SHWILD_NO_STLSOFT */
 typedef ::shwild::impl::vector_maker<Match_ptr>::type   Matches;
 
 /* /////////////////////////////////////////////////////////////////////////

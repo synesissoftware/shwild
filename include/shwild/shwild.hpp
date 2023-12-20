@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    shwild/shwild.hpp
  *
- * Purpose: C++ root file for the shwild C++-API
+ * Purpose: C++ root file for the shwild C++ API
  *
  * Created: 17th June 2005
  * Updated: 23rd November 2023
@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file shwild/shwild.hpp [C++] C++ root file for the **shwild C++-API**
+/** \file shwild/shwild.hpp \brief [C++] C++ root file for the **shwild C++ API**
  */
 
 #ifndef SHWILD_INCL_SHWILD_HPP_SHWILD

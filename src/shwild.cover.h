@@ -4,13 +4,13 @@
  * Purpose:     Contract Programming enforcement definitions.
  *
  * Created:     11th February 2009
- * Updated:     18th July 2020
+ * Updated:     23rd November 2023
  *
  * Author:      Matthew Wilson
  *
  * Home:        http://www.shwild.org/
  *
- * Copyright (c) 2009-2020, Matthew Wilson
+ * Copyright (c) 2009-2023, Matthew Wilson
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
@@ -61,10 +61,14 @@
 
 #ifdef SHWILD_QUALITY_USE_XCOVER
 
-# define SHWILD_COVER_MARK_LINE()       XCOVER_MARK_LINE()
+# define SHWILD_COVER_MARK_LINE()                           XCOVER_MARK_LINE()
 #else
 
-# define SHWILD_COVER_MARK_LINE()       stlsoft_static_cast(void, 0)
+# ifdef SHWILD_NO_STLSOFT
+#  define SHWILD_COVER_MARK_LINE()                          ((void)0)
+# else /* ? SHWILD_NO_STLSOFT */
+#  define SHWILD_COVER_MARK_LINE()                          stlsoft_static_cast(void, 0)
+# endif /* SHWILD_NO_STLSOFT */
 #endif
 
 /* ////////////////////////////////////////////////////////////////////// */

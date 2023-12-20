@@ -102,6 +102,19 @@ namespace
         return NULL;
     }
 
+    // This function serves solely to provide an abstraction over the
+    // `stlsoft::auto_buffer<>::resize()` / `std::vector<>::resize()`
+    bool resize_buffer(node_buffer_t& buffer, size_t size)
+    {
+#ifndef SHWILD_NO_STLSOFT
+        return buffer.resize(size);
+#else /* ? SHWILD_NO_STLSOFT */
+        buffer.resize(size);
+
+        return true;
+#endif /* !SHWILD_NO_STLSOFT */
+    }
+
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -199,7 +212,7 @@ static int get_literal(shwild_slice_t& content, node_buffer_t& scratch, char con
     int         tok;
     size_t      tok_len;
 
-    if (!scratch.resize(1)) // This trims without discarding any hard-won heap mem.
+    if (!resize_buffer(scratch, 1)) // This trims without discarding any hard-won heap mem.
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -244,7 +257,7 @@ static int get_literal(shwild_slice_t& content, node_buffer_t& scratch, char con
 
             const size_t sz = scratch.size();
 
-            if (!scratch.resize(1 + sz))
+            if (!resize_buffer(scratch, 1 + sz))
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -415,7 +428,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
                     const size_t sz = xstr.size();
 
-                    if (!xstr.resize(sz + (static_cast<size_t>(minus - begin) - 1)))
+                    if (!resize_buffer(xstr, sz + (static_cast<size_t>(minus - begin) - 1)))
                     {
                         SHWILD_COVER_MARK_LINE();
 
@@ -459,7 +472,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
                             const size_t sz2 = xstr.size();
 
-                            if (!xstr.resize(1 + sz2))
+                            if (!resize_buffer(xstr, 1 + sz2))
                             {
                                 SHWILD_COVER_MARK_LINE();
 
@@ -528,7 +541,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
                                 size_t const sz3 = xstr.size();
 
-                                if (!xstr.resize(1 + sz3))
+                                if (!resize_buffer(xstr, 1 + sz3))
                                 {
                                     SHWILD_COVER_MARK_LINE();
 
@@ -550,7 +563,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
                                 size_t const sz4 = xstr.size();
 
-                                if (!xstr.resize(1 + sz4))
+                                if (!resize_buffer(xstr, 1 + sz4))
                                 {
                                     SHWILD_COVER_MARK_LINE();
 
@@ -592,7 +605,7 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
                 const size_t sz = xstr.size();
 
-                if (!xstr.resize(sz + static_cast<size_t>(end - begin)))
+                if (!resize_buffer(xstr, sz + static_cast<size_t>(end - begin)))
                 {
                     SHWILD_COVER_MARK_LINE();
 
