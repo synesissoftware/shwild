@@ -4,11 +4,11 @@
  * Purpose: String class for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,15 +42,19 @@
 #ifndef SHWILD_INCL_HPP_SHWILD_STRING
 #define SHWILD_INCL_HPP_SHWILD_STRING
 
+/** \file shwild.string.hpp \brief [INTERNAL] string generator
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
 
 #include "shwild.stlsoft.h"
 
-#if defined(STLSOFT_CF_std_NAMESPACE) || \
+#if defined(SHWILD_NO_STLSOFT) || \
+    defined(STLSOFT_CF_std_NAMESPACE) || \
     defined(STLSOFT_CF_std_NAMESPACE)
 
 # if !defined(SHWILD_CUSTOM_STRING_CLASS)
@@ -71,7 +75,7 @@
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -82,7 +86,7 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #ifndef STLSOFT_CF_std_NAMESPACE
@@ -91,14 +95,14 @@ class WatcomString
     : public String
 {
 public:
-    WatcomString(char const *s)
+    WatcomString(char const* s)
         : String(s)
     {}
-    WatcomString(char const *s, size_t len)
+    WatcomString(char const* s, size_t len)
         : String(s, len)
     {}
 public:
-    char const  *data() const
+    char const* data() const
     {
         return *this;
     }
@@ -106,6 +110,7 @@ public:
 # endif /* ? compiler */
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
+/// Internal string type
 #if !defined(SHWILD_CUSTOM_STRING_CLASS)
 typedef std::string                 shwild_string_t;
 #else /* ? SHWILD_CUSTOM_STRING_CLASS */
@@ -113,7 +118,7 @@ typedef SHWILD_CUSTOM_STRING_CLASS  shwild_string_t;
 #endif /* SHWILD_CUSTOM_STRING_CLASS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)

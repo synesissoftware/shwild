@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    shwild/shwild.hpp
  *
- * Purpose: C++ root file for the shwild C-API
+ * Purpose: C++ root file for the shwild C++ API
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 24th  November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,25 +39,33 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file shwild/shwild.hpp [C++] C++ root file for the shwild C-API
+/** \file shwild/shwild.hpp \brief [C++] C++ root file for the **shwild C++ API**
  */
 
 #ifndef SHWILD_INCL_SHWILD_HPP_SHWILD
 #define SHWILD_INCL_SHWILD_HPP_SHWILD
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
-# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  1
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      11
+# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  3
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      13
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * compatibility
+ */
+
+#ifndef __cplusplus
+# error This file can only be used in C++ compilation units
+#endif /* !__cplusplus */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
  */
 
 #ifndef SHWILD_INCL_SHWILD_H_SHWILD
@@ -67,7 +75,7 @@
 #include <stdexcept>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler warnings
+ * warning suppression
  */
 
 #ifdef __BORLANDC__
@@ -75,7 +83,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -84,11 +92,12 @@ namespace shwild
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 // TODO: Flesh this out to be a full and complete exception class
 /// Exception thrown by the Pattern constructor
+///
 /// \ingroup group__shwild_api__cpp_api
 class PatternException
     : public std::runtime_error
@@ -96,7 +105,9 @@ class PatternException
 /// \name Member Types
 /// @{
 public:
+    /// The parent exception type
     typedef std::runtime_error  parent_class_type;
+    /// This type
     typedef PatternException    class_type;
 /// @}
 
@@ -113,12 +124,12 @@ public:
 /// \name Accessors
 /// @{
 public:
-    /// nul-terminated C-style string describing the exception
+    /// Non-`null`, `nul`-terminated C-style string describing the exception
     virtual char const* what() const throw()
     {
         char const* const wh = parent_class_type::what();
 
-        if( NULL != wh &&
+        if (NULL != wh &&
             '\0' != wh[0])
         {
             return wh;
@@ -126,6 +137,7 @@ public:
 
         return "Pattern Exception";
     }
+
     /// The error code associated with the exception
     int errorCode() const throw()
     {
@@ -133,17 +145,28 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     int m_shwildErrorCode;
 /// @}
 };
 
-/// Facade for the \ref group__shwild_api__c_api "shwild C API"
+/// Facade for the \ref group__shwild_api__c_api "shwild C API"'s
+/// compiled-pattern functionality
+///
 /// \ingroup group__shwild_api__cpp_api
 class Pattern
 {
+/// \name Member Types
+/// @{
+public:
+    /// This type
+    typedef Pattern     class_type;
+/// @}
+
+/// \name Construction
+/// @{
 public:
     /// Parses and precompiles the given pattern, according to the behaviour specified by the given flags
     ///
@@ -160,6 +183,23 @@ public:
     /// Releases any resources associated with the instance
     ~Pattern();
 
+# if __cplusplus >= 201103L
+    /// Move constructor
+    Pattern(class_type&& rhs)
+        : m_hCompiledPattern(rhs.m_hCompiledPattern)
+        , m_numMatches(rhs.m_numMatches)
+    {
+        rhs.m_hCompiledPattern = nullptr;
+        rhs.m_numMatches = -1;
+    }
+# endif /* C++-11+ */
+private:
+    Pattern(class_type const&);
+    void operator =(class_type const&);
+/// @}
+
+/// \name Operations
+/// @{
 public:
     /// Match the given string against the precompiled pattern maintained as member state
     bool match(char const* string) const;
@@ -167,7 +207,10 @@ public:
     bool match(slice_t const* string) const;
     /// Match the given string against the precompiled pattern maintained as member state
     bool match(slice_t const& string) const;
+/// @}
 
+/// \name Attributes
+/// @{
 public:
     /** The number of potential matches (including the end marker) in
      *    the compiled pattern.
@@ -179,33 +222,36 @@ public:
     {
         return m_numMatches;
     }
+/// @}
 
+/// \name Implementation
+/// @{
 private:
-    static shwild_handle_t init_(char const* pattern, unsigned flags, int &numMatches);
-    static shwild_handle_t init_(slice_t const* pattern, unsigned flags, int &numMatches);
+    static shwild_handle_t init_(char const* pattern, unsigned flags, int& numMatches);
+    static shwild_handle_t init_(slice_t const* pattern, unsigned flags, int& numMatches);
+/// @}
 
+/// \name Fields
+/// @{
 private:
     shwild_handle_t m_hCompiledPattern;
     int             m_numMatches;
-
-private:
-    Pattern(Pattern const&);
-    Pattern &operator =(Pattern const&);
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 
-inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned flags, int &numMatches)
+inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned flags, int& numMatches)
 {
     shwild_handle_t hCompiledPattern;
 
     numMatches = shwild_compile_pattern(pattern, flags, &hCompiledPattern);
 
-    if(numMatches < 0)
+    if (numMatches < 0)
     {
         hCompiledPattern    =   NULL;
 
@@ -215,13 +261,13 @@ inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned
     return hCompiledPattern;
 }
 
-inline /* static */ shwild_handle_t Pattern::init_(slice_t const* pattern, unsigned flags, int &numMatches)
+inline /* static */ shwild_handle_t Pattern::init_(slice_t const* pattern, unsigned flags, int& numMatches)
 {
     shwild_handle_t hCompiledPattern;
 
     numMatches = shwild_compile_pattern_s(pattern, flags, &hCompiledPattern);
 
-    if(numMatches < 0)
+    if (numMatches < 0)
     {
         hCompiledPattern    =   NULL;
 
@@ -252,7 +298,7 @@ inline bool Pattern::match(char const* string) const
 {
     int r = shwild_match_pattern(m_hCompiledPattern, string);
 
-    if(r < 0)
+    if (r < 0)
     {
         throw PatternException("Match failed", r);
     }
@@ -264,7 +310,7 @@ inline bool Pattern::match(slice_t const* string) const
 {
     int r = shwild_match_pattern_s(m_hCompiledPattern, string);
 
-    if(r < 0)
+    if (r < 0)
     {
         throw PatternException("Match failed", r);
     }
@@ -276,7 +322,7 @@ inline bool Pattern::match(slice_t const& string) const
 {
     int r = shwild_match_pattern_s(m_hCompiledPattern, &string);
 
-    if(r < 0)
+    if (r < 0)
     {
         throw PatternException("Match failed", r);
     }
@@ -287,7 +333,7 @@ inline bool Pattern::match(slice_t const& string) const
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
