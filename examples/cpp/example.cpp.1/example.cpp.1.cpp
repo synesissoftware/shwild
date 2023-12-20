@@ -15,7 +15,8 @@
  * warning suppression
  */
 
-#if defined(__BORLANDC__)
+#if 0
+#elif defined(__BORLANDC__)
 #elif defined(__COMO__)
 #elif defined(__DMC__)
 #elif defined(__INTEL_COMPILER)
@@ -30,9 +31,6 @@ typedef std::vector<string_t>   strings_t;
 
 using platformstl::readdir_sequence;
 
-using std::cout;
-using std::cerr;
-using std::endl;
 
 int main(int argc, char* argv[])
 {
@@ -67,7 +65,7 @@ int main(int argc, char* argv[])
         {
             if (0 == shwild::match((*b1).c_str(), *b, 0))
             {
-                cout << *b << endl;
+                std::cout << *b << std::endl;
 
                 break;
             }

@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.shwild.match project.
  *
  * Created:     28th April 2006
- * Updated:     23rd November 2023
+ * Updated:     24th November 2023
  *
  * Status:      Wizard-generated
  *
@@ -66,7 +66,8 @@ using std::endl;
  * warning suppression
  */
 
-#if defined(__BORLANDC__)
+#if 0
+#elif defined(__BORLANDC__)
 # pragma warn -8004                 /* Suppresses: "'????' is assigned a value that is never used ..." */
 #elif defined(__COMO__)
 #elif defined(__DMC__)
