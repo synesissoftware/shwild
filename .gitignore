@@ -51,7 +51,7 @@ build/CMakeFiles/
 # files (by name)
 
 .DS_Store
-
+.ruby-version
 .update_deps
 
 update_deps.cmd
