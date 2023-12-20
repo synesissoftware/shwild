@@ -199,7 +199,7 @@ CMN_DEF_NO_IMPLICIT_LINK =\
  -DSHWILD_NO_IMPLICIT_LINK\
  \
 
-COMMON_DEFS             =   -DSHWILD_NO_STLSOFT
+COMMON_DEFS             =   -Dunix -DSHWILD_NO_STLSOFT
 
 CUSTOM_DEFS             =
 
@@ -592,7 +592,16 @@ OBJS_LIBS =\
 ########################################
 # examples
 
+OBJ_EXAMPLE_C_1_MT_D = $(PROJ_OBJ_DIR)/example.c.1.mt.debug.o
+OBJ_EXAMPLE_C_1_MT_R = $(PROJ_OBJ_DIR)/example.c.1.mt.o
+OBJ_EXAMPLE_C_1_ST_D = $(PROJ_OBJ_DIR)/example.c.1.debug.o
+OBJ_EXAMPLE_C_1_ST_R = $(PROJ_OBJ_DIR)/example.c.1.o
+
 OBJS_EXAMPLES =\
+ $(OBJ_EXAMPLE_C_1_MT_D)\
+ $(OBJ_EXAMPLE_C_1_MT_R)\
+ $(OBJ_EXAMPLE_C_1_ST_D)\
+ $(OBJ_EXAMPLE_C_1_ST_R)\
  \
 
 ########################################
@@ -677,7 +686,16 @@ TARGETS_LIBS=\
 ########################################
 # examples
 
+TARGET_EXAMPLE_C_1_MT_D =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.1.$(COMP_ARCH_OS_TAG).mt.debug
+TARGET_EXAMPLE_C_1_MT_R =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.1.$(COMP_ARCH_OS_TAG).mt
+TARGET_EXAMPLE_C_1_ST_D =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.1.$(COMP_ARCH_OS_TAG).debug
+TARGET_EXAMPLE_C_1_ST_R =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.1.$(COMP_ARCH_OS_TAG)
+
 TARGETS_EXAMPLES =\
+ $(TARGET_EXAMPLE_C_1_MT_D)\
+ $(TARGET_EXAMPLE_C_1_MT_R)\
+ $(TARGET_EXAMPLE_C_1_ST_D)\
+ $(TARGET_EXAMPLE_C_1_ST_R)\
  \
 
 ########################################
@@ -1039,6 +1057,32 @@ $(OBJ_CORE_api__ST_R): $(PROJ_SRC_DIR)/api.cpp $(SRCS_HDR_CORE) makefile
 # examples
 
 # C++ example client
+
+# C example client
+
+$(TARGET_EXAMPLE_C_1_MT_D):	$(OBJ_EXAMPLE_C_1_MT_D) $(LIBS_EXAMPLES_MT_D) makefile
+	$(LD) $(LD_ARGS_MT_D) -o $@ $(OBJ_EXAMPLE_C_1_MT_D) $(LIBS_EXAMPLES_MT_D) $(LIBS_3PTY_MT_D) $(LIBS_EXPLICIT_MT_D)
+
+$(OBJ_EXAMPLE_C_1_MT_D):	$(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c $(SRCS_HDR_CORE) $(SRCS_HDR_MAING) makefile
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c
+
+$(TARGET_EXAMPLE_C_1_MT_R):	$(OBJ_EXAMPLE_C_1_MT_R) $(LIBS_EXAMPLES_MT_R) makefile
+	$(LD) $(LD_ARGS_MT_R) -o $@ $(OBJ_EXAMPLE_C_1_MT_R) $(LIBS_EXAMPLES_MT_R) $(LIBS_3PTY_MT_R) $(LIBS_EXPLICIT_MT_R)
+
+$(OBJ_EXAMPLE_C_1_MT_R):	$(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c $(SRCS_HDR_CORE) $(SRCS_HDR_MAING) makefile
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c
+
+$(TARGET_EXAMPLE_C_1_ST_D):	$(OBJ_EXAMPLE_C_1_ST_D) $(LIBS_EXAMPLES_ST_D) makefile
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EXAMPLE_C_1_ST_D) $(LIBS_EXAMPLES_ST_D) $(LIBS_3PTY_ST_D) $(LIBS_EXPLICIT_ST_D)
+
+$(OBJ_EXAMPLE_C_1_ST_D):	$(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c $(SRCS_HDR_CORE) $(SRCS_HDR_MAING) makefile
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c
+
+$(TARGET_EXAMPLE_C_1_ST_R):	$(OBJ_EXAMPLE_C_1_ST_R) $(LIBS_EXAMPLES_ST_R) makefile
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EXAMPLE_C_1_ST_R) $(LIBS_EXAMPLES_ST_R) $(LIBS_3PTY_ST_R) $(LIBS_EXPLICIT_ST_R)
+
+$(OBJ_EXAMPLE_C_1_ST_R):	$(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c $(SRCS_HDR_CORE) $(SRCS_HDR_MAING) makefile
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example.c.1/example.c.1.c
 
 ########################################
 # test
