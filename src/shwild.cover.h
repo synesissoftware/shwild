@@ -21,11 +21,11 @@
 #ifndef SHWILD_INCL_H_SHWILD_COVER
 #define SHWILD_INCL_H_SHWILD_COVER
 
-/** \file shwild.cover.h Code Coverage
+/** \file shwild.cover.h \brief [INTERNAL] Code Coverage
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 1
+ * includes - 1
  */
 
 /* shwild Header Files */
@@ -46,7 +46,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 2
+ * includes - 2
  */
 
 #ifdef SHWILD_QUALITY_USE_XCOVER
@@ -54,15 +54,24 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compatibility - 2
+ * compatibility - 2
+ */
+
+/** \def SHWILD_COVER_MARK_LINE()
+ *
+ * [UNDOCUMENTED].
  */
 
 #ifdef SHWILD_QUALITY_USE_XCOVER
 
-# define SHWILD_COVER_MARK_LINE()       XCOVER_MARK_LINE()
+# define SHWILD_COVER_MARK_LINE()                           XCOVER_MARK_LINE()
 #else
 
-# define SHWILD_COVER_MARK_LINE()       stlsoft_static_cast(void, 0)
+# ifdef SHWILD_NO_STLSOFT
+#  define SHWILD_COVER_MARK_LINE()                          ((void)0)
+# else /* ? SHWILD_NO_STLSOFT */
+#  define SHWILD_COVER_MARK_LINE()                          stlsoft_static_cast(void, 0)
+# endif /* SHWILD_NO_STLSOFT */
 #endif
 
 /* ////////////////////////////////////////////////////////////////////// */

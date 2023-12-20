@@ -1,16 +1,6 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.scratch.pattern_1 project.
- *
- * Created:     6th January 2008
- * Updated:     21st December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
 
-
-/* shwild Header Files */
 #include <shwild/implicit_link.h>
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

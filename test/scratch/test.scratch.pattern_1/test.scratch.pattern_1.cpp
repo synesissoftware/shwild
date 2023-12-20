@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.pattern_1.cpp
+ * File:    test.scratch.pattern_1.cpp
  *
- * Purpose:     Implementation file for the test.scratch.pattern_1 project.
+ * Purpose: Scratch-test for shwild C++-API functions
  *
- * Created:     6th January 2008
- * Updated:     21st December 2023
+ * Created: 6th January 2008
+ * Updated: 21st December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,6 @@
 
 /* shwild Header Files */
 #include <shwild/shwild.hpp>
-
 
 /* STLSoft Header Files */
 #include <stlsoft/stlsoft.h>
@@ -75,7 +74,7 @@ int main(int argc, char* argv[])
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try

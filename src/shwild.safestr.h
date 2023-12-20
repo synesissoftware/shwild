@@ -21,6 +21,9 @@
 #ifndef SHWILD_INCL_H_SHWILD_SAFESTR
 #define SHWILD_INCL_H_SHWILD_SAFESTR
 
+/** \file shwild.safestr.h \brief [INTERNAL] Manages "safe string" use
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */

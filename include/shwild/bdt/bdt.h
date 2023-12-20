@@ -50,8 +50,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_BDT_H_BDT_MAJOR      1
 # define SHWILD_VER_SHWILD_BDT_H_BDT_MINOR      0
-# define SHWILD_VER_SHWILD_BDT_H_BDT_REVISION   1
-# define SHWILD_VER_SHWILD_BDT_H_BDT_EDIT       1
+# define SHWILD_VER_SHWILD_BDT_H_BDT_REVISION   2
+# define SHWILD_VER_SHWILD_BDT_H_BDT_EDIT       2
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,8 +64,13 @@
  * macros
  */
 
-#define SHWILD_BDT_CHECK(expr)                              assert(expr)
+#define SHWILD_BDT_CHECK(expected, actual, op, msg)         assert((expected) op (actual))
+
+#define SHWILD_BDT_CHECK_TRUE(expr)                         assert(expr)
 #define SHWILD_BDT_CHECK_FALSE(expr)                        assert(!(expr))
+
+#define SHWILD_BDT_CHECK_EQ(expected, actual)               SHWILD_BDT_CHECK((expected), (actual), ==, #actual " not equal to " #expected " as required")
+#define SHWILD_BDT_CHECK_NE(expected, actual)               SHWILD_BDT_CHECK((expected), (actual), !=, #actual " not unequal to " #expected " as required")
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

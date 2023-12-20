@@ -22,25 +22,36 @@
 #ifndef SHWILD_INCL_H_SHWILD_STLSOFT
 #define SHWILD_INCL_H_SHWILD_STLSOFT
 
-/** \file shwild.stlsoft.h Includes STLSoft
+/** \file shwild.stlsoft.h \brief [INTERNAL] Manages inclusion of STLSoft
  */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-#include <stlsoft/stlsoft.h>
+#ifndef SHWILD_NO_STLSOFT
+# include <stlsoft/stlsoft.h> /* If the compiler cannot find this, you are not using STLSoft 1.9 or later, as required. */
+#endif /* !SHWILD_NO_STLSOFT */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#ifdef SHWILD_NO_STLSOFT
+# define STLSOFT_SUPPRESS_UNUSED(x)                         ((void)x)
+#endif /* SHWILD_NO_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
 
-#include <stlsoft/stlsoft.h>    /* If the compiler cannot find this, you are not using STLSoft 1.9 or later, as required. */
-#if !defined(_STLSOFT_VER) || \
-   _STLSOFT_VER < 0x010986ff
-
-# error Requires STLSoft 1.9.134, or later. (www.stlsoft.org/downloads.html)
-#endif /* STLSoft version */
+#ifndef SHWILD_NO_STLSOFT
+# if !defined(_STLSOFT_VER) || \
+    _STLSOFT_VER < 0x010986ff
+#  error Requires STLSoft 1.9.134, or later. (www.stlsoft.org/downloads.html)
+# endif /* STLSoft version */
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

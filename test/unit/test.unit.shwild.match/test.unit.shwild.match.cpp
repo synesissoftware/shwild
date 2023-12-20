@@ -1,17 +1,21 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.shwild.match.cpp
+ * File:    test.unit.shwild.match.cpp
  *
- * Purpose:     Implementation file for the test.unit.shwild.match project.
+ * Purpose: Unit-tests for shwild C++-API functions
  *
- * Created:     28th April 2006
- * Updated:     21st December 2023
+ * Created: 28th April 2006
+ * Updated: 21st December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 /* shwild Header Files */
 #include <shwild/shwild.hpp>
-#include <shwild/implicit_link.h>
+#include <shwild//bdt/bdt.h>
 
 /* Standard C++ Header Files */
 #include <exception>
@@ -21,7 +25,6 @@ using std::cerr;
 using std::endl;
 
 /* Standard C Header Files */
-#include <assert.h>
 #include <stdlib.h>
 
 #if defined(_MSC_VER) && \
@@ -30,10 +33,11 @@ using std::endl;
 #endif /* _MSC_VER && _DEBUG */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler warnings
+ * warning suppression
  */
 
-#if defined(__BORLANDC__)
+#if 0
+#elif defined(__BORLANDC__)
 # pragma warn -8004                 /* Suppresses: "'????' is assigned a value that is never used ..." */
 #elif defined(__COMO__)
 #elif defined(__DMC__)
@@ -45,178 +49,178 @@ using std::endl;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char * /* argv */[])
+static int main_(int /* argc */, char* /* argv */[])
 {
     /* Matching literal strings. */
     {
         const char  pattern[]   =   "abcd";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 != shwild::match(pattern, "ABCD", 0));
-        assert(0 == shwild::match(pattern, "ABCD", SHWILD_F_IGNORE_CASE));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "ABCD", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "ABCD", SHWILD_F_IGNORE_CASE));
     }
 
     /* Using wildcards. */
     {
         const char  pattern[]   =   "a*c?";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 == shwild::match(pattern, "a*c?", 0));
-        assert(0 == shwild::match(pattern, "abbbbbbbbcd", 0));
-        assert(0 == shwild::match(pattern, "acd", 0));
-        assert(0 != shwild::match(pattern, "abdc", 0));
-        assert(0 == shwild::match(pattern, "abc?", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a*c?", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abbbbbbbbcd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "acd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abdc", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abc?", 0));
     }
 
     /* Using escaped characters. */
     {
         const char  pattern[]   =   "a\\*c\\?";
 
-        assert(0 != shwild::match(pattern, "abcd", 0));
-        assert(0 == shwild::match(pattern, "a*c?", 0));
-        assert(0 != shwild::match(pattern, "a\\*c\\?", 0));
-        assert(0 != shwild::match(pattern, "abbbbbbbbcd", 0));
-        assert(0 != shwild::match(pattern, "acd", 0));
-        assert(0 != shwild::match(pattern, "abdc", 0));
-        assert(0 != shwild::match(pattern, "abc?", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a*c?", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "a\\*c\\?", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abbbbbbbbcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "acd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abdc", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abc?", 0));
 
         /* All of the following search for 'a' followed by '\\' followed by any
          * number of any character, following by '\\' followed by one of any
          * character.
          */
-        assert(0 != shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE));
-        assert(0 == shwild::match(pattern, "a\\*c\\?", SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a\\*c\\?", SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE));
     }
 
     /* Matching ranges. */
     {
         const char  pattern[]   =   "a[bc]c[defghijklm]";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 != shwild::match(pattern, "aacd", 0));
-        assert(0 == shwild::match(pattern, "accm", 0));
-        assert(0 != shwild::match(pattern, "abcn", 0));
-        assert(0 != shwild::match(pattern, "a[bc]c[defghijklm]", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "accm", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "a[bc]c[defghijklm]", 0));
 
         /* All of the following the given pattern as if it is a
          * literal string.
          */
-        assert(0 != shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
-        assert(0 != shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
-        assert(0 != shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
-        assert(0 == shwild::match(pattern, "a[bc]c[defghijklm]", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a[bc]c[defghijklm]", SHWILD_F_SUPPRESS_RANGE_SUPPORT));
     }
 
     /* Matching ranges with continuum. */
     {
         const char  pattern[]   =   "a[b-c]c[d-m]";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 != shwild::match(pattern, "aacd", 0));
-        assert(0 == shwild::match(pattern, "accm", 0));
-        assert(0 != shwild::match(pattern, "abcn", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "accm", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", 0));
 
         /* All the following search for 'a' followed by 'b' or '-' or 'd',
          * followed by 'c' followed by 'd' or '-' or 'm'
          */
-        assert(0 == shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
-        assert(0 == shwild::match(pattern, "a-cd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
-        assert(0 == shwild::match(pattern, "accd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
-        assert(0 != shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
-        assert(0 == shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
-        assert(0 != shwild::match(pattern, "accl", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a-cd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "accd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "accl", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT));
     }
 
     /* Matching ranges with high-low continuum. */
     {
         const char  pattern[]   =   "a[c-b]c[m-d]";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 != shwild::match(pattern, "aacd", 0));
-        assert(0 == shwild::match(pattern, "accm", 0));
-        assert(0 != shwild::match(pattern, "abcn", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "accm", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", 0));
 
-        assert(0 != shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
-        assert(0 != shwild::match(pattern, "accd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
-        assert(0 != shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "accd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT));
     }
 
     /* Matching ranges with cross-case continuum. */
     {
         const char  pattern[]   =   "a[b-C]c[d-M]";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 != shwild::match(pattern, "aacd", 0));
-        assert(0 == shwild::match(pattern, "aCcJ", 0));
-        assert(0 != shwild::match(pattern, "abcn", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "aCcJ", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", 0));
 
-        assert(0 != shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
-        assert(0 != shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
-        assert(0 != shwild::match(pattern, "aCcJ", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aCcJ", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT));
     }
 
     /* Matching ranges with cross-case continuum. */
     {
         const char  pattern[]   =   "a[*]c[?]";
 
-        assert(0 != shwild::match(pattern, "abcd", 0));
-        assert(0 == shwild::match(pattern, "a*c?", 0));
-        assert(0 != shwild::match(pattern, "abbbbbbbbcd", 0));
-        assert(0 != shwild::match(pattern, "acd", 0));
-        assert(0 != shwild::match(pattern, "abdc", 0));
-        assert(0 != shwild::match(pattern, "abc?", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a*c?", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abbbbbbbbcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "acd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abdc", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abc?", 0));
 
-        assert(0 != shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
-        assert(0 != shwild::match(pattern, "a*c?", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
-        assert(0 != shwild::match(pattern, "abbbbbbbbcd", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
-        assert(0 != shwild::match(pattern, "acd", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
-        assert(0 != shwild::match(pattern, "abdc", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
-        assert(0 != shwild::match(pattern, "abc?", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "a*c?", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abbbbbbbbcd", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "acd", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abdc", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abc?", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT));
     }
 
     /* Matching ranges with continuum and leading/trailing hyphens. */
     {
         const char  pattern[]   =   "a[-a-c]c[d-]";
 
-        assert(0 == shwild::match(pattern, "abcd", 0));
-        assert(0 == shwild::match(pattern, "aacd", 0));
-        assert(0 == shwild::match(pattern, "acc-", 0));
-        assert(0 == shwild::match(pattern, "a-c-", 0));
-        assert(0 != shwild::match(pattern, "abce", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "aacd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "acc-", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "a-c-", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abce", 0));
 
-        assert(0 != shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
-        assert(0 != shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
-        assert(0 != shwild::match(pattern, "acc-", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
-        assert(0 != shwild::match(pattern, "a-c-", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
-        assert(0 != shwild::match(pattern, "abce", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "acc-", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "a-c-", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abce", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT));
     }
 
     /* Matching ranges with inverse continuum. */
     {
         const char  pattern[]   =   "a[b-c]c[^d-m]";
 
-        assert(0 != shwild::match(pattern, "abcd", 0));
-        assert(0 != shwild::match(pattern, "aacd", 0));
-        assert(0 == shwild::match(pattern, "abcc", 0));
-        assert(0 != shwild::match(pattern, "accm", 0));
-        assert(0 == shwild::match(pattern, "abcn", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcd", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcc", 0));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "accm", 0));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcn", 0));
 
-        assert(0 == shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
-        assert(0 != shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcc", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
-        assert(0 == shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
-        assert(0 != shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "abcd", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "aacd", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcc", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
+        SHWILD_BDT_CHECK_EQ(0, shwild::match(pattern, "accm", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
+        SHWILD_BDT_CHECK_NE(0, shwild::match(pattern, "abcn", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT));
     }
 
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int             iRet;
 
@@ -234,7 +238,7 @@ int main(int argc, char *argv[])
     {
         iRet = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch(std::exception& x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
 

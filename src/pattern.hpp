@@ -20,8 +20,11 @@
 #ifndef SHWILD_INCL_HPP_PATTERN
 #define SHWILD_INCL_HPP_PATTERN
 
+/** \file pattern.hpp \brief [INTERNAL] Patterns-related internal API
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* shwild Header Files */
@@ -44,13 +47,17 @@
 # define STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR
 #endif /* compiler */
 
-#include <stlsoft/memory/auto_buffer.hpp>
+#ifndef SHWILD_NO_STLSOFT
+# include <stlsoft/memory/auto_buffer.hpp>
+#else /* ? SHWILD_NO_STLSOFT */
+# include <vector>
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* Standard C Header Files */
 #include <limits.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \brief Types of pattern tokens */
@@ -85,23 +92,29 @@ struct node_t
 };
 
 /** \brief Buffer used when necessary. */
-typedef stlsoft::auto_buffer<   char
-                            ,   1024
-//                          ,   ss_typename_type_def_k allocator_selector<T>::allocator_type
-                            >    node_buffer_t;
+#ifndef SHWILD_NO_STLSOFT
+typedef stlsoft::auto_buffer<
+    char
+,   1024
+>   node_buffer_t;
+#else /* ? SHWILD_NO_STLSOFT */
+typedef std::vector<
+    char
+>   node_buffer_t;
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
 /** \brief Initialises a node. */
-void node_init( node_t* node );
+void node_init(node_t* node);
 
 /** \brief Uninitialises a node, releasing any associated resources. */
-void node_reset( node_t* node );
+void node_reset(node_t* node);
 
 /** \brief Parses the next node */
-int get_node( node_t* node, node_buffer_t &buffer, char const* buf, size_t* len, unsigned flags );
+int get_node(node_t* node, node_buffer_t& buffer, char const* buf, size_t* len, unsigned flags);
 
 /* ////////////////////////////////////////////////////////////////////// */
 

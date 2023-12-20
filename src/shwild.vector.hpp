@@ -20,8 +20,11 @@
 #ifndef SHWILD_INCL_HPP_SHWILD_VECTORVECTOR
 #define SHWILD_INCL_HPP_SHWILD_VECTORVECTOR
 
+/** \file shwild.vector.hpp \brief [INTERNAL] vector generator
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -38,7 +41,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -49,7 +52,7 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \brief Generator class for selecting a vector implementation; INTERNAL CLASS.
@@ -61,6 +64,7 @@ namespace impl
 template <class T>
 struct vector_maker
 {
+    /// Type of the vector to be made
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
     class type
         : public WCValVector<T>
@@ -74,7 +78,7 @@ struct vector_maker
         {}
 
     public:
-        void push_back(T const &t)
+        void push_back(T const& t)
         {
             static_cast<parent_class_type*>(this)->operator [](size()) = t;
         }
@@ -91,7 +95,7 @@ struct vector_maker
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
