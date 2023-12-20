@@ -4,11 +4,9 @@
  * Purpose: shwild Brain-Dead Testing
  *
  * Created: 18th July 2020
- * Updated: 18th July 2020
+ * Updated: 21st December 2023
  *
- * Home:    http://shwild.org/
- *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2023, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,10 +18,9 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Information Systems nor
- *   the names of any contributors may be used to endorse or promote
- *   products derived from this software without specific prior written
- *   permission.
+ * - Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
