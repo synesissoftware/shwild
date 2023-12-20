@@ -1,14 +1,14 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        test.unit.shwild_match.c
  *
  * Purpose:     Implementation file for the test.unit.shwild_match project.
  *
  * Created:     27th April 2006
- * Updated:     18th July 2020
+ * Updated:     21st December 2023
  *
  * Status:      Wizard-generated
  *
- * Copyright (c) 2006-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2006-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /* shwild Header Files */
@@ -47,7 +47,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 int main(void)
 {
