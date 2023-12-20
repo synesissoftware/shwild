@@ -62,17 +62,6 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * functions
- */
-
-char* STLSOFT_CDECL shwild_strchr(char const*, int);
-char* STLSOFT_CDECL shwild_strichr(char const*, int);
-char* STLSOFT_CDECL shwild_strstr(char const*, char const*);
-char* STLSOFT_CDECL shwild_stristr(char const*, char const*);
-int STLSOFT_CDECL   shwild_strncmp(char const*, char const*, size_t);
-int STLSOFT_CDECL   shwild_strnicmp(char const*, char const*, size_t);
-
-/* /////////////////////////////////////////////////////////////////////////
  * classes
  */
 
