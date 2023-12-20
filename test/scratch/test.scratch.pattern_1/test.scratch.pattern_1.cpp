@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try

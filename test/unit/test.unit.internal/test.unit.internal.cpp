@@ -507,7 +507,7 @@ int main(int argc, char* argv[])
     STLSOFT_SUPPRESS_UNUSED(state);
 #endif /* STLSOFT_COMPILER_IS_MSVC */
 
-//  for(;;) {}
+//  for (;;) {}
 
     try
     {
@@ -550,9 +550,9 @@ bool shwild_match_(Matches const& matches, char const* pattern, char const* stri
 
 void shwild_tieMatches_(Matches& matches)
 {
-    for(size_t i = 1; i < matches.size(); ++i)
+    for (size_t i = 1; i < matches.size(); ++i)
     {
-        matches[i-1]->setNext(&*matches[i]);
+        matches[i - 1]->setNext(&*matches[i]);
     }
 }
 #endif /* compiler */

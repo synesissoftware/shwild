@@ -195,7 +195,7 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
         // First, deal with two special cases:
 
         // 1. Is the pattern empty? If so, it can only match an empty string
-        if(0 == pattern->len)
+        if (0 == pattern->len)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -209,18 +209,18 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
             char const* b;
             char const* e;
 
-            for(b  = pattern->ptr, e = pattern->ptr + pattern->len; b != e; ++b)
+            for (b  = pattern->ptr, e = pattern->ptr + pattern->len; b != e; ++b)
             {
                 SHWILD_COVER_MARK_LINE();
 
-                if('*' != *b)
+                if ('*' != *b)
                 {
                     SHWILD_COVER_MARK_LINE();
 
                     break;
                 }
             }
-            if(b == e)
+            if (b == e)
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -231,7 +231,7 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
         Matches matches;
         int     nMatches    =   shwild_parseMatches_(matches, pattern, flags);
 
-        if(nMatches < 0)
+        if (nMatches < 0)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -314,7 +314,7 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        if(NULL == pm)
+        if (NULL == pm)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -326,7 +326,7 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
 
             int r = pm->compile(pattern, flags);
 
-            if(r < 0)
+            if (r < 0)
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -437,13 +437,13 @@ static int shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsign
 
     node_init(&node);
 
-    for(pos = pattern->ptr; pos != pattern->ptr + pattern->len + 1; ++nMatches)
+    for (pos = pattern->ptr; pos != pattern->ptr + pattern->len + 1; ++nMatches)
     {
         SHWILD_COVER_MARK_LINE();
 
         res = get_node(&node, buffer, pos, &len, flags);
 
-        if(0 != res)
+        if (0 != res)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -459,41 +459,51 @@ static int shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsign
             {
                 case    NODE_NOTHING:
                     SHWILD_COVER_MARK_LINE();
+
                     break;
                 case    NODE_WILD_1:
                     SHWILD_COVER_MARK_LINE();
+
                     matches.push_back(Match_ptr(new MatchWild1(flags)));
+
                     break;
                 case    NODE_WILD_N:
                     SHWILD_COVER_MARK_LINE();
+
                     // *** === *, so coalesce. (Impl. of MatchWild() depends on this anyway)
-                    if(NODE_WILD_N != prevType)
+                    if (NODE_WILD_N != prevType)
                     {
                         SHWILD_COVER_MARK_LINE();
 
                         matches.push_back(Match_ptr(new MatchWild(flags)));
                     }
+
                     break;
                 case    NODE_RANGE:
                     SHWILD_COVER_MARK_LINE();
-                    if(node.data.len > 0)
+
+                    if (node.data.len > 0)
                     {
                         SHWILD_COVER_MARK_LINE();
 
                         matches.push_back(Match_ptr(new MatchRange(node.data.len, node.data.ptr, flags)));
                     }
+
                     break;
                 case    NODE_NOT_RANGE:
                     SHWILD_COVER_MARK_LINE();
-                    if(node.data.len > 0)
+
+                    if (node.data.len > 0)
                     {
                         SHWILD_COVER_MARK_LINE();
 
                         matches.push_back(Match_ptr(new MatchNotRange(node.data.len, node.data.ptr, flags)));
                     }
+
                     break;
                 case    NODE_LITERAL:
                     SHWILD_COVER_MARK_LINE();
+
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     !defined(STLSOFT_COMPILER_IS_WATCOM)
                     SHWILD_ASSERT(  NULL != ::strstr(pattern->ptr, "\\?") ||
@@ -505,11 +515,15 @@ static int shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsign
                                     pattern->ptr + pattern->len != std::search( pattern->ptr, pattern->ptr + pattern->len
                                                                             ,   node.data.ptr, node.data.ptr + node.data.len));
 #endif /* compiler */
+
                     matches.push_back(Match_ptr(new MatchLiteral(node.data.len, node.data.ptr, flags)));
+
                     break;
                 case    NODE_END:
                     SHWILD_COVER_MARK_LINE();
+
                     matches.push_back(Match_ptr(new MatchEnd(flags)));
+
                     break;
             }
 
@@ -531,11 +545,11 @@ static void shwild_tieMatches_(Matches& matches)
 {
     SHWILD_COVER_MARK_LINE();
 
-    for(size_t i = 1; i < matches.size(); ++i)
+    for (size_t i = 1; i < matches.size(); ++i)
     {
         SHWILD_COVER_MARK_LINE();
 
-        matches[i-1]->setNext(&*matches[i]);
+        matches[i - 1]->setNext(&*matches[i]);
     }
 }
 
@@ -564,7 +578,7 @@ int PatternMatcher::compile(slice_t const* pattern, unsigned flags)
 
     int nMatches = shwild_parseMatches_(m_matches, pattern, flags);
 
-    if(nMatches >= 0)
+    if (nMatches >= 0)
     {
         SHWILD_COVER_MARK_LINE();
 

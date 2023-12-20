@@ -120,7 +120,7 @@ bool MatchWild::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(m_next->match(last, last))
+    if (m_next->match(last, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -133,11 +133,11 @@ bool MatchWild::match(char const* first, char const* last) const
         char const* next;
         size_t      nextLen;
 
-        for(next = first; last != (next = m_next->nextSub(next, last, &nextLen)); next += nextLen)
+        for (next = first; last != (next = m_next->nextSub(next, last, &nextLen)); next += nextLen)
         {
             SHWILD_COVER_MARK_LINE();
 
-            if(m_next->match(next, last))
+            if (m_next->match(next, last))
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -190,13 +190,13 @@ bool MatchWild1::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(0 == (last - first))
+    if (0 == (last - first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(m_next->match(first + 1, last))
+    else if (m_next->match(first + 1, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -263,19 +263,19 @@ bool MatchRange::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(0 == (last - first))
+    if (0 == (last - first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(!this->matchContents(*first))
+    else if (!this->matchContents(*first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(m_next->match(first + 1, last))
+    else if (m_next->match(first + 1, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -318,19 +318,19 @@ bool MatchNotRange::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(0 == (last - first))
+    if (0 == (last - first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(this->matchContents(*first))
+    else if (this->matchContents(*first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(m_next->match(first + 1, last))
+    else if (m_next->match(first + 1, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -424,13 +424,13 @@ bool MatchLiteral::match(char const* first, char const* last) const
                     ? shwild_strnicmp
                     : shwild_strncmp;
 
-    if(static_cast<size_t>(last - first) < len)
+    if (static_cast<size_t>(last - first) < len)
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(0 == (*pfn)(first, m_contents.data(), len))
+    else if (0 == (*pfn)(first, m_contents.data(), len))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -461,7 +461,7 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* n
                             ? shwild_stristr
                             : shwild_strstr;
 
-    if(NULL == (next = (*pfn)(first, m_contents.c_str())))
+    if (NULL == (next = (*pfn)(first, m_contents.c_str())))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -492,11 +492,11 @@ char* STLSOFT_CDECL shwild_strichr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
-    for(; '\0' != *s; ++s)
+    for (; '\0' != *s; ++s)
     {
         SHWILD_COVER_MARK_LINE();
 
-        if(toupper(*s) == toupper(ch))
+        if (toupper(*s) == toupper(ch))
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -520,11 +520,11 @@ char* STLSOFT_CDECL shwild_stristr(char const* s1, char const* s2)
 
     const size_t len2 = ::strlen(s2);
 
-    for(; '\0' != *s1; ++s1)
+    for (; '\0' != *s1; ++s1)
     {
         SHWILD_COVER_MARK_LINE();
 
-        if(0 == shwild_strnicmp(s1, s2, len2))
+        if (0 == shwild_strnicmp(s1, s2, len2))
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -554,26 +554,26 @@ int STLSOFT_CDECL shwild_strnicmp(char const* s1, char const* s2, size_t n)
     return ::_strnicmp(s1, s2, n);
 #else /* ? compiler */
 
-    { for(size_t i = 0; i < n; ++i)
+    { for (size_t i = 0; i < n; ++i)
     {
         SHWILD_COVER_MARK_LINE();
 
         char    ch1 =   (char)tolower(*s1++);
         char    ch2 =   (char)tolower(*s2++);
 
-        if(ch1 < ch2)
+        if (ch1 < ch2)
         {
             SHWILD_COVER_MARK_LINE();
 
             return -1;
         }
-        else if(ch1 > ch2)
+        else if (ch1 > ch2)
         {
             SHWILD_COVER_MARK_LINE();
 
-            return 1;
+            return +1;
         }
-        else if(0 == ch1)
+        else if (0 == ch1)
         {
             SHWILD_COVER_MARK_LINE();
 
