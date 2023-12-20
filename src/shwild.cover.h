@@ -1,21 +1,19 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        shwild.cover.h
+ * File:    src/shwild.cover.h
  *
- * Purpose:     Contract Programming enforcement definitions.
+ * Purpose: Code coverage enforcement definitions
  *
- * Created:     11th February 2009
- * Updated:     18th July 2020
+ * Created: 11th February 2009
+ * Updated: 21st December 2023
  *
- * Author:      Matthew Wilson
- *
- * Home:        http://www.shwild.org/
- *
- * Copyright (c) 2009-2020, Matthew Wilson
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in shwild.h (included in this distribution, or
- * available from http://shwild.org/)
+ * available from https://github.com/synesissoftware/shwild)
  *
  * ////////////////////////////////////////////////////////////////////// */
 
