@@ -4,7 +4,7 @@
  * Purpose:     Contract Programming enforcement definitions.
  *
  * Created:     11th February 2009
- * Updated:     23rd November 2023
+ * Updated:     24th November 2023
  *
  * Author:      Matthew Wilson
  *
@@ -23,7 +23,7 @@
 #ifndef SHWILD_INCL_H_SHWILD_COVER
 #define SHWILD_INCL_H_SHWILD_COVER
 
-/** \file shwild.cover.h Code Coverage
+/** \file shwild.cover.h \brief [INTERNAL] Code Coverage
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -57,6 +57,11 @@
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility - 2
+ */
+
+/** \def SHWILD_COVER_MARK_LINE()
+ *
+ * [UNDOCUMENTED].
  */
 
 #ifdef SHWILD_QUALITY_USE_XCOVER

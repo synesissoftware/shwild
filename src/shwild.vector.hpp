@@ -4,7 +4,7 @@
  * Purpose: vector class for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -41,6 +41,9 @@
 
 #ifndef SHWILD_INCL_HPP_SHWILD_VECTORVECTOR
 #define SHWILD_INCL_HPP_SHWILD_VECTORVECTOR
+
+/** \file shwild.vector.hpp \brief [INTERNAL] vector generator
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

@@ -4,13 +4,13 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     8th February 2008
- * Updated:     18th July 2020
+ * Updated:     24th November 2023
  *
  * Author:      Matthew Wilson
  *
  * Home:        http://www.shwild.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,6 +44,9 @@
 
 #ifndef SHWILD_INCL_H_SHWILD_SAFESTR
 #define SHWILD_INCL_H_SHWILD_SAFESTR
+
+/** \file shwild.safestr.h \brief [INTERNAL] Manages "safe string" use
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

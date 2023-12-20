@@ -4,7 +4,7 @@
  * Purpose: Implementation of Match interface class and concrete match classes
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -38,6 +38,9 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/** \file matches.cpp \brief [INTERNAL] Match protocol class and specific implementations
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -170,7 +173,7 @@ bool MatchWild::match(char const* first, char const* last) const
 
 char const* MatchWild::nextSub(char const* /* first */, char const* /* last */, size_t* /* nextLen */) const
 {
-    SHWILD_MESSAGE_ASSERT("nextSub() not callable on MatchWild", 0);
+    SHWILD_MESSAGE_ASSERT(false, "nextSub() not callable on MatchWild");
 
     SHWILD_COVER_MARK_LINE();
 
@@ -381,7 +384,7 @@ MatchEnd::~MatchEnd()
 void MatchEnd::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == next);
-    SHWILD_MESSAGE_ASSERT("WildEnd must always be the end", 0);
+    SHWILD_MESSAGE_ASSERT(false, "WildEnd must always be the end");
 
     STLSOFT_SUPPRESS_UNUSED(next);
 
@@ -503,6 +506,8 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* n
  * utility functions
  */
 
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+
 char* shwild_strchr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
@@ -609,6 +614,7 @@ int shwild_strnicmp(char const* s1, char const* s2, size_t n)
 
 #endif /* compiler */
 }
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

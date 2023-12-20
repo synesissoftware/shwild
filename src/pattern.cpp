@@ -4,7 +4,7 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -38,6 +38,9 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/** \file pattern.cpp \brief [INTERNAL] Patterns-related internal API
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

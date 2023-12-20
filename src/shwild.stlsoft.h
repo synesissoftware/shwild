@@ -5,7 +5,7 @@
  *              required version.
  *
  * Created:     11th February 2009
- * Updated:     23rd November 2023
+ * Updated:     24th November 2023
  *
  * Author:      Matthew Wilson
  *
@@ -46,7 +46,7 @@
 #ifndef SHWILD_INCL_H_SHWILD_STLSOFT
 #define SHWILD_INCL_H_SHWILD_STLSOFT
 
-/** \file shwild.stlsoft.h Includes STLSoft
+/** \file shwild.stlsoft.h \brief [INTERNAL] Manages inclusion of STLSoft
  */
 
 /* /////////////////////////////////////////////////////////////////////////

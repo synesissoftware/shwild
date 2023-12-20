@@ -4,7 +4,7 @@
  * Purpose: Implementation of the shwild API
  *
  * Created: 17th June 2005
- * Updated: 23rd November 2023
+ * Updated: 24th November 2023
  *
  * Home:    http://shwild.org/
  *
@@ -38,6 +38,9 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/** \file api.cpp \brief [INTERNAL] API implementation
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
