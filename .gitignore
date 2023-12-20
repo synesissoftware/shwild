@@ -48,6 +48,8 @@ build/CMakeFiles/
 
 # directories (by pattern)
 
+dox/*
+
 # files (by name)
 
 .DS_Store

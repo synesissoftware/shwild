@@ -43,7 +43,7 @@
 #define SHWILD_INCL_HPP_SHWILD_STRING
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -71,7 +71,7 @@
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -82,7 +82,7 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #ifndef STLSOFT_CF_std_NAMESPACE
@@ -113,7 +113,7 @@ typedef SHWILD_CUSTOM_STRING_CLASS  shwild_string_t;
 #endif /* SHWILD_CUSTOM_STRING_CLASS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)

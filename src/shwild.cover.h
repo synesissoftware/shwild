@@ -27,7 +27,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 1
+ * includes - 1
  */
 
 /* shwild Header Files */
@@ -48,7 +48,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 2
+ * includes - 2
  */
 
 #ifdef SHWILD_QUALITY_USE_XCOVER
@@ -56,7 +56,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compatibility - 2
+ * compatibility - 2
  */
 
 #ifdef SHWILD_QUALITY_USE_XCOVER

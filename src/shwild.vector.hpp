@@ -4,11 +4,11 @@
  * Purpose: vector class for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 #define SHWILD_INCL_HPP_SHWILD_VECTORVECTOR
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -60,7 +60,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -71,7 +71,7 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \brief Generator class for selecting a vector implementation; INTERNAL CLASS.
@@ -83,6 +83,7 @@ namespace impl
 template <class T>
 struct vector_maker
 {
+    /// Type of the vector to be made
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
     class type
         : public WCValVector<T>
@@ -113,7 +114,7 @@ struct vector_maker
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)

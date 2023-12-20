@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -64,7 +64,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatiblity
+ * compiler compatiblity
  */
 
 #if defined(STLSOFT_COMPILER_IS_INTEL)
@@ -76,14 +76,14 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 struct shwild_handle_t_
 {};
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifdef SHWILD_API_USE_ANONYMOUS_NAMESPACE
@@ -103,14 +103,14 @@ namespace
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef stlsoft::shared_ptr<Match>                      Match_ptr;
 typedef ::shwild::impl::vector_maker<Match_ptr>::type   Matches;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 // Returns the number of matches, or <0 on failure
@@ -119,16 +119,22 @@ static void shwild_tieMatches_(Matches& matches);
 static bool shwild_match_(Matches const& matches, slice_t const* string);
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /// \brief Maintains the state of a compiled pattern; INTERNAL CLASS.
 class PatternMatcher
     : public shwild_handle_t_
 {
+/// \name Construction
+/// @{
 public:
     PatternMatcher();
     ~PatternMatcher();
+private:
+    PatternMatcher(PatternMatcher const&);
+    void operator =(PatternMatcher const&);
+/// @}
 
 public:
     int compile(slice_t const* pattern, unsigned flags);
@@ -139,7 +145,7 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifdef SHWILD_API_USE_ANONYMOUS_NAMESPACE
@@ -560,7 +566,9 @@ static bool shwild_match_(Matches const& matches, slice_t const* string)
     return matches[0]->match(&string->ptr[0], &string->ptr[0] + string->len);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * PatternMatcher
+ */
 
 PatternMatcher::PatternMatcher()
 {
@@ -596,7 +604,7 @@ int PatternMatcher::match(slice_t const* string) const
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifdef SHWILD_API_USE_ANONYMOUS_NAMESPACE

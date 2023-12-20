@@ -43,7 +43,7 @@
 #define SHWILD_INCL_HPP_PATTERN
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* shwild Header Files */
@@ -72,7 +72,7 @@
 #include <limits.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \brief Types of pattern tokens */
