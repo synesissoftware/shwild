@@ -4,43 +4,24 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 21st August 2015
+ * Updated: 21st December 2023
  *
- * Home:    http://shwild.org/
- *
- * Copyright (c) 2005-2015, Sean Kelly and Matthew Wilson
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Sean Kelly nor the names of
- *   any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * modification, are permitted in accordance with the license and warranty
+ * information described in shwild.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/shwild)
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file pattern.cpp \brief [INTERNAL] Patterns-related internal API
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -65,11 +46,11 @@
 #endif /* _MSC_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler features
+ * compiler features
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Checks
+ * checks
  */
 
 #if CHAR_MAX >= INT_MAX || \
@@ -78,21 +59,20 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 namespace
 {
-
     char const* strnchr(char const* s, size_t len, char ch)
     {
         SHWILD_COVER_MARK_LINE();
 
-        for(; 0 != len; ++s, --len)
+        for (; 0 != len; ++s, --len)
         {
             SHWILD_COVER_MARK_LINE();
 
-            if(ch == 0[s])
+            if (ch == 0[s])
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -103,37 +83,53 @@ namespace
         return NULL;
     }
 
+    // This function serves solely to provide an abstraction over the
+    // `stlsoft::auto_buffer<>::resize()` / `std::vector<>::resize()`
+    bool resize_buffer(node_buffer_t& buffer, size_t size)
+    {
+#ifndef SHWILD_NO_STLSOFT
+        return buffer.resize(size);
+#else /* ? SHWILD_NO_STLSOFT */
+        buffer.resize(size);
+
+        return true;
+#endif /* !SHWILD_NO_STLSOFT */
+    }
+
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
-static int get_token(char const* buf, size_t* len , unsigned flags)
+static int get_token(char const* buf, size_t* len, unsigned flags)
 {
     int tok;
 
-    SHWILD_ASSERT( len && buf );
+    SHWILD_ASSERT(NULL != len && NULL != buf);
 
     SHWILD_COVER_MARK_LINE();
 
     *len = 1;
-    if( ( tok = *buf ) != TOK_END )
+    if ((tok = *buf) != TOK_END)
     {
         SHWILD_COVER_MARK_LINE();
 
-        switch( tok )
+        switch (tok)
         {
             case '\\':
                 SHWILD_COVER_MARK_LINE();
-                if(0 != (flags & SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE))
+
+                if (0 != (flags & SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE))
                 {
                     return tok;
                 }
+
                 ++buf;
                 ++*len;
                 tok = *buf;
-                switch( tok )
+
+                switch (tok)
                 {
                 case '\\':
                 case '?':
@@ -147,30 +143,37 @@ static int get_token(char const* buf, size_t* len , unsigned flags)
                 }
             case '?':
                 SHWILD_COVER_MARK_LINE();
+
                 return TOK_WILD_1;
             case '*':
                 SHWILD_COVER_MARK_LINE();
+
                 return TOK_WILD_N;
             case '[':
                 SHWILD_COVER_MARK_LINE();
-                if(0 != (flags & SHWILD_F_SUPPRESS_RANGE_SUPPORT))
+
+                if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_SUPPORT))
                 {
                     SHWILD_COVER_MARK_LINE();
 
                     return tok;
                 }
+
                 return TOK_RANGE_BEG;
             case ']':
                 SHWILD_COVER_MARK_LINE();
-                if(0 != (flags & SHWILD_F_SUPPRESS_RANGE_SUPPORT))
+
+                if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_SUPPORT))
                 {
                     SHWILD_COVER_MARK_LINE();
 
                     return tok;
                 }
+
                 return TOK_RANGE_END;
             default:
                 SHWILD_COVER_MARK_LINE();
+
                 return tok;
         }
     }
@@ -180,7 +183,7 @@ static int get_token(char const* buf, size_t* len , unsigned flags)
     return TOK_END;
 }
 
-static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char const* buf, size_t* len, unsigned flags, int bInRange )
+static int get_literal(shwild_slice_t& content, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags, int bInRange)
 {
     SHWILD_ASSERT( NULL != buf && 0 != len );
 
@@ -190,7 +193,7 @@ static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char co
     int         tok;
     size_t      tok_len;
 
-    if(!scratch.resize(1))  // This trims without discarding any hard-won heap mem.
+    if (!resize_buffer(scratch, 1)) // This trims without discarding any hard-won heap mem.
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -201,24 +204,25 @@ static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char co
      * NOTE: I'm cheating here a bit and checking the token by range rather than
      *       against specific token values.
      */
-    for(;;)
+    for (;;)
     {
         SHWILD_COVER_MARK_LINE();
 
         tok = get_token( pos, &tok_len, flags );
 
-        if( bInRange &&
+        if (bInRange &&
             0 == (SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT & flags))
         {
             SHWILD_COVER_MARK_LINE();
 
-            if(tok == TOK_WILD_1)
+            if (tok == TOK_WILD_1)
             {
                 SHWILD_COVER_MARK_LINE();
 
                 tok = '?';
             }
-            if(tok == TOK_WILD_N)
+
+            if (tok == TOK_WILD_N)
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -226,7 +230,7 @@ static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char co
             }
         }
 
-        if( tok != TOK_END &&
+        if (tok != TOK_END &&
             tok >= CHAR_MIN &&
             tok <= CHAR_MAX )
         {
@@ -234,7 +238,7 @@ static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char co
 
             const size_t sz = scratch.size();
 
-            if(!scratch.resize(1 + sz))
+            if (!resize_buffer(scratch, 1 + sz))
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -263,91 +267,107 @@ static int get_literal( shwild_slice_t& content, node_buffer_t &scratch, char co
     return tok;
 }
 
-int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len, unsigned flags )
+int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len, unsigned flags)
 {
     SHWILD_ASSERT( node && buf && len );
 
     SHWILD_COVER_MARK_LINE();
 
-    int         tok;
-    size_t      tok_len;
+    int     tok;
+    size_t  tok_len;
 
     *len = 0;
+
     /* memset( node, 0, sizeof( node_t ) ); */
-    switch( tok = get_token( buf, &tok_len, flags ) )
+    switch (tok = get_token(buf, &tok_len, flags))
     {
     case TOK_INVALID:
         SHWILD_COVER_MARK_LINE();
     case TOK_RANGE_END:
         SHWILD_COVER_MARK_LINE();
+
         return SHWILD_RC_PARSE_ERROR;
     case TOK_END:
         SHWILD_COVER_MARK_LINE();
+
         node->type      =   NODE_END;
         node->data.len  =   0;
+
         break;
     case TOK_WILD_1:
         SHWILD_COVER_MARK_LINE();
+
         node->type      =   NODE_WILD_1;
         node->data.len  =   0;
+
         break;
     case TOK_WILD_N:
         SHWILD_COVER_MARK_LINE();
+
         node->type      =   NODE_WILD_N;
         node->data.len  =   0;
+
         break;
     case TOK_RANGE_BEG:
         SHWILD_COVER_MARK_LINE();
+
         node->type      =   NODE_RANGE;
         node->data.len  =   0;
         *len += tok_len;
         tok = get_literal( node->data, scratch, buf + tok_len, &tok_len, flags, 1 );
-        if(TOK_ENOMEM == tok)
+
+        if (TOK_ENOMEM == tok)
         {
             SHWILD_COVER_MARK_LINE();
 
             return SHWILD_RC_ALLOC_ERROR;
         }
-        else if(tok != TOK_RANGE_END)
+        else if (tok != TOK_RANGE_END)
         {
             SHWILD_COVER_MARK_LINE();
 
             *len = 0;
+
             return SHWILD_RC_PARSE_ERROR;
         }
+
         SHWILD_COVER_MARK_LINE();
+
         *len += tok_len;
         tok = get_token( buf + *len, &tok_len, flags );
+
         STLSOFT_SUPPRESS_UNUSED(tok);
-        SHWILD_ASSERT( tok == TOK_RANGE_END );
+        SHWILD_ASSERT(tok == TOK_RANGE_END);
+
         /* Account for !range */
-        if( 0 == (flags & SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT) &&
+        if (0 == (flags & SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT) &&
             node->data.len > 0 &&
             '^' == node->data.ptr[0] &&
             '\\' != buf[tok_len])
         {
             SHWILD_COVER_MARK_LINE();
 
-            node->type      =   NODE_NOT_RANGE;
+            node->type = NODE_NOT_RANGE;
             ++node->data.ptr;
             --node->data.len;
         }
+
         /* Now must post-process if got any embedded '-'. */
-        if( 0 == (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT) &&
+        if (0 == (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT) &&
             node->data.len > 0)
         {
             SHWILD_COVER_MARK_LINE();
 
             /* Search for the first '-', ignoring the first ... */
-            char const          *first  =   node->data.ptr;
-            char const          *minus  =   strnchr(first + 1, node->data.len - 1, '-');
-            char const *const   last    =   node->data.ptr + (node->data.len - 1);
+            char const*         first   =   node->data.ptr;
+            char const*         minus   =   strnchr(first + 1, node->data.len - 1, '-');
+            char const* const   last    =   node->data.ptr + (node->data.len - 1);
 
-            if(SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT == (flags & SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT))
+            if (SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT == (flags & SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT))
             {
                 SHWILD_COVER_MARK_LINE();
 
-                if( '-' == *first ||
+                if ('-' == *first ||
                     '-' == *last)
                 {
                     SHWILD_COVER_MARK_LINE();
@@ -359,7 +379,7 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
             SHWILD_COVER_MARK_LINE();
 
             /* ... and the last, since they're treated as literals. */
-            if( NULL != minus &&
+            if (NULL != minus &&
                 minus != last)
             {
                 SHWILD_COVER_MARK_LINE();
@@ -369,14 +389,14 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
                 char const*         begin  =   node->data.ptr;
                 char const* const   end    =   begin + node->data.len;
 
-                for(; NULL != minus && last != minus; )
+                for (; NULL != minus && last != minus; )
                 {
                     SHWILD_COVER_MARK_LINE();
 
                     char    prev    =   minus[-1];
                     char    post    =   minus[+1];
 
-                    if( !isalnum(prev) ||
+                    if (!isalnum(prev) ||
                         !isalnum(post) ||
                         isdigit(prev) != isdigit(post))
                     {
@@ -389,7 +409,7 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
 
                     const size_t sz = xstr.size();
 
-                    if(!xstr.resize(sz + (static_cast<size_t>(minus - begin) - 1)))
+                    if (!resize_buffer(xstr, sz + (static_cast<size_t>(minus - begin) - 1)))
                     {
                         SHWILD_COVER_MARK_LINE();
 
@@ -401,15 +421,16 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
 
                         std::copy(begin, minus - 1, xstr.begin() + sz);
                     }
-                    if(isupper(prev) == isupper(post))
+
+                    if (isupper(prev) == isupper(post))
                     {
                         SHWILD_COVER_MARK_LINE();
 
-                        if(post < prev)
+                        if (post < prev)
                         {
                             SHWILD_COVER_MARK_LINE();
 
-                            if(0 != (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT))
+                            if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT))
                             {
                                 SHWILD_COVER_MARK_LINE();
 
@@ -426,13 +447,13 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
 
                         SHWILD_COVER_MARK_LINE();
 
-                        { for(char ch = prev; ch <= post; ++ch)
+                        { for (char ch = prev; ch <= post; ++ch)
                         {
                             SHWILD_COVER_MARK_LINE();
 
                             const size_t sz2 = xstr.size();
 
-                            if(!xstr.resize(1 + sz2))
+                            if (!resize_buffer(xstr, 1 + sz2))
                             {
                                 SHWILD_COVER_MARK_LINE();
 
@@ -450,7 +471,7 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
                     {
                         SHWILD_COVER_MARK_LINE();
 
-                        if(0 != (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT))
+                        if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT))
                         {
                             SHWILD_COVER_MARK_LINE();
 
@@ -467,11 +488,11 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
 
                             SHWILD_ASSERT((postLower < prevLower) == (postUpper < prevUpper));
 
-                            if(postLower < prevLower)
+                            if (postLower < prevLower)
                             {
                                 SHWILD_COVER_MARK_LINE();
 
-                                if(0 != (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT))
+                                if (0 != (flags & SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT))
                                 {
                                     SHWILD_COVER_MARK_LINE();
 
@@ -495,13 +516,13 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
 
                             SHWILD_COVER_MARK_LINE();
 
-                            { for(char ch = prevLower; ch <= postLower; ++ch)
+                            { for (char ch = prevLower; ch <= postLower; ++ch)
                             {
                                 SHWILD_COVER_MARK_LINE();
 
-                                const size_t sz3 = xstr.size();
+                                size_t const sz3 = xstr.size();
 
-                                if(!xstr.resize(1 + sz3))
+                                if (!resize_buffer(xstr, 1 + sz3))
                                 {
                                     SHWILD_COVER_MARK_LINE();
 
@@ -517,13 +538,13 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
 
                             SHWILD_COVER_MARK_LINE();
 
-                            { for(char ch = prevUpper; ch <= postUpper; ++ch)
+                            { for (char ch = prevUpper; ch <= postUpper; ++ch)
                             {
                                 SHWILD_COVER_MARK_LINE();
 
-                                const size_t sz4 = xstr.size();
+                                size_t const sz4 = xstr.size();
 
-                                if(!xstr.resize(1 + sz4))
+                                if (!resize_buffer(xstr, 1 + sz4))
                                 {
                                     SHWILD_COVER_MARK_LINE();
 
@@ -542,7 +563,7 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
                     }
 
                     begin = minus + 2;
-                    if(end == begin)
+                    if (end == begin)
                     {
                         SHWILD_COVER_MARK_LINE();
 
@@ -552,19 +573,20 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
                     {
                         SHWILD_COVER_MARK_LINE();
 
-                        if('-' == *begin)
+                        if ('-' == *begin)
                         {
                             SHWILD_COVER_MARK_LINE();
 
                             return SHWILD_RC_PARSE_ERROR;   /* "[0-1-234]" not valid */
                         }
+
                         minus = strnchr(begin, static_cast<size_t>(end - begin), '-');
                     }
                 }
 
                 const size_t sz = xstr.size();
 
-                if(!xstr.resize(sz + static_cast<size_t>(end - begin)))
+                if (!resize_buffer(xstr, sz + static_cast<size_t>(end - begin)))
                 {
                     SHWILD_COVER_MARK_LINE();
 
@@ -588,23 +610,26 @@ int get_node( node_t* node, node_buffer_t &scratch, char const* buf, size_t* len
         break;
     default:
         SHWILD_COVER_MARK_LINE();
+
         node->type      =   NODE_LITERAL;
         node->data.len  =   0;
         tok = get_literal( node->data, scratch, buf, &tok_len, flags, 0 );
-        if(TOK_ENOMEM == tok)
+
+        if (TOK_ENOMEM == tok)
         {
             SHWILD_COVER_MARK_LINE();
 
             return SHWILD_RC_ALLOC_ERROR;
         }
     }
+
     SHWILD_COVER_MARK_LINE();
 
     *len += tok_len;
     return 0;
 }
 
-void node_init( node_t* node )
+void node_init(node_t* node)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -612,7 +637,7 @@ void node_init( node_t* node )
     node->data.len  =   0;
 }
 
-void node_reset( node_t* node )
+void node_reset(node_t* node)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -621,3 +646,4 @@ void node_reset( node_t* node )
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

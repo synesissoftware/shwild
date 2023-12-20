@@ -1,7 +1,7 @@
-/// \file example.cpp.1.cpp
+/// \file example.cpp.2.cpp
 //
-// Created: 29th April 2006
-// Updated: 21st December 2023
+// Created: 24th November 2023
+// Updated: 24th November 2023
 
 #include <shwild/shwild.hpp>
 
@@ -27,8 +27,8 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-typedef std::string             string_t;
-typedef std::vector<string_t>   patterns_t;
+typedef std::string                     string_t;
+typedef std::vector<shwild::Pattern>    patterns_t;
 
 using platformstl::readdir_sequence;
 
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 
     if (1 == argc)
     {
-        patterns.push_back("*");
+        patterns.push_back(shwild::Pattern("*", 0));
     }
     else
     {
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                patterns.push_back(arg);
+                patterns.push_back(shwild::Pattern(arg, 0));
             }
         }}
     }
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
     {
         { for (patterns_t::const_iterator b1 = patterns.begin(); b1 != patterns.end(); ++b1)
         {
-            if (0 == shwild::match((*b1).c_str(), *b, 0))
+            if ((*b1).match(*b))
             {
                 std::cout << *b << std::endl;
 
