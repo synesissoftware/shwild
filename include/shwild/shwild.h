@@ -146,6 +146,7 @@
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+
 /** Handle type for use in declaring opaque handles to compiled patterns
  *
  * \ingroup group__shwild_api__c_api

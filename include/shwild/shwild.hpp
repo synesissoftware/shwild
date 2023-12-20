@@ -183,6 +183,16 @@ public:
     /// Releases any resources associated with the instance
     ~Pattern();
 
+# if __cplusplus >= 201103L
+    /// Move constructor
+    Pattern(class_type&& rhs)
+        : m_hCompiledPattern(rhs.m_hCompiledPattern)
+        , m_numMatches(rhs.m_numMatches)
+    {
+        rhs.m_hCompiledPattern = nullptr;
+        rhs.m_numMatches = -1;
+    }
+# endif /* C++-11+ */
 private:
     Pattern(class_type const&);
     void operator =(class_type const&);
