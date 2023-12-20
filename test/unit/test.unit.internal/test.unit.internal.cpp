@@ -92,182 +92,182 @@ static int main_(int /* argc */, char* /* argv */[])
         {
             static const char   PATTERN[]   =   "abc*";
 
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abcd", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abcd", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
         }
 
         { // "*"
             static const char   PATTERN[]   =   "*";
 
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "123", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "123", 0));
         }
 
         { // "abc*"
             static const char   PATTERN[]   =   "abc*";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "a", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abcd", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abcde", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abcd", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abcde", 0));
         }
 
         { // "*abc*12"
             static const char       PATTERN[]       =       "*abc*12";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "a", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc12", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc122", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc212", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "--------------------------abc--------------------12", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc12", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc122", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc212", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "--------------------------abc--------------------12", 0));
         }
 
         { // "*abc*1?2"
             static const char       PATTERN[]       =       "*abc*1?2";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "a", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc1", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc122", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc112", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "--------------------------abc--------------------1-2", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc1", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc122", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc112", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "--------------------------abc--------------------1-2", 0));
         }
 
         { // "*abc*1[0-9]2"
             static const char       PATTERN[]       =       "*abc*1[0-9]2";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "a", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc1", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc122", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc112", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc192", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc1x2", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "--------------------------abc--------------------1-2", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "--------------------------abc--------------------152", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc1", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc122", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc112", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc192", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc1x2", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "--------------------------abc--------------------1-2", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "--------------------------abc--------------------152", 0));
         }
 
         { // "*?"
             static const char   PATTERN[]   =   "*?";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "123", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "123", 0));
         }
 
 
         { // "*??"
             static const char   PATTERN[]   =   "*??";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "123", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "-------------------123---------------------", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "123", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "-------------------123---------------------", 0));
         }
 
 
         { // "?*?"
             static const char   PATTERN[]   =   "?*?";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "123", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "-------------------123---------------------", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "123", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "-------------------123---------------------", 0));
         }
 
         { // "\\?*"
             static const char   PATTERN[]   =   "\\?*";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "?", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "?1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "?12", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "1?2", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "?", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "?1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "?12", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "1?2", 0));
         }
 
         { // "[coprs]*vc*.ds[pw]"
             static const char   PATTERN[]   =   "[coprs]*vc*.ds[pw]";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "vc6.dsw", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "recls.vc6.dsp", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "recls.vc6.dsw", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "pantheios.mt.vc6.dsw", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "pantheios.mt.vc6.dsP", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "arturius.mt.vc6.dsw", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "vc6.dsw", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "recls.vc6.dsp", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "recls.vc6.dsw", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "pantheios.mt.vc6.dsw", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "pantheios.mt.vc6.dsP", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "arturius.mt.vc6.dsw", 0));
         }
 
         { // "**"
             static const char   PATTERN[]   =   "**";
 
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "a", 0));
         }
 
         { // "*[0-9]"
             static const char   PATTERN[]   =   "*[0-9]";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "a", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc122", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc122", 0));
         }
 
         { // "**[0-9]"
             static const char   PATTERN[]   =   "**[0-9]";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "a", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "ab", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "abc", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc1", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc12", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc122", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc112", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc192", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "abc1x2", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "--------------------------abc--------------------1-2", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "--------------------------abc--------------------152", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "a", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "ab", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "abc", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc1", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc12", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc122", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc112", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc192", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "abc1x2", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "--------------------------abc--------------------1-2", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "--------------------------abc--------------------152", 0));
         }
 
         { // "\\[[abcdef]?**?x"
             static const char   PATTERN[]   =   "\\[[abcdef]?**?x";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
         }
 
 #if 0
         { // "\\[[?**?]?**?x"
             static const char   PATTERN[]   =   "\\[[?**?]?**?x";
 
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "", 0));
-            SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "?", 0));
-            SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "[?abx", 0));
-//          SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "?1", 0));
-//          SHWILD_BDT_CHECK(0 == shwild::match(PATTERN, "?12", 0));
-//          SHWILD_BDT_CHECK(0 != shwild::match(PATTERN, "1?2", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "", 0));
+            SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "?", 0));
+            SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "[?abx", 0));
+//          SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "?1", 0));
+//          SHWILD_BDT_CHECK_EQ(0, shwild::match(PATTERN, "?12", 0));
+//          SHWILD_BDT_CHECK_NE(0, shwild::match(PATTERN, "1?2", 0));
         }
 #endif /* 0 */
     }
@@ -289,10 +289,10 @@ static int main_(int /* argc */, char* /* argv */[])
 
         shwild_tieMatches_(matches);
 
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, ""));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "1"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "123"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, ""));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "1"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "123"));
     }
 
     {
@@ -309,9 +309,9 @@ static int main_(int /* argc */, char* /* argv */[])
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, ""));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "a"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "ab"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abcd"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abcde"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abcd"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abcde"));
     }
 
     {
@@ -329,9 +329,9 @@ static int main_(int /* argc */, char* /* argv */[])
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, ""));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "a"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "ab"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abcd"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "dabc"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abcd"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "dabc"));
     }
 
     {
@@ -352,10 +352,10 @@ static int main_(int /* argc */, char* /* argv */[])
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "ab"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc1"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc12"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc122"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc212"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "--------------------------abc--------------------12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc212"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "--------------------------abc--------------------12"));
     }
 
     {
@@ -379,9 +379,9 @@ static int main_(int /* argc */, char* /* argv */[])
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc1"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc122"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc112"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "--------------------------abc--------------------1-2"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc122"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc112"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "--------------------------abc--------------------1-2"));
     }
 
 
@@ -406,12 +406,12 @@ static int main_(int /* argc */, char* /* argv */[])
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc1"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc122"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc112"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "abc192"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc122"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc112"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "abc192"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "abc1x2"));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "--------------------------abc--------------------1-2"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "--------------------------abc--------------------152"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "--------------------------abc--------------------152"));
     }
 
     {
@@ -426,9 +426,9 @@ static int main_(int /* argc */, char* /* argv */[])
         shwild_tieMatches_(matches);
 
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, ""));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "1"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "123"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "1"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "123"));
     }
 
 
@@ -446,9 +446,9 @@ static int main_(int /* argc */, char* /* argv */[])
 
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, ""));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "1"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "123"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "-------------------123---------------------"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "123"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "-------------------123---------------------"));
     }
 
 
@@ -466,9 +466,9 @@ static int main_(int /* argc */, char* /* argv */[])
 
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, ""));
         SHWILD_BDT_CHECK_FALSE(shwild_match_(matches, PATTERN, "1"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "123"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "-------------------123---------------------"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "123"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "-------------------123---------------------"));
     }
 
 
@@ -482,10 +482,10 @@ static int main_(int /* argc */, char* /* argv */[])
 
         shwild_tieMatches_(matches);
 
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, ""));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "1"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "12"));
-        SHWILD_BDT_CHECK(shwild_match_(matches, PATTERN, "123"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, ""));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "1"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "12"));
+        SHWILD_BDT_CHECK_TRUE(shwild_match_(matches, PATTERN, "123"));
     }
 #endif /* compiler */
 
