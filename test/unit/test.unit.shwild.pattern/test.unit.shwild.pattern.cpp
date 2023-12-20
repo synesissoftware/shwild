@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.shwild.pattern project.
  *
  * Created:     28th April 2006
- * Updated:     18th July 2020
+ * Updated:     23rd November 2023
  *
  * Status:      Wizard-generated
  *
@@ -184,7 +184,7 @@ static int main_(int /* argc */, char* /*argv*/[])
             assert(!pattern2.match("accm"));
             assert(!pattern2.match("abcn"));
         }
-        catch(shwild::PatternException &)
+        catch(shwild::PatternException&)
         {
         }
     }
@@ -209,7 +209,7 @@ static int main_(int /* argc */, char* /*argv*/[])
             assert(!pattern2.match("aCcJ"));
             assert(!pattern2.match("abcn"));
         }
-        catch(shwild::PatternException &)
+        catch(shwild::PatternException&)
         {
         }
     }
@@ -238,7 +238,7 @@ static int main_(int /* argc */, char* /*argv*/[])
             assert(!pattern2.match("abdc"));
             assert(!pattern2.match("abc?"));
         }
-        catch(shwild::PatternException &)
+        catch(shwild::PatternException&)
         {
         }
     }
@@ -265,7 +265,7 @@ static int main_(int /* argc */, char* /*argv*/[])
             assert(!pattern2.match("a-c-"));
             assert(!pattern2.match("abce"));
         }
-        catch(shwild::PatternException &)
+        catch(shwild::PatternException&)
         {
         }
     }
@@ -290,7 +290,7 @@ static int main_(int /* argc */, char* /*argv*/[])
             assert(pattern2.match("accm"));
             assert(!pattern2.match("abcn"));
         }
-        catch(shwild::PatternException &)
+        catch(shwild::PatternException&)
         {
         }
     }
@@ -298,7 +298,7 @@ static int main_(int /* argc */, char* /*argv*/[])
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int             iRet;
 
@@ -316,7 +316,7 @@ int main(int argc, char *argv[])
     {
         iRet = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch(std::exception& x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
 

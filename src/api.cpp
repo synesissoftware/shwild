@@ -4,11 +4,11 @@
  * Purpose: Implementation of the shwild API
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -114,9 +114,9 @@ typedef ::shwild::impl::vector_maker<Match_ptr>::type   Matches;
  */
 
 // Returns the number of matches, or <0 on failure
-static int  shwild_parseMatches_(Matches &matches, slice_t const* pattern, unsigned flags);
-static void shwild_tieMatches_(Matches &matches);
-static bool shwild_match_(Matches const &matches, slice_t const* string);
+static int  shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsigned flags);
+static void shwild_tieMatches_(Matches& matches);
+static bool shwild_match_(Matches const& matches, slice_t const* string);
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -206,8 +206,8 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
         {
             SHWILD_COVER_MARK_LINE();
 
-            char const  *b;
-            char const  *e;
+            char const* b;
+            char const* e;
 
             for(b  = pattern->ptr, e = pattern->ptr + pattern->len; b != e; ++b)
             {
@@ -247,13 +247,13 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc &)
+    catch(std::bad_alloc&)
     {
         SHWILD_COVER_MARK_LINE();
 
         return SHWILD_RC_ALLOC_ERROR;
     }
-    catch(std::exception &)
+    catch(std::exception&)
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -285,7 +285,7 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        PatternMatcher  *pm;
+        PatternMatcher* pm;
 
         *phCompiledPattern = NULL;
 
@@ -299,14 +299,14 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
 #if defined(STLSOFT_CF_EXCEPTION_SUPPORT)
         }
 # if defined(STLSOFT_CF_THROW_BAD_ALLOC)
-        catch(std::bad_alloc &)
+        catch(std::bad_alloc&)
         {
             SHWILD_COVER_MARK_LINE();
 
             pm = NULL;
         }
 # endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-        catch(std::exception &)
+        catch(std::exception&)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -343,13 +343,13 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc &)
+    catch(std::bad_alloc&)
     {
         SHWILD_COVER_MARK_LINE();
 
         return SHWILD_RC_ALLOC_ERROR;
     }
-    catch(std::exception &)
+    catch(std::exception&)
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -388,13 +388,13 @@ int shwild_match_pattern_s(shwild_handle_t hCompiledPattern, shwild_slice_t cons
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc &)
+    catch(std::bad_alloc&)
     {
         SHWILD_COVER_MARK_LINE();
 
         return SHWILD_RC_ALLOC_ERROR;
     }
-    catch(std::exception &)
+    catch(std::exception&)
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -423,7 +423,7 @@ namespace
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int shwild_parseMatches_(Matches &matches, slice_t const* pattern, unsigned flags)
+static int shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsigned flags)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -527,7 +527,7 @@ static int shwild_parseMatches_(Matches &matches, slice_t const* pattern, unsign
     return nMatches;
 }
 
-static void shwild_tieMatches_(Matches &matches)
+static void shwild_tieMatches_(Matches& matches)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -539,7 +539,7 @@ static void shwild_tieMatches_(Matches &matches)
     }
 }
 
-static bool shwild_match_(Matches const &matches, slice_t const* string)
+static bool shwild_match_(Matches const& matches, slice_t const* string)
 {
     SHWILD_COVER_MARK_LINE();
 

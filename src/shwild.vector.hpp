@@ -96,7 +96,7 @@ struct vector_maker
         {}
 
     public:
-        void push_back(T const &t)
+        void push_back(T const& t)
         {
             static_cast<parent_class_type*>(this)->operator [](size()) = t;
         }

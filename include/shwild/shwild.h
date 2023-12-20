@@ -4,11 +4,11 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    7
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        38
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    8
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        39
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -99,13 +99,14 @@
 # define SHWILD_VER_0_11_1      0x000b01ff
 # define SHWILD_VER_0_11_2      0x000b02ff
 # define SHWILD_VER_0_11_3      0x000b03ff
+# define SHWILD_VER_0_11_4_a1   0x000b0401
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR        0
 #define SHWILD_VER_MINOR        11
-#define SHWILD_VER_REVISION     3
+#define SHWILD_VER_REVISION     4
 
-#define SHWILD_VER              SHWILD_VER_0_11_3
+#define SHWILD_VER              SHWILD_VER_0_11_4_a1
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

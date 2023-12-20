@@ -4,11 +4,11 @@
  * Purpose: Definition of Match interface class and concrete match classes
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,12 +65,12 @@ namespace impl
  * Functions
  */
 
-char *STLSOFT_CDECL shwild_strchr(const char *, int);
-char *STLSOFT_CDECL shwild_strichr(const char *, int);
-char *STLSOFT_CDECL shwild_strstr(const char *, const char *);
-char *STLSOFT_CDECL shwild_stristr(const char *, const char *);
-int STLSOFT_CDECL   shwild_strncmp(const char *, const char *, size_t);
-int STLSOFT_CDECL   shwild_strnicmp(const char *, const char *, size_t);
+char* STLSOFT_CDECL shwild_strchr(char const*, int);
+char* STLSOFT_CDECL shwild_strichr(char const*, int);
+char* STLSOFT_CDECL shwild_strstr(char const*, char const*);
+char* STLSOFT_CDECL shwild_stristr(char const*, char const*);
+int STLSOFT_CDECL   shwild_strncmp(char const*, char const*, size_t);
+int STLSOFT_CDECL   shwild_strnicmp(char const*, char const*, size_t);
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -83,20 +83,20 @@ public:
     virtual ~Match() = 0;
 
     /// \brief Sets the next Match in the series
-    virtual void setNext(Match *next) = 0;
+    virtual void setNext(Match* next) = 0;
 
 public:
     /// \brief Attempt full match of the given string range
     ///
     /// The instance matches the given string range against its criteria, and
     /// the criteria of all its down-the-line peers
-    virtual bool match(char const *first, char const *last) const = 0;
+    virtual bool match(char const* first, char const* last) const = 0;
     /// \brief Attempt partial match of the given string range
     ///
     /// The instance matches the given string range against its own criteria. If
     /// the match is successful, *nextLen is set to the matched length, and the
     /// return value is first + *nextLen
-    virtual char const *nextSub(char const *first, char const *last, size_t *nextLen) const = 0;
+    virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const = 0;
 };
 
 /** \brief Matches 0 or more of any characters; INTERNAL CLASS. */
@@ -110,14 +110,14 @@ public:
     explicit MatchWild(unsigned flags);
     virtual ~MatchWild();
 
-    virtual void setNext(Match *next);
+    virtual void setNext(Match* next);
 public:
-    virtual bool match(char const *first, char const *last) const;
-    virtual char const *nextSub(char const *first, char const *last, size_t *nextLen) const;
+    virtual bool match(char const* first, char const* last) const;
+    virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const;
 private:
-    Match   *m_next;
+    Match* m_next;
 private:
-    class_type &operator =(class_type const &);
+    class_type& operator =(class_type const&);
 };
 
 /** \brief Matches exactly 1 of any characters; INTERNAL CLASS. */
@@ -131,14 +131,14 @@ public:
     explicit MatchWild1(unsigned flags);
     virtual ~MatchWild1();
 
-    virtual void setNext(Match *next);
+    virtual void setNext(Match* next);
 public:
-    virtual bool match(char const *first, char const *last) const;
-    virtual char const *nextSub(char const *first, char const *last, size_t *nextLen) const;
+    virtual bool match(char const* first, char const* last) const;
+    virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const;
 private:
-    Match   *m_next;
+    Match* m_next;
 private:
-    class_type &operator =(class_type const &);
+    class_type& operator =(class_type const&);
 };
 
 /** \brief Matches exactly 1 character from a given range; INTERNAL CLASS. */
@@ -149,21 +149,21 @@ public:
     typedef MatchRange  class_type;
 
 public:
-    MatchRange(size_t len, char const *chars, unsigned flags);
+    MatchRange(size_t len, char const* chars, unsigned flags);
     virtual ~MatchRange();
 
-    virtual void setNext(Match *next);
+    virtual void setNext(Match* next);
 public:
-    virtual bool match(char const *first, char const *last) const;
-    virtual char const *nextSub(char const *first, char const *last, size_t *nextLen) const;
+    virtual bool match(char const* first, char const* last) const;
+    virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const;
 protected:
     bool matchContents(char ch) const;
 protected:
-    Match                   *m_next;
-    const shwild_string_t   m_chars;
-    const unsigned          m_flags;
+    Match*                  m_next;
+    shwild_string_t const   m_chars;
+    unsigned const          m_flags;
 private:
-    class_type &operator =(class_type const &);
+    class_type& operator =(class_type const&);
 };
 
 /** \brief Matches exactly 1 character not from a given range; INTERNAL CLASS. */
@@ -175,14 +175,14 @@ public:
     typedef MatchNotRange   class_type;
 
 public:
-    MatchNotRange(size_t len, char const *chars, unsigned flags);
+    MatchNotRange(size_t len, char const* chars, unsigned flags);
     virtual ~MatchNotRange();
 
 public:
-    virtual bool match(char const *first, char const *last) const;
+    virtual bool match(char const* first, char const* last) const;
 
 private:
-    class_type &operator =(class_type const &);
+    class_type& operator =(class_type const&);
 };
 
 /** \brief Matches the end of a string; INTERNAL CLASS. */
@@ -196,14 +196,14 @@ public:
     explicit MatchEnd(unsigned flags);
     virtual ~MatchEnd();
 
-    virtual void setNext(Match *next);
+    virtual void setNext(Match* next);
 public:
-    virtual bool match(char const *first, char const *last) const;
-    virtual char const *nextSub(char const *first, char const *last, size_t *nextLen) const;
+    virtual bool match(char const* first, char const* last) const;
+    virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const;
 private:
-    Match   *m_next;
+    Match* m_next;
 private:
-    class_type &operator =(class_type const &);
+    class_type& operator =(class_type const&);
 };
 
 /** \brief Matches a literal string; INTERNAL CLASS. */
@@ -214,19 +214,19 @@ public:
     typedef MatchLiteral    class_type;
 
 public:
-    MatchLiteral(size_t cchContents, char const *contents, unsigned flags);
+    MatchLiteral(size_t cchContents, char const* contents, unsigned flags);
     virtual ~MatchLiteral();
 
-    virtual void setNext(Match *next);
+    virtual void setNext(Match* next);
 public:
-    virtual bool match(char const *first, char const *last) const;
-    virtual char const *nextSub(char const *first, char const *last, size_t *nextLen) const;
+    virtual bool match(char const* first, char const* last) const;
+    virtual char const* nextSub(char const* first, char const* last, size_t* nextLen) const;
 private:
-    Match                   *m_next;
-    const shwild_string_t   m_contents;
-    const unsigned          m_flags;
+    Match*                  m_next;
+    shwild_string_t const   m_contents;
+    unsigned const          m_flags;
 private:
-    class_type &operator =(class_type const &);
+    class_type& operator =(class_type const&);
 };
 
 /* /////////////////////////////////////////////////////////////////////////

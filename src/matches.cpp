@@ -4,11 +4,11 @@
  * Purpose: Implementation of Match interface class and concrete match classes
  *
  * Created: 17th June 2005
- * Updated: 5th February 2012
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -105,7 +105,7 @@ MatchWild::~MatchWild()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchWild::setNext(Match *next)
+void MatchWild::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -130,7 +130,7 @@ bool MatchWild::match(char const* first, char const* last) const
     {
         SHWILD_COVER_MARK_LINE();
 
-        char const  *next;
+        char const* next;
         size_t      nextLen;
 
         for(next = first; last != (next = m_next->nextSub(next, last, &nextLen)); next += nextLen)
@@ -151,7 +151,7 @@ bool MatchWild::match(char const* first, char const* last) const
     return false;
 }
 
-char const* MatchWild::nextSub(char const*  /* first */, char const*  /* last */, size_t * /* nextLen */) const
+char const* MatchWild::nextSub(char const* /* first */, char const* /* last */, size_t* /* nextLen */) const
 {
     SHWILD_MESSAGE_ASSERT("nextSub() not callable on MatchWild", 0);
 
@@ -175,7 +175,7 @@ MatchWild1::~MatchWild1()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchWild1::setNext(Match *next)
+void MatchWild1::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -208,7 +208,7 @@ bool MatchWild1::match(char const* first, char const* last) const
     return false;
 }
 
-char const* MatchWild1::nextSub(char const* first, char const*  /* last */, size_t *nextLen) const
+char const* MatchWild1::nextSub(char const* first, char const* /* last */, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -235,7 +235,7 @@ MatchRange::~MatchRange()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchRange::setNext(Match *next)
+void MatchRange::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -248,7 +248,7 @@ bool MatchRange::matchContents(char ch) const
 {
     SHWILD_COVER_MARK_LINE();
 
-    typedef char *(STLSOFT_CDECL *pfn_t)(char const*, int);
+    typedef char* (STLSOFT_CDECL *pfn_t)(char const*, int);
 
     pfn_t   pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
                         ? shwild_strichr
@@ -287,7 +287,7 @@ bool MatchRange::match(char const* first, char const* last) const
     return false;
 }
 
-char const* MatchRange::nextSub(char const* first, char const*  /* last */, size_t *nextLen) const
+char const* MatchRange::nextSub(char const* first, char const* /* last */, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -358,7 +358,7 @@ MatchEnd::~MatchEnd()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchEnd::setNext(Match *next)
+void MatchEnd::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == next);
     SHWILD_MESSAGE_ASSERT("WildEnd must always be the end", 0);
@@ -375,7 +375,7 @@ bool MatchEnd::match(char const* first, char const* last) const
     return first == last;
 }
 
-char const* MatchEnd::nextSub(char const*  /* first */, char const* last, size_t *nextLen) const
+char const* MatchEnd::nextSub(char const* /* first */, char const* last, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -401,7 +401,7 @@ MatchLiteral::~MatchLiteral()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchLiteral::setNext(Match *next)
+void MatchLiteral::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -444,7 +444,7 @@ bool MatchLiteral::match(char const* first, char const* last) const
     }
 }
 
-char const* MatchLiteral::nextSub(char const* first, char const* last, size_t *nextLen) const
+char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -454,7 +454,7 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t *n
 //# error This assumes *last == '\0', which is NOT VALID!
 #endif
 
-    typedef char *(STLSOFT_CDECL *pfn_t)(char const*, char const*);
+    typedef char* (STLSOFT_CDECL *pfn_t)(char const*, char const*);
 
     char const* next;
     pfn_t       pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
@@ -481,14 +481,14 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t *n
  * Utility functions
  */
 
-char *STLSOFT_CDECL shwild_strchr(const char *s, int ch)
+char* STLSOFT_CDECL shwild_strchr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strchr(const_cast<char*>(s), ch);
 }
 
-char *STLSOFT_CDECL shwild_strichr(const char *s, int ch)
+char* STLSOFT_CDECL shwild_strichr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -507,14 +507,14 @@ char *STLSOFT_CDECL shwild_strichr(const char *s, int ch)
     return NULL;
 }
 
-char *STLSOFT_CDECL shwild_strstr(const char *s1, const char *s2)
+char* STLSOFT_CDECL shwild_strstr(char const* s1, char const* s2)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strstr(const_cast<char*>(s1), s2);
 }
 
-char *STLSOFT_CDECL shwild_stristr(const char *s1, const char *s2)
+char* STLSOFT_CDECL shwild_stristr(char const* s1, char const* s2)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -535,14 +535,14 @@ char *STLSOFT_CDECL shwild_stristr(const char *s1, const char *s2)
     return NULL;
 }
 
-int STLSOFT_CDECL shwild_strncmp(const char *s1, const char *s2, size_t n)
+int STLSOFT_CDECL shwild_strncmp(char const* s1, char const* s2, size_t n)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strncmp(s1, s2, n);
 }
 
-int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
+int STLSOFT_CDECL shwild_strnicmp(char const* s1, char const* s2, size_t n)
 {
     SHWILD_COVER_MARK_LINE();
 

@@ -77,8 +77,8 @@ typedef std::vector<Match_ptr>                      Matches;
  */
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-static void shwild_tieMatches_(Matches &matches);
-static bool shwild_match_(Matches const &matches, char const* pattern, char const* string);
+static void shwild_tieMatches_(Matches& matches);
+static bool shwild_match_(Matches const& matches, char const* pattern, char const* string);
 #endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -514,7 +514,7 @@ int main(int argc, char* argv[])
         r = main_(argc, argv);
     }
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-    catch(std::exception &x)
+    catch(std::exception& x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
@@ -539,7 +539,7 @@ int main(int argc, char* argv[])
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
 
-bool shwild_match_(Matches const &matches, char const* pattern, char const* string)
+bool shwild_match_(Matches const& matches, char const* pattern, char const* string)
 {
     STLSOFT_SUPPRESS_UNUSED(pattern);
 
@@ -548,7 +548,7 @@ bool shwild_match_(Matches const &matches, char const* pattern, char const* stri
     return matches[0]->match(&string[0], &string[0] + len);
 }
 
-void shwild_tieMatches_(Matches &matches)
+void shwild_tieMatches_(Matches& matches)
 {
     for(size_t i = 1; i < matches.size(); ++i)
     {

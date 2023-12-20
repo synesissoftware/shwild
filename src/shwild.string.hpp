@@ -4,11 +4,11 @@
  * Purpose: String class for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 18th July 2020
+ * Updated: 23rd November 2023
  *
  * Home:    http://shwild.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -91,14 +91,14 @@ class WatcomString
     : public String
 {
 public:
-    WatcomString(char const *s)
+    WatcomString(char const* s)
         : String(s)
     {}
-    WatcomString(char const *s, size_t len)
+    WatcomString(char const* s, size_t len)
         : String(s, len)
     {}
 public:
-    char const  *data() const
+    char const* data() const
     {
         return *this;
     }

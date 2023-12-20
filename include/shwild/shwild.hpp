@@ -181,8 +181,8 @@ public:
     }
 
 private:
-    static shwild_handle_t init_(char const* pattern, unsigned flags, int &numMatches);
-    static shwild_handle_t init_(slice_t const* pattern, unsigned flags, int &numMatches);
+    static shwild_handle_t init_(char const* pattern, unsigned flags, int& numMatches);
+    static shwild_handle_t init_(slice_t const* pattern, unsigned flags, int& numMatches);
 
 private:
     shwild_handle_t m_hCompiledPattern;
@@ -190,7 +190,7 @@ private:
 
 private:
     Pattern(Pattern const&);
-    Pattern &operator =(Pattern const&);
+    Pattern& operator =(Pattern const&);
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -199,7 +199,7 @@ private:
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 
-inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned flags, int &numMatches)
+inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned flags, int& numMatches)
 {
     shwild_handle_t hCompiledPattern;
 
@@ -215,7 +215,7 @@ inline /* static */ shwild_handle_t Pattern::init_(char const* pattern, unsigned
     return hCompiledPattern;
 }
 
-inline /* static */ shwild_handle_t Pattern::init_(slice_t const* pattern, unsigned flags, int &numMatches)
+inline /* static */ shwild_handle_t Pattern::init_(slice_t const* pattern, unsigned flags, int& numMatches)
 {
     shwild_handle_t hCompiledPattern;
 
