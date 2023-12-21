@@ -1,46 +1,28 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    src/matches.cpp
  *
- * Purpose: Implementation of Match interface class and concrete match classes
+ * Purpose: Implementation of Match interface class and concrete match
+ *          classes
  *
  * Created: 17th June 2005
- * Updated: 5th February 2012
+ * Updated: 21st December 2023
  *
- * Home:    http://shwild.org/
- *
- * Copyright (c) 2005-2012, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Sean Kelly nor the names of
- *   any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * modification, are permitted in accordance with the license and warranty
+ * information described in shwild.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/shwild)
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file matches.cpp \brief [INTERNAL] Match protocol class and specific implementations
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <shwild/shwild.h>
@@ -59,7 +41,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler warnings
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -67,7 +49,11 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * compatibility
+ */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -78,7 +64,20 @@ namespace impl
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * functions
+ */
+
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+char* shwild_strchr(char const*, int);
+char* shwild_strichr(char const*, int);
+char* shwild_strstr(char const*, char const*);
+char* shwild_stristr(char const*, char const*);
+int shwild_strncmp(char const*, char const*, size_t);
+int shwild_strnicmp(char const*, char const*, size_t);
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +104,7 @@ MatchWild::~MatchWild()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchWild::setNext(Match *next)
+void MatchWild::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -120,7 +119,7 @@ bool MatchWild::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(m_next->match(last, last))
+    if (m_next->match(last, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -130,14 +129,14 @@ bool MatchWild::match(char const* first, char const* last) const
     {
         SHWILD_COVER_MARK_LINE();
 
-        char const  *next;
+        char const* next;
         size_t      nextLen;
 
-        for(next = first; last != (next = m_next->nextSub(next, last, &nextLen)); next += nextLen)
+        for (next = first; last != (next = m_next->nextSub(next, last, &nextLen)); next += nextLen)
         {
             SHWILD_COVER_MARK_LINE();
 
-            if(m_next->match(next, last))
+            if (m_next->match(next, last))
             {
                 SHWILD_COVER_MARK_LINE();
 
@@ -151,14 +150,15 @@ bool MatchWild::match(char const* first, char const* last) const
     return false;
 }
 
-char const* MatchWild::nextSub(char const*  /* first */, char const*  /* last */, size_t * /* nextLen */) const
+char const* MatchWild::nextSub(char const* /* first */, char const* /* last */, size_t* /* nextLen */) const
 {
-    SHWILD_MESSAGE_ASSERT("nextSub() not callable on MatchWild", 0);
+    SHWILD_MESSAGE_ASSERT(false, "nextSub() not callable on MatchWild");
 
     SHWILD_COVER_MARK_LINE();
 
     return NULL;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchWild1
@@ -175,7 +175,7 @@ MatchWild1::~MatchWild1()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchWild1::setNext(Match *next)
+void MatchWild1::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -190,13 +190,13 @@ bool MatchWild1::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(0 == (last - first))
+    if (0 == (last - first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(m_next->match(first + 1, last))
+    else if (m_next->match(first + 1, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -208,7 +208,7 @@ bool MatchWild1::match(char const* first, char const* last) const
     return false;
 }
 
-char const* MatchWild1::nextSub(char const* first, char const*  /* last */, size_t *nextLen) const
+char const* MatchWild1::nextSub(char const* first, char const* /* last */, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -217,6 +217,7 @@ char const* MatchWild1::nextSub(char const* first, char const*  /* last */, size
 
     return first;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchRange
@@ -235,7 +236,7 @@ MatchRange::~MatchRange()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchRange::setNext(Match *next)
+void MatchRange::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -248,7 +249,7 @@ bool MatchRange::matchContents(char ch) const
 {
     SHWILD_COVER_MARK_LINE();
 
-    typedef char *(STLSOFT_CDECL *pfn_t)(char const*, int);
+    typedef char* (*pfn_t)(char const*, int);
 
     pfn_t   pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
                         ? shwild_strichr
@@ -263,19 +264,19 @@ bool MatchRange::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(0 == (last - first))
+    if (0 == (last - first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(!this->matchContents(*first))
+    else if (!this->matchContents(*first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(m_next->match(first + 1, last))
+    else if (m_next->match(first + 1, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -287,7 +288,7 @@ bool MatchRange::match(char const* first, char const* last) const
     return false;
 }
 
-char const* MatchRange::nextSub(char const* first, char const*  /* last */, size_t *nextLen) const
+char const* MatchRange::nextSub(char const* first, char const* /* last */, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -296,6 +297,7 @@ char const* MatchRange::nextSub(char const* first, char const*  /* last */, size
 
     return first;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchNotRange
@@ -318,19 +320,19 @@ bool MatchNotRange::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    if(0 == (last - first))
+    if (0 == (last - first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(this->matchContents(*first))
+    else if (this->matchContents(*first))
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(m_next->match(first + 1, last))
+    else if (m_next->match(first + 1, last))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -358,10 +360,10 @@ MatchEnd::~MatchEnd()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchEnd::setNext(Match *next)
+void MatchEnd::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == next);
-    SHWILD_MESSAGE_ASSERT("WildEnd must always be the end", 0);
+    SHWILD_MESSAGE_ASSERT(false, "WildEnd must always be the end");
 
     STLSOFT_SUPPRESS_UNUSED(next);
 
@@ -375,7 +377,7 @@ bool MatchEnd::match(char const* first, char const* last) const
     return first == last;
 }
 
-char const* MatchEnd::nextSub(char const*  /* first */, char const* last, size_t *nextLen) const
+char const* MatchEnd::nextSub(char const* /* first */, char const* last, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -383,6 +385,7 @@ char const* MatchEnd::nextSub(char const*  /* first */, char const* last, size_t
 
     return last;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * MatchLiteral
@@ -401,7 +404,7 @@ MatchLiteral::~MatchLiteral()
     SHWILD_COVER_MARK_LINE();
 }
 
-void MatchLiteral::setNext(Match *next)
+void MatchLiteral::setNext(Match* next)
 {
     SHWILD_ASSERT(NULL == m_next);
 
@@ -416,7 +419,7 @@ bool MatchLiteral::match(char const* first, char const* last) const
 
     SHWILD_COVER_MARK_LINE();
 
-    typedef int (STLSOFT_CDECL *pfn_t)(char const*, char const*, size_t);
+    typedef int (*pfn_t)(char const*, char const*, size_t);
 
     const size_t    len =   m_contents.length();
 
@@ -424,13 +427,13 @@ bool MatchLiteral::match(char const* first, char const* last) const
                     ? shwild_strnicmp
                     : shwild_strncmp;
 
-    if(static_cast<size_t>(last - first) < len)
+    if (static_cast<size_t>(last - first) < len)
     {
         SHWILD_COVER_MARK_LINE();
 
         return false;
     }
-    else if(0 == (*pfn)(first, m_contents.data(), len))
+    else if (0 == (*pfn)(first, m_contents.data(), len))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -444,7 +447,7 @@ bool MatchLiteral::match(char const* first, char const* last) const
     }
 }
 
-char const* MatchLiteral::nextSub(char const* first, char const* last, size_t *nextLen) const
+char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* nextLen) const
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -454,14 +457,14 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t *n
 //# error This assumes *last == '\0', which is NOT VALID!
 #endif
 
-    typedef char *(STLSOFT_CDECL *pfn_t)(char const*, char const*);
+    typedef char* (*pfn_t)(char const*, char const*);
 
     char const* next;
     pfn_t       pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
                             ? shwild_stristr
                             : shwild_strstr;
 
-    if(NULL == (next = (*pfn)(first, m_contents.c_str())))
+    if (NULL == (next = (*pfn)(first, m_contents.c_str())))
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -477,26 +480,29 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t *n
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * utility functions
  */
 
-char *STLSOFT_CDECL shwild_strchr(const char *s, int ch)
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+
+char* shwild_strchr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strchr(const_cast<char*>(s), ch);
 }
 
-char *STLSOFT_CDECL shwild_strichr(const char *s, int ch)
+char* shwild_strichr(char const* s, int ch)
 {
     SHWILD_COVER_MARK_LINE();
 
-    for(; '\0' != *s; ++s)
+    for (; '\0' != *s; ++s)
     {
         SHWILD_COVER_MARK_LINE();
 
-        if(toupper(*s) == toupper(ch))
+        if (toupper(*s) == toupper(ch))
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -507,24 +513,24 @@ char *STLSOFT_CDECL shwild_strichr(const char *s, int ch)
     return NULL;
 }
 
-char *STLSOFT_CDECL shwild_strstr(const char *s1, const char *s2)
+char* shwild_strstr(char const* s1, char const* s2)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strstr(const_cast<char*>(s1), s2);
 }
 
-char *STLSOFT_CDECL shwild_stristr(const char *s1, const char *s2)
+char* shwild_stristr(char const* s1, char const* s2)
 {
     SHWILD_COVER_MARK_LINE();
 
     const size_t len2 = ::strlen(s2);
 
-    for(; '\0' != *s1; ++s1)
+    for (; '\0' != *s1; ++s1)
     {
         SHWILD_COVER_MARK_LINE();
 
-        if(0 == shwild_strnicmp(s1, s2, len2))
+        if (0 == shwild_strnicmp(s1, s2, len2))
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -535,14 +541,14 @@ char *STLSOFT_CDECL shwild_stristr(const char *s1, const char *s2)
     return NULL;
 }
 
-int STLSOFT_CDECL shwild_strncmp(const char *s1, const char *s2, size_t n)
+int shwild_strncmp(char const* s1, char const* s2, size_t n)
 {
     SHWILD_COVER_MARK_LINE();
 
     return ::strncmp(s1, s2, n);
 }
 
-int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
+int shwild_strnicmp(char const* s1, char const* s2, size_t n)
 {
     SHWILD_COVER_MARK_LINE();
 
@@ -554,26 +560,26 @@ int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
     return ::_strnicmp(s1, s2, n);
 #else /* ? compiler */
 
-    { for(size_t i = 0; i < n; ++i)
+    { for (size_t i = 0; i < n; ++i)
     {
         SHWILD_COVER_MARK_LINE();
 
         char    ch1 =   (char)tolower(*s1++);
         char    ch2 =   (char)tolower(*s2++);
 
-        if(ch1 < ch2)
+        if (ch1 < ch2)
         {
             SHWILD_COVER_MARK_LINE();
 
             return -1;
         }
-        else if(ch1 > ch2)
+        else if (ch1 > ch2)
         {
             SHWILD_COVER_MARK_LINE();
 
-            return 1;
+            return +1;
         }
-        else if(0 == ch1)
+        else if (0 == ch1)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -587,9 +593,11 @@ int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
 
 #endif /* compiler */
 }
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(SHWILD_NO_NAMESPACE)
@@ -600,3 +608,4 @@ int STLSOFT_CDECL shwild_strnicmp(const char *s1, const char *s2, size_t n)
 #endif /* !SHWILD_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

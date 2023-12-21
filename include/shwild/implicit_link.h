@@ -4,11 +4,9 @@
  * Purpose: Implicit linking for the shwild API.
  *
  * Created: 27th April 2006
- * Updated: 18th July 2020
+ * Updated: 21st December 2023
  *
- * Home:    http://synesis.com.au/software/
- *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -21,10 +19,9 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Information Systems nor
- *   the names of any contributors may be used to endorse or promote
- *   products derived from this software without specific prior written
- *   permission.
+ * - Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -41,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file shwild/implicit_link.h \brief [C/C++] Implicit linking for the shwild API
+/** \file shwild/implicit_link.h \brief [C/C++] Implicit linking for **shwild** library
  *
  * Inclusion of this file causes the appropriate library file to be automatically
  * linked for compilers that support implicit linking: Borland, Metrowerks
@@ -58,8 +55,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MAJOR      1
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MINOR      5
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   4
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       15
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   5
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       16
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,11 +71,12 @@
  * architecture discrimination
  */
 
-#if defined(__amd64__) || \
-    defined(__amd64) || \
-    defined(_AMD64_) || \
-    defined(_M_AMD64) || \
-    defined(_M_X64)
+#if 0
+#elif defined(__amd64__) || \
+      defined(__amd64) || \
+      defined(_AMD64_) || \
+      defined(_M_AMD64) || \
+      defined(_M_X64)
 # define SHWILD_ARCH_IS_X64
 #elif defined(__ia64__) || \
       defined(__ia64) || \
@@ -96,11 +94,12 @@
  * compatibility
  */
 
-#if defined(unix) || \
-    defined(UNIX) || \
-    defined(__unix) || \
-    defined(unix__) || \
-    defined(__unix__)
+#if 0
+#elif defined(unix) || \
+      defined(UNIX) || \
+      defined(__unix) || \
+      defined(unix__) || \
+      defined(__unix__)
 # define SHWILD_OS_IS_UNIX
 #elif defined(_WIN32)
 # define SHWILD_OS_IS_WINDOWS
@@ -151,8 +150,9 @@
 #  define SHWILD_IMPL_LINK_MODULE_NAME              ".core"
 
   /* compiler tag */
+#  if 0
 
-#  if defined(__BORLANDC__)
+#  elif defined(__BORLANDC__)
 #   if __BORLANDC__ == 0x0550
 #    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc55"
 #   elif (__BORLANDC__ == 0x0551)
@@ -261,7 +261,8 @@
 
   /* architecture tag */
 
-#  if defined(SHWILD_ARCH_IS_X86)
+#  if 0
+#  elif defined(SHWILD_ARCH_IS_X86)
 #   define SHWILD_IMPL_LINK_ARCH_TAG                ""
 #  elif defined(SHWILD_ARCH_IS_X64)
 #   define SHWILD_IMPL_LINK_ARCH_TAG                ".x64"

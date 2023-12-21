@@ -1,6 +1,7 @@
 
 # directories (by name)
 
+_build/
 _internal/
 
 bin/
@@ -48,10 +49,12 @@ build/CMakeFiles/
 
 # directories (by pattern)
 
+dox/*
+
 # files (by name)
 
 .DS_Store
-
+.ruby-version
 .update_deps
 
 update_deps.cmd
