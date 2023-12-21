@@ -19,6 +19,8 @@ The original (~2005) implementation used **STLSoft**, for discrimination of comp
 
 If **STLSoft** is to be used, then the makefiles require definition of the environment variable `STLSOFT` that should be set to the root directory of a clone of **STLSoft** (see [Dependencies](#dependencies) in this document).
 
+> **NOTE**: an upcoming version of **shwild** will provide **CMake** mechanisms for fully-automated installation.
+
 ## Components
 
 ### C API / core library
