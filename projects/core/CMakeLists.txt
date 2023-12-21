@@ -6,6 +6,8 @@ file(GLOB CORE_SRCS
     ${CORE_SRC_DIR}/*.cpp
 )
 
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 add_library(shwild_core
 	${CORE_SRCS}
 )
