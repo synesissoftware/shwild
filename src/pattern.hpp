@@ -4,37 +4,15 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 18th December 2023
+ * Updated: 21st December 2023
  *
- * Home:    http://shwild.org/
- *
- * Copyright (c) 2005-2023, Sean Kelly and Matthew Wilson
+ * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * modification, are permitted in accordance with the license and warranty
+ * information described in shwild.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/shwild)
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +20,11 @@
 #ifndef SHWILD_INCL_HPP_PATTERN
 #define SHWILD_INCL_HPP_PATTERN
 
+/** \file pattern.hpp \brief [INTERNAL] Patterns-related internal API
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* shwild Header Files */
@@ -66,13 +47,17 @@
 # define STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR
 #endif /* compiler */
 
-#include <stlsoft/memory/auto_buffer.hpp>
+#ifndef SHWILD_NO_STLSOFT
+# include <stlsoft/memory/auto_buffer.hpp>
+#else /* ? SHWILD_NO_STLSOFT */
+# include <vector>
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* Standard C Header Files */
 #include <limits.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \brief Types of pattern tokens */
@@ -107,23 +92,29 @@ struct node_t
 };
 
 /** \brief Buffer used when necessary. */
-typedef stlsoft::auto_buffer<   char
-                            ,   1024
-//                          ,   ss_typename_type_def_k allocator_selector<T>::allocator_type
-                            >    node_buffer_t;
+#ifndef SHWILD_NO_STLSOFT
+typedef stlsoft::auto_buffer<
+    char
+,   1024
+>   node_buffer_t;
+#else /* ? SHWILD_NO_STLSOFT */
+typedef std::vector<
+    char
+>   node_buffer_t;
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
 /** \brief Initialises a node. */
-void node_init( node_t* node );
+void node_init(node_t* node);
 
 /** \brief Uninitialises a node, releasing any associated resources. */
-void node_reset( node_t* node );
+void node_reset(node_t* node);
 
 /** \brief Parses the next node */
-int get_node( node_t* node, node_buffer_t &buffer, char const* buf, size_t* len, unsigned flags );
+int get_node(node_t* node, node_buffer_t& buffer, char const* buf, size_t* len, unsigned flags);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
