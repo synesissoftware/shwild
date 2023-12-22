@@ -73,42 +73,42 @@
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
-# define SHWILD_VER_0_9_1       0x00090100
-# define SHWILD_VER_0_9_2       0x00090200
-# define SHWILD_VER_0_9_3       0x00090300
-# define SHWILD_VER_0_9_4       0x00090400
-# define SHWILD_VER_0_9_5       0x00090500
-# define SHWILD_VER_0_9_6       0x00090600
-# define SHWILD_VER_0_9_7       0x00090700
-# define SHWILD_VER_0_9_8       0x00090800
-# define SHWILD_VER_0_9_9       0x00090900
-# define SHWILD_VER_0_9_10      0x00090a00
-# define SHWILD_VER_0_9_11      0x00090b00
-# define SHWILD_VER_0_9_12      0x00090cff
-# define SHWILD_VER_0_9_13      0x00090dff
-# define SHWILD_VER_0_9_14      0x00090eff
-# define SHWILD_VER_0_9_15      0x00090fff
-# define SHWILD_VER_0_9_16      0x000910ff
-# define SHWILD_VER_0_9_17      0x000911ff
-# define SHWILD_VER_0_9_18      0x000912ff
-# define SHWILD_VER_0_9_19      0x000913ff
-# define SHWILD_VER_0_9_20      0x000914ff
-# define SHWILD_VER_0_10_1      0x000a01ff
-# define SHWILD_VER_0_10_2      0x000a02ff
-# define SHWILD_VER_0_10_3      0x000a03ff
-# define SHWILD_VER_0_11_1      0x000b01ff
-# define SHWILD_VER_0_11_2      0x000b02ff
-# define SHWILD_VER_0_11_3      0x000b03ff
-# define SHWILD_VER_0_11_4_a1   0x000b0401
-# define SHWILD_VER_0_11_4_a2   0x000b0402
-# define SHWILD_VER_0_11_4      0x000b04ff
+# define SHWILD_VER_0_9_1                                   0x00090100
+# define SHWILD_VER_0_9_2                                   0x00090200
+# define SHWILD_VER_0_9_3                                   0x00090300
+# define SHWILD_VER_0_9_4                                   0x00090400
+# define SHWILD_VER_0_9_5                                   0x00090500
+# define SHWILD_VER_0_9_6                                   0x00090600
+# define SHWILD_VER_0_9_7                                   0x00090700
+# define SHWILD_VER_0_9_8                                   0x00090800
+# define SHWILD_VER_0_9_9                                   0x00090900
+# define SHWILD_VER_0_9_10                                  0x00090a00
+# define SHWILD_VER_0_9_11                                  0x00090b00
+# define SHWILD_VER_0_9_12                                  0x00090cff
+# define SHWILD_VER_0_9_13                                  0x00090dff
+# define SHWILD_VER_0_9_14                                  0x00090eff
+# define SHWILD_VER_0_9_15                                  0x00090fff
+# define SHWILD_VER_0_9_16                                  0x000910ff
+# define SHWILD_VER_0_9_17                                  0x000911ff
+# define SHWILD_VER_0_9_18                                  0x000912ff
+# define SHWILD_VER_0_9_19                                  0x000913ff
+# define SHWILD_VER_0_9_20                                  0x000914ff
+# define SHWILD_VER_0_10_1                                  0x000a01ff
+# define SHWILD_VER_0_10_2                                  0x000a02ff
+# define SHWILD_VER_0_10_3                                  0x000a03ff
+# define SHWILD_VER_0_11_1                                  0x000b01ff
+# define SHWILD_VER_0_11_2                                  0x000b02ff
+# define SHWILD_VER_0_11_3                                  0x000b03ff
+# define SHWILD_VER_0_11_4_a1                               0x000b0401
+# define SHWILD_VER_0_11_4_a2                               0x000b0402
+# define SHWILD_VER_0_11_4                                  0x000b04ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
-#define SHWILD_VER_MAJOR        0
-#define SHWILD_VER_MINOR        11
-#define SHWILD_VER_REVISION     4
+#define SHWILD_VER_MAJOR                                    0
+#define SHWILD_VER_MINOR                                    11
+#define SHWILD_VER_REVISION                                 4
 
-#define SHWILD_VER              SHWILD_VER_0_11_4
+#define SHWILD_VER                                          SHWILD_VER_0_11_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

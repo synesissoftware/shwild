@@ -56,7 +56,7 @@
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MAJOR      1
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MINOR      5
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   5
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       16
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       17
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@
 
   /* library basename */
 
-#  define SHWILD_IMPL_LINK_LIBRARY_BASENAME         "shwild"
+#  define SHWILD_IMPL_LINK_LIBRARY_BASENAME                 "shwild"
 
   /* major version */
 
@@ -147,94 +147,94 @@
 
   /* module name */
 
-#  define SHWILD_IMPL_LINK_MODULE_NAME              ".core"
+#  define SHWILD_IMPL_LINK_MODULE_NAME                      ".core"
 
   /* compiler tag */
 #  if 0
 
 #  elif defined(__BORLANDC__)
 #   if __BORLANDC__ == 0x0550
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc55"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc55"
 #   elif (__BORLANDC__ == 0x0551)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc551"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc551"
 #   elif (__BORLANDC__ == 0x0560)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc56"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc56"
 #   elif (__BORLANDC__ == 0x0564)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc564"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc564"
 #   elif (__BORLANDC__ == 0x0582)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc582"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc582"
 #   elif (0x0590 == (__BORLANDC__ & 0xfff0))
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc59x"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc59x"
 #   elif (0x0610 == (__BORLANDC__ & 0xfff0))
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "bc61x"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "bc61x"
 #   else /* ? __BORLANDC__ */
 #    error Unrecognised value of __BORLANDC__
 #   endif /* __BORLANDC__ */
 
 /*
 #  elif defined(__DMC__)
-#   define SHWILD_IMPL_LINK_COMPILER_NAME           "dm"
+#   define SHWILD_IMPL_LINK_COMPILER_NAME                   "dm"
  */
 
 #  elif defined(__INTEL_COMPILER)
 #   if (__INTEL_COMPILER == 600)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "icl6"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "icl6"
 #   elif (__INTEL_COMPILER == 700)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "icl7"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "icl7"
 #   elif (__INTEL_COMPILER == 800)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "icl8"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "icl8"
 #   elif (__INTEL_COMPILER == 900)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "icl9"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "icl9"
 #   elif (__INTEL_COMPILER == 1000)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "icl10"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "icl10"
 #   elif (__INTEL_COMPILER == 1100)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "icl11"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "icl11"
 #   else /* ? __INTEL_COMPILER */
 #    error Intel C/C++ version not supported
 #   endif /* __INTEL_COMPILER */
 
 #  elif defined(__MWERKS__)
 #   if ((__MWERKS__ & 0xFF00) == 0x2400)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "cw7"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "cw7"
 #   elif ((__MWERKS__ & 0xFF00) == 0x3000)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "cw8"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "cw8"
 #   elif ((__MWERKS__ & 0xFF00) == 0x3200)
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "cw9"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "cw9"
 #   else /* ? __MWERKS__ */
 #    error CodeWarrior version not supported
 #   endif /* __MWERKS__ */
 
 #  elif defined(_MSC_VER)
 #   if _MSC_VER == 1000
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc4"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc4"
 #   elif _MSC_VER == 1020
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc42"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc42"
 #   elif _MSC_VER == 1100
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc5"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc5"
 #   elif _MSC_VER == 1200
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc6"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc6"
 #   elif _MSC_VER == 1300
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc7"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc7"
 #   elif _MSC_VER == 1310
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc71"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc71"
 #   elif _MSC_VER == 1400
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc8"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc8"
 #   elif _MSC_VER == 1500
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc9"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc9"
 #   elif _MSC_VER == 1600
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc10"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc10"
 #   elif _MSC_VER == 1700
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc11"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc11"
 #   elif _MSC_VER == 1800
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc12"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc12"
 #   elif _MSC_VER == 1900
-#    define SHWILD_IMPL_LINK_COMPILER_NAME          "vc14"
+#    define SHWILD_IMPL_LINK_COMPILER_NAME                  "vc14"
 #   elif _MSC_VER >= 1910
 #    if 0
 #    elif _MSC_VER < 1920
-#     define SHWILD_IMPL_LINK_COMPILER_NAME         "vc15"
-#    elif _MSC_VER <= 1926
-#     define SHWILD_IMPL_LINK_COMPILER_NAME         "vc16"
+#     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc15"
+#    elif _MSC_VER <= 1929
+#     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc16"
 #    else
 #     error Visual C++ version that is >= vc16 is not recognised
 #    endif
@@ -251,11 +251,11 @@
 #  if defined(_STLSOFT_FORCE_ANY_COMPILER) && \
       defined(SHWILD_OS_IS_UNIX) && \
       defined(_WIN32)
-#   define SHWILD_IMPL_LINK_OS_TAG                  ".unix"
+#   define SHWILD_IMPL_LINK_OS_TAG                          ".unix"
 #  endif /* pseudo UNIX */
 
 #  if !defined(SHWILD_IMPL_LINK_OS_TAG)
-#   define SHWILD_IMPL_LINK_OS_TAG                  ""
+#   define SHWILD_IMPL_LINK_OS_TAG                          ""
 #  endif /* !SHWILD_IMPL_LINK_OS_TAG */
 
 
@@ -263,24 +263,24 @@
 
 #  if 0
 #  elif defined(SHWILD_ARCH_IS_X86)
-#   define SHWILD_IMPL_LINK_ARCH_TAG                ""
+#   define SHWILD_IMPL_LINK_ARCH_TAG                        ""
 #  elif defined(SHWILD_ARCH_IS_X64)
-#   define SHWILD_IMPL_LINK_ARCH_TAG                ".x64"
+#   define SHWILD_IMPL_LINK_ARCH_TAG                        ".x64"
 #  elif defined(SHWILD_ARCH_IS_IA64)
-#   define SHWILD_IMPL_LINK_ARCH_TAG                ".ia64"
+#   define SHWILD_IMPL_LINK_ARCH_TAG                        ".ia64"
 #  endif /* arch */
 
 #  if !defined(SHWILD_IMPL_LINK_ARCH_TAG)
-#   define SHWILD_IMPL_LINK_ARCH_TAG                ""
+#   define SHWILD_IMPL_LINK_ARCH_TAG                        ""
 #  endif /* !SHWILD_IMPL_LINK_ARCH_TAG */
 
 
   /* encoding tag */
 
 #  if defined(SHWILD_USE_WIDE_STRINGS)
-#   define SHWILD_IMPL_LINK_ENCODING_TAG            ".widestring"
+#   define SHWILD_IMPL_LINK_ENCODING_TAG                    ".widestring"
 #  else /* ? SHWILD_USE_WIDE_STRINGS */
-#   define SHWILD_IMPL_LINK_ENCODING_TAG            ""
+#   define SHWILD_IMPL_LINK_ENCODING_TAG                    ""
 #  endif /* SHWILD_USE_WIDE_STRINGS */
 
 
@@ -291,21 +291,21 @@
       defined(_MT)
 #   if defined(_DLL) || \
        defined(__DLL)
-#    define SHWILD_IMPL_LINK_THREADING_TAG          ".dll"
+#    define SHWILD_IMPL_LINK_THREADING_TAG                  ".dll"
 #   else /* ? dll */
-#    define SHWILD_IMPL_LINK_THREADING_TAG          ".mt"
+#    define SHWILD_IMPL_LINK_THREADING_TAG                  ".mt"
 #   endif /* dll */
 #  else /* ? mt */
-#   define SHWILD_IMPL_LINK_THREADING_TAG           ""
+#   define SHWILD_IMPL_LINK_THREADING_TAG                   ""
 #  endif /* mt */
 
 
   /* NoX */
 
 #  if defined(SHWILD_CF_NOX)
-#   define SHWILD_IMPL_LINK_NOX_TYPE                ".nox"
+#   define SHWILD_IMPL_LINK_NOX_TYPE                        ".nox"
 #  else /* ? SHWILD_CF_NOX */
-#   define SHWILD_IMPL_LINK_NOX_TYPE                ""
+#   define SHWILD_IMPL_LINK_NOX_TYPE                        ""
 #  endif /* SHWILD_CF_NOX */
 
 
@@ -313,15 +313,15 @@
 
 #  if !defined(NDEBUG) && \
       defined(_DEBUG)
-#   define SHWILD_IMPL_LINK_DEBUG_TAG               ".debug"
+#   define SHWILD_IMPL_LINK_DEBUG_TAG                       ".debug"
 #  else /* ? debug */
-#   define SHWILD_IMPL_LINK_DEBUG_TAG               ""
+#   define SHWILD_IMPL_LINK_DEBUG_TAG                       ""
 #  endif /* debug */
 
 
   /* suffix */
 
-#  define SHWILD_IMPL_LINK_SUFFIX                   ".lib"
+#  define SHWILD_IMPL_LINK_SUFFIX                           ".lib"
 
 
    /* Library name is:
@@ -329,18 +329,19 @@
     * [lib]<library-basename>.<major-version>.<module-name>.<compiler-name>[.<os-arch-tag>][.<char-encoding-tag>][.<threading-tag>][.<nox-tag>][.<debug-tag>].{a|lib}
     */
 
-#  define SHWILD_IMPL_LINK_LIBRARY_NAME             SHWILD_IMPL_LINK_PREFIX \
-                                                    SHWILD_IMPL_LINK_LIBRARY_BASENAME \
-                                                    SHWILD_IMPL_LINK_MAJOR_VERSION \
-                                                    SHWILD_IMPL_LINK_MODULE_NAME \
-                                                    "." SHWILD_IMPL_LINK_COMPILER_NAME \
-                                                    SHWILD_IMPL_LINK_OS_TAG \
-                                                    SHWILD_IMPL_LINK_ARCH_TAG \
-                                                    SHWILD_IMPL_LINK_ENCODING_TAG \
-                                                    SHWILD_IMPL_LINK_THREADING_TAG \
-                                                    SHWILD_IMPL_LINK_NOX_TYPE \
-                                                    SHWILD_IMPL_LINK_DEBUG_TAG \
-                                                    SHWILD_IMPL_LINK_SUFFIX
+#  define SHWILD_IMPL_LINK_LIBRARY_NAME \
+            SHWILD_IMPL_LINK_PREFIX \
+            SHWILD_IMPL_LINK_LIBRARY_BASENAME \
+            SHWILD_IMPL_LINK_MAJOR_VERSION \
+            SHWILD_IMPL_LINK_MODULE_NAME \
+            "." SHWILD_IMPL_LINK_COMPILER_NAME \
+            SHWILD_IMPL_LINK_OS_TAG \
+            SHWILD_IMPL_LINK_ARCH_TAG \
+            SHWILD_IMPL_LINK_ENCODING_TAG \
+            SHWILD_IMPL_LINK_THREADING_TAG \
+            SHWILD_IMPL_LINK_NOX_TYPE \
+            SHWILD_IMPL_LINK_DEBUG_TAG \
+            SHWILD_IMPL_LINK_SUFFIX
 
 
 #  pragma message("lib: " SHWILD_IMPL_LINK_LIBRARY_NAME)
