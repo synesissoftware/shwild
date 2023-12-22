@@ -8,12 +8,15 @@
 /_internal/
 
 /bin/
+/ipch/
 /lib/
 
+/include/b64/
 /include/xcontract/
 /include/xcover/
 /include/xtests/
 
+/src/b64/
 /src/xcontract/
 /src/xcover/
 /src/xtests/
@@ -25,7 +28,6 @@ DebugDll/
 DebugMTDLL/
 DebugMt/
 DebugNox/
-DebugUNIX/
 DebugUNIX/
 DebugUnix/
 Release Multithreaded Dll/
@@ -46,15 +48,16 @@ Unicode Release Multithreaded Dll/
 Unicode Release Multithreaded/
 
 Win32/
-ipch/
 x64/
 
 build/CMakeFiles/
+
 
 # directories (by pattern)
 
 /dox/*/
 /include-*/
+
 
 # files (by name)
 
@@ -75,6 +78,7 @@ build/shwild.tmplgen
 include/stlsoft/dos2unix.has.been.performed
 include/stlsoft/internal/dos2unix.has.been.performed
 test/testpatterns.orj
+
 
 # files (by pattern)
 
@@ -113,4 +117,5 @@ test/testpatterns.orj
 *.vcproj*.user
 *.vcxproj*.user
 *.zip
+
 
