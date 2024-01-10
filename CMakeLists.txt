@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  21st December 2023
+# Updated:  10th January 2024
 #
 # ######################################################################## #
 
@@ -18,9 +18,9 @@ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 # require out-of-source builds
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if(EXISTS "${LOC_PATH}")
+
     message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
-
 
 # directory for CMake specific extensions and source files.
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
@@ -55,7 +55,7 @@ set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}.")
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}")
 
 
 # adhere strictly to C and C++ standards plus extensions. These are actually
@@ -96,6 +96,7 @@ add_subdirectory(./projects/core)
 include(CTest)
 
 if(BUILD_TESTING)
+
     add_subdirectory(test)
 endif()
 
@@ -105,6 +106,7 @@ endif()
 
 option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)
+
     add_subdirectory(examples)
 endif()
 

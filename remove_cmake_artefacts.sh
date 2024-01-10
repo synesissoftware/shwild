@@ -11,6 +11,7 @@ Directories=(
     cmake
     examples
     projects
+    src
     test
 )
 Files=(
