@@ -4,11 +4,11 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 11th January 2024
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    9
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        40
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    10
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        43
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -73,42 +73,42 @@
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
-# define SHWILD_VER_0_9_1       0x00090100
-# define SHWILD_VER_0_9_2       0x00090200
-# define SHWILD_VER_0_9_3       0x00090300
-# define SHWILD_VER_0_9_4       0x00090400
-# define SHWILD_VER_0_9_5       0x00090500
-# define SHWILD_VER_0_9_6       0x00090600
-# define SHWILD_VER_0_9_7       0x00090700
-# define SHWILD_VER_0_9_8       0x00090800
-# define SHWILD_VER_0_9_9       0x00090900
-# define SHWILD_VER_0_9_10      0x00090a00
-# define SHWILD_VER_0_9_11      0x00090b00
-# define SHWILD_VER_0_9_12      0x00090cff
-# define SHWILD_VER_0_9_13      0x00090dff
-# define SHWILD_VER_0_9_14      0x00090eff
-# define SHWILD_VER_0_9_15      0x00090fff
-# define SHWILD_VER_0_9_16      0x000910ff
-# define SHWILD_VER_0_9_17      0x000911ff
-# define SHWILD_VER_0_9_18      0x000912ff
-# define SHWILD_VER_0_9_19      0x000913ff
-# define SHWILD_VER_0_9_20      0x000914ff
-# define SHWILD_VER_0_10_1      0x000a01ff
-# define SHWILD_VER_0_10_2      0x000a02ff
-# define SHWILD_VER_0_10_3      0x000a03ff
-# define SHWILD_VER_0_11_1      0x000b01ff
-# define SHWILD_VER_0_11_2      0x000b02ff
-# define SHWILD_VER_0_11_3      0x000b03ff
-# define SHWILD_VER_0_11_4_a1   0x000b0401
-# define SHWILD_VER_0_11_4_a2   0x000b0402
-# define SHWILD_VER_0_11_4      0x000b04ff
+# define SHWILD_VER_0_9_1                                   0x00090100
+# define SHWILD_VER_0_9_2                                   0x00090200
+# define SHWILD_VER_0_9_3                                   0x00090300
+# define SHWILD_VER_0_9_4                                   0x00090400
+# define SHWILD_VER_0_9_5                                   0x00090500
+# define SHWILD_VER_0_9_6                                   0x00090600
+# define SHWILD_VER_0_9_7                                   0x00090700
+# define SHWILD_VER_0_9_8                                   0x00090800
+# define SHWILD_VER_0_9_9                                   0x00090900
+# define SHWILD_VER_0_9_10                                  0x00090a00
+# define SHWILD_VER_0_9_11                                  0x00090b00
+# define SHWILD_VER_0_9_12                                  0x00090cff
+# define SHWILD_VER_0_9_13                                  0x00090dff
+# define SHWILD_VER_0_9_14                                  0x00090eff
+# define SHWILD_VER_0_9_15                                  0x00090fff
+# define SHWILD_VER_0_9_16                                  0x000910ff
+# define SHWILD_VER_0_9_17                                  0x000911ff
+# define SHWILD_VER_0_9_18                                  0x000912ff
+# define SHWILD_VER_0_9_19                                  0x000913ff
+# define SHWILD_VER_0_9_20                                  0x000914ff
+# define SHWILD_VER_0_10_1                                  0x000a01ff
+# define SHWILD_VER_0_10_2                                  0x000a02ff
+# define SHWILD_VER_0_10_3                                  0x000a03ff
+# define SHWILD_VER_0_11_1                                  0x000b01ff
+# define SHWILD_VER_0_11_2                                  0x000b02ff
+# define SHWILD_VER_0_11_3                                  0x000b03ff
+# define SHWILD_VER_0_11_4_a1                               0x000b0401
+# define SHWILD_VER_0_11_4_a2                               0x000b0402
+# define SHWILD_VER_0_11_4                                  0x000b04ff
+# define SHWILD_VER_0_11_5                                  0x000b04ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
-#define SHWILD_VER_MAJOR        0
-#define SHWILD_VER_MINOR        11
-#define SHWILD_VER_REVISION     4
-
-#define SHWILD_VER              SHWILD_VER_0_11_4
+#define SHWILD_VER_MAJOR                                    0
+#define SHWILD_VER_MINOR                                    11
+#define SHWILD_VER_REVISION                                 5
+#define SHWILD_VER                                          SHWILD_VER_0_11_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -229,21 +229,21 @@ typedef struct shwild_slice_t   shwild_slice_t;
  * @{
  */
 
-#define SHWILD_F_SUPPRESS_RANGE_SUPPORT                             (0x0001)    /*!< \brief Suppresses the recognition of ranges. [ and ] are treated as literal characters (and need no escaping) */
-#define SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE                          (0x0002)    /*!< \brief Suppresses the use of backslash interpretation as escape. \ is treated as a literal character */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT                   (0x0004)    /*!< \brief Suppresses the recognition of range continuums, i.e. [0-9] */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT           (0x0008)    /*!< \brief Suppresses the recognition of reverse range continuums, i.e. [9-0], [M-D] */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT         (0x0010)    /*!< \brief Suppresses the recognition of cross-case range continuums, i.e. [h-J] === [hijHIJ] */
-#define SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT            (0x0020)    /*!< \brief Suppresses the recognition of ? and * as literal inside range */
+#define SHWILD_F_SUPPRESS_RANGE_SUPPORT                     (0x0001)    /*!< \brief Suppresses the recognition of ranges. [ and ] are treated as literal characters (and need no escaping) */
+#define SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE                  (0x0002)    /*!< \brief Suppresses the use of backslash interpretation as escape. \ is treated as a literal character */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT           (0x0004)    /*!< \brief Suppresses the recognition of range continuums, i.e. [0-9] */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT   (0x0008)    /*!< \brief Suppresses the recognition of reverse range continuums, i.e. [9-0], [M-D] */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT (0x0010)    /*!< \brief Suppresses the recognition of cross-case range continuums, i.e. [h-J] === [hijHIJ] */
+#define SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT    (0x0020)    /*!< \brief Suppresses the recognition of ? and * as literal inside range */
 #define SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT    (0x0040)    /*!< \brief Suppresses the recognition of leading/trailing hyphens as literal inside range */
-#define SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT                         (0x0400)    /*!< \brief Suppresses the use of a leading ^ to mean not any of the following, i.e. [^0-9] means do not match a digit */
-#define SHWILD_F_IGNORE_CASE                                        (0x0200)    /*!< \brief Comparison is case-insensitive */
+#define SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT                 (0x0400)    /*!< \brief Suppresses the use of a leading ^ to mean not any of the following, i.e. [^0-9] means do not match a digit */
+#define SHWILD_F_IGNORE_CASE                                (0x0200)    /*!< \brief Comparison is case-insensitive */
 
 #if 0
 /* Not currently supported. */
-#define SHWILD_F_ALLOW_RANGE_LITERAL_BRACKET_SUPPORT                (0x0080)    /*!< \brief Treats [ and ] as literal inside range. ] only literal if immediately preceeds closing ]. NOT CURRENTLY SUPPORTED */
-#define SHWILD_F_ALLOW_RANGE_QUANTIFICATION_SUPPORT                 (0x0100)    /*!< \brief Allows quantification of the wildcards, with trailing escaped numbers, as in [a-Z]\2-10. All chars in 0-9- become range specifiers. These are separated from actual pattern digits by []. NOT CURRENTLY SUPPORTED */
-#define SHWILD_F_FNM_PATHNAME_SEMANTICS                             (0x0800)    /*!< \brief Will only match / (and \ on Win32) characters with literals, not via any wildcard substitutions */
+#define SHWILD_F_ALLOW_RANGE_LITERAL_BRACKET_SUPPORT        (0x0080)    /*!< \brief Treats [ and ] as literal inside range. ] only literal if immediately preceeds closing ]. NOT CURRENTLY SUPPORTED */
+#define SHWILD_F_ALLOW_RANGE_QUANTIFICATION_SUPPORT         (0x0100)    /*!< \brief Allows quantification of the wildcards, with trailing escaped numbers, as in [a-Z]\2-10. All chars in 0-9- become range specifiers. These are separated from actual pattern digits by []. NOT CURRENTLY SUPPORTED */
+#define SHWILD_F_FNM_PATHNAME_SEMANTICS                     (0x0800)    /*!< \brief Will only match / (and \ on Win32) characters with literals, not via any wildcard substitutions */
 #endif /* 0 */
 
 /** @} */

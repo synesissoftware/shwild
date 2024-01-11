@@ -1,54 +1,64 @@
 
 # directories (by name)
 
-_internal/
+/.git-old/
+/.vs/
+/.vscode/
 
-bin/
-lib/
+/_build/
+/_internal/
 
-ipch/
+/bin/
+/ipch/
+/lib/
 
-include/xcontract/
-include/xcover/
-include/xtests/
+/include/b64/
+/include/xcontract/
+/include/xcover/
+/include/xtests/
 
-src/xcontract/
-src/xcover/
-src/xtests/
+/src/b64/
+/src/xcontract/
+/src/xcover/
+/src/xtests/
 
-Debug/
-DebugMt/
-DebugDll/
-Debug Multithreaded/
 Debug Multithreaded Dll/
-Release/
-ReleaseMt/
-ReleaseDll/
-Release Multithreaded/
+Debug Multithreaded/
+Debug/
+DebugDll/
+DebugMTDLL/
+DebugMt/
+DebugNox/
+DebugUNIX/
+DebugUnix/
 Release Multithreaded Dll/
-
+Release Multithreaded/
+Release/
+ReleaseDll/
+ReleaseMTDLL/
+ReleaseMt/
+ReleaseNox/
+ReleaseUnix/
 UDebug/
 UDebugMt/
 URelease/
 UReleaseMt/
-Unicode Debug Multithreaded/
 Unicode Debug Multithreaded Dll/
-Unicode Release Multithreaded/
+Unicode Debug Multithreaded/
 Unicode Release Multithreaded Dll/
+Unicode Release Multithreaded/
 
-DebugUNIX/
-DebugMTDLL/
-DebugUNIX/
-ReleaseMTDLL/
-
-x64/
 Win32/
+x64/
 
 build/CMakeFiles/
 
+
 # directories (by pattern)
 
-dox/*
+/dox/*/
+/include-*/
+
 
 # files (by name)
 
@@ -56,42 +66,56 @@ dox/*
 .ruby-version
 .update_deps
 
+list_changes.cmd
+logging-bailout.txt
+prepare.cmd
+sh.exe.stackdump
 update_deps.cmd
 
-logging-bailout.txt
-
 build/CMakeCache.txt
-
 build/makefile.tmpl
 build/makefile.tools.xml
 build/shwild.tmplgen
+include/stlsoft/dos2unix.has.been.performed
+include/stlsoft/internal/dos2unix.has.been.performed
 test/testpatterns.orj
+
 
 # files (by pattern)
 
 *~
 *.a
 *.app
+*.b64
+*.bak
 *.dll
 *.dylib
 *.exe
 *.gch
+*.idb
+*.ilk
 *.lib
+*.log
 *.ncb
 *.o
 *.obj
 *.opensdf
 *.opt
+*.org
 *.out
 *.pch
 *.pdb
+*.res
 *.sbr
 *.scc
 *.sdf
 *.so
 *.suo
 *.swp
+*.tlog
 *.tmp
-*.vcproj.user
-*.vcxproj.user
+*.unsuccessfulbuild
+*.vcproj*.user
+*.vcxproj*.user
+*.zip
 

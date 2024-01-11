@@ -45,7 +45,7 @@
 
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 #  include <string.hpp>
-#  define   SHWILD_CUSTOM_STRING_CLASS  WatcomString
+#  define   SHWILD_CUSTOM_STRING_CLASS                      WatcomString
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
