@@ -3,6 +3,7 @@
 
 /.git-old/
 /.vs/
+/.vscode/
 
 /_build/
 /_internal/
