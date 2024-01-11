@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  10th January 2024
+# Updated:  11th January 2024
 #
 # ######################################################################## #
 
@@ -76,18 +76,18 @@ include(GNUInstallDirs)
 
 
 # ##########################################################
+# STLSoft
+
+add_definitions(-DSHWILD_NO_STLSOFT)
+
+
+# ##########################################################
 # build
 
 # load/default `CMAKE_BUILD_TYPE`
 include(BuildType)
 
-
-
-add_definitions(-DSHWILD_NO_STLSOFT)
-
-
-
-add_subdirectory(./projects/core)
+add_subdirectory(src)
 
 
 # ##########################################################
@@ -115,11 +115,11 @@ endif()
 # install
 
 
-
 install(
-    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
-    DESTINATION include
-    FILES_MATCHING PATTERN "*.h*"
+    DIRECTORY ${CMAKE_SOURCE_DIR}/include/shwild/internal
+    DESTINATION include/shwild/
+    FILES_MATCHING
+    PATTERN "*.h*"
 )
 
 
@@ -128,6 +128,36 @@ install(
 
 include(CMakePackageConfigHelpers)
 
+string(TOLOWER ${PROJECT_NAME} EXPORT_NAME)
+
+configure_package_config_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
+    INSTALL_DESTINATION ${LIB_INSTALL_DIR}/${EXPORT_NAME}/cmake
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+export(EXPORT project-targets
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
+    NAMESPACE "${PROJECT_NAME}::"
+)
+
+install(EXPORT project-targets
+    NAMESPACE "${PROJECT_NAME}::"
+    FILE "${EXPORT_NAME}-targets.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+)
+
+install( FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+)
 
 
 # ############################## end of file ############################# #

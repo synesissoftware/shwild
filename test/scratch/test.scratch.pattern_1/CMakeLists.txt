@@ -4,7 +4,7 @@ add_executable(test.scratch.pattern_1
 )
 
 target_link_libraries(test.scratch.pattern_1
-    shwild_core
+    shwild.core
 )
 
 target_compile_options(test.scratch.pattern_1 PRIVATE

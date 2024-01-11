@@ -6,7 +6,7 @@ add_executable(test_unit_shwild_match
 link_directories(${CMAKE_SOURCE_DIR}/projects/core)
 
 target_link_libraries(test_unit_shwild_match
-    shwild_core
+    shwild.core
 )
 
 

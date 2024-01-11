@@ -4,7 +4,7 @@ add_executable(example.c.1
 )
 
 target_link_libraries(example.c.1
-    shwild_core
+    shwild.core
 )
 
 target_compile_options(example.c.1 PRIVATE

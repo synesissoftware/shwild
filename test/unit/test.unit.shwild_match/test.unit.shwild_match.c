@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C-API
  *
  * Created: 27th April 2006
- * Updated: 21st December 2023
+ * Updated: 11th January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,8 +19,11 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(void)
+int main(int argc, char* argv[])
 {
+    ((void)&argc);
+    ((void)&argv);
+
     {
         shwild_match("[ADFJMNOS][abceglnoprtuvy]", "Ja", 0);
     }
