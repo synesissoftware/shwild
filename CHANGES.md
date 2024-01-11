@@ -1,5 +1,12 @@
 #  **shwild** Changes
 
+## 0.11.5 - 11th January 2024
+
+* **CMake** support
+* added project boilerplate files **AUTHORS.md**, **FAQ.md**, **HISTORY.md**, **TODO.md**
+* internal **Brain-Dead Testing** replaced with (in fact moved to) [**BDUT**](https://github.com/synesissoftware/BDUT)
+
+
 ## 0.11.4 - 21st December 2023
 
 * added `SHWILD_NO_STLSOFT` support, which means **b64** can now be built without reliance on **STLSoft**

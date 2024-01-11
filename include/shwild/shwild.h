@@ -53,7 +53,7 @@
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
 # define SHWILD_VER_SHWILD_H_SHWILD_REVISION    10
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        41
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        43
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -229,21 +229,21 @@ typedef struct shwild_slice_t   shwild_slice_t;
  * @{
  */
 
-#define SHWILD_F_SUPPRESS_RANGE_SUPPORT                             (0x0001)    /*!< \brief Suppresses the recognition of ranges. [ and ] are treated as literal characters (and need no escaping) */
-#define SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE                          (0x0002)    /*!< \brief Suppresses the use of backslash interpretation as escape. \ is treated as a literal character */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT                   (0x0004)    /*!< \brief Suppresses the recognition of range continuums, i.e. [0-9] */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT           (0x0008)    /*!< \brief Suppresses the recognition of reverse range continuums, i.e. [9-0], [M-D] */
-#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT         (0x0010)    /*!< \brief Suppresses the recognition of cross-case range continuums, i.e. [h-J] === [hijHIJ] */
-#define SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT            (0x0020)    /*!< \brief Suppresses the recognition of ? and * as literal inside range */
+#define SHWILD_F_SUPPRESS_RANGE_SUPPORT                     (0x0001)    /*!< \brief Suppresses the recognition of ranges. [ and ] are treated as literal characters (and need no escaping) */
+#define SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE                  (0x0002)    /*!< \brief Suppresses the use of backslash interpretation as escape. \ is treated as a literal character */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT           (0x0004)    /*!< \brief Suppresses the recognition of range continuums, i.e. [0-9] */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT   (0x0008)    /*!< \brief Suppresses the recognition of reverse range continuums, i.e. [9-0], [M-D] */
+#define SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT (0x0010)    /*!< \brief Suppresses the recognition of cross-case range continuums, i.e. [h-J] === [hijHIJ] */
+#define SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT    (0x0020)    /*!< \brief Suppresses the recognition of ? and * as literal inside range */
 #define SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT    (0x0040)    /*!< \brief Suppresses the recognition of leading/trailing hyphens as literal inside range */
-#define SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT                         (0x0400)    /*!< \brief Suppresses the use of a leading ^ to mean not any of the following, i.e. [^0-9] means do not match a digit */
-#define SHWILD_F_IGNORE_CASE                                        (0x0200)    /*!< \brief Comparison is case-insensitive */
+#define SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT                 (0x0400)    /*!< \brief Suppresses the use of a leading ^ to mean not any of the following, i.e. [^0-9] means do not match a digit */
+#define SHWILD_F_IGNORE_CASE                                (0x0200)    /*!< \brief Comparison is case-insensitive */
 
 #if 0
 /* Not currently supported. */
-#define SHWILD_F_ALLOW_RANGE_LITERAL_BRACKET_SUPPORT                (0x0080)    /*!< \brief Treats [ and ] as literal inside range. ] only literal if immediately preceeds closing ]. NOT CURRENTLY SUPPORTED */
-#define SHWILD_F_ALLOW_RANGE_QUANTIFICATION_SUPPORT                 (0x0100)    /*!< \brief Allows quantification of the wildcards, with trailing escaped numbers, as in [a-Z]\2-10. All chars in 0-9- become range specifiers. These are separated from actual pattern digits by []. NOT CURRENTLY SUPPORTED */
-#define SHWILD_F_FNM_PATHNAME_SEMANTICS                             (0x0800)    /*!< \brief Will only match / (and \ on Win32) characters with literals, not via any wildcard substitutions */
+#define SHWILD_F_ALLOW_RANGE_LITERAL_BRACKET_SUPPORT        (0x0080)    /*!< \brief Treats [ and ] as literal inside range. ] only literal if immediately preceeds closing ]. NOT CURRENTLY SUPPORTED */
+#define SHWILD_F_ALLOW_RANGE_QUANTIFICATION_SUPPORT         (0x0100)    /*!< \brief Allows quantification of the wildcards, with trailing escaped numbers, as in [a-Z]\2-10. All chars in 0-9- become range specifiers. These are separated from actual pattern digits by []. NOT CURRENTLY SUPPORTED */
+#define SHWILD_F_FNM_PATHNAME_SEMANTICS                     (0x0800)    /*!< \brief Will only match / (and \ on Win32) characters with literals, not via any wildcard substitutions */
 #endif /* 0 */
 
 /** @} */
