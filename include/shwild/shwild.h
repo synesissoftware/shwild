@@ -4,11 +4,11 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 11th January 2024
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    9
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        40
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    10
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        41
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -102,13 +102,13 @@
 # define SHWILD_VER_0_11_4_a1                               0x000b0401
 # define SHWILD_VER_0_11_4_a2                               0x000b0402
 # define SHWILD_VER_0_11_4                                  0x000b04ff
+# define SHWILD_VER_0_11_5                                  0x000b04ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR                                    0
 #define SHWILD_VER_MINOR                                    11
-#define SHWILD_VER_REVISION                                 4
-
-#define SHWILD_VER                                          SHWILD_VER_0_11_4
+#define SHWILD_VER_REVISION                                 5
+#define SHWILD_VER                                          SHWILD_VER_0_11_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

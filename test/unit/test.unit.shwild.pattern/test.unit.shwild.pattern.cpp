@@ -15,7 +15,7 @@
 
 /* shwild Header Files */
 #include <shwild/shwild.hpp>
-#include <shwild//bdt/bdt.h>
+#include <shwild/bdut/bdut.h>
 
 /* Standard C++ Header Files */
 #include <exception>
@@ -55,36 +55,36 @@ static int main_(int /* argc */, char* /*argv*/[])
     {
         const shwild::Pattern   pattern1("abcd");
 
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("ABCD"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("ABCD"));
 
         const shwild::Pattern   pattern2("abcd", SHWILD_F_IGNORE_CASE);
 
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("ABCD"));
+        BDUT_ASSERT_TRUE(pattern2.match("ABCD"));
     }
 
     /* Using wildcards. */
     {
         const shwild::Pattern   pattern("a*c?");
 
-        SHWILD_BDT_CHECK_TRUE(pattern.match("abcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern.match("a*c?"));
-        SHWILD_BDT_CHECK_TRUE(pattern.match("abbbbbbbbcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern.match("acd"));
-        SHWILD_BDT_CHECK_FALSE(pattern.match("abdc"));
-        SHWILD_BDT_CHECK_TRUE(pattern.match("abc?"));
+        BDUT_ASSERT_TRUE(pattern.match("abcd"));
+        BDUT_ASSERT_TRUE(pattern.match("a*c?"));
+        BDUT_ASSERT_TRUE(pattern.match("abbbbbbbbcd"));
+        BDUT_ASSERT_TRUE(pattern.match("acd"));
+        BDUT_ASSERT_FALSE(pattern.match("abdc"));
+        BDUT_ASSERT_TRUE(pattern.match("abc?"));
     }
 
     /* Using escaped characters. */
     {
         const shwild::Pattern   pattern1("a\\*c\\?");
 
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("a*c?"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abbbbbbbbcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("acd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abdc"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abc?"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcd"));
+        BDUT_ASSERT_TRUE(pattern1.match("a*c?"));
+        BDUT_ASSERT_FALSE(pattern1.match("abbbbbbbbcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("acd"));
+        BDUT_ASSERT_FALSE(pattern1.match("abdc"));
+        BDUT_ASSERT_FALSE(pattern1.match("abc?"));
 
         /* All of the following search for 'a' followed by '\\' followed by any
          * number of any character, following by '\\' followed by one of any
@@ -92,72 +92,72 @@ static int main_(int /* argc */, char* /*argv*/[])
          */
         const shwild::Pattern   pattern2("a\\*c\\?", SHWILD_F_SUPPRESS_BACKSLASH_ESCAPE);
 
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("abcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("a\\*c\\?"));
+        BDUT_ASSERT_FALSE(pattern2.match("abcd"));
+        BDUT_ASSERT_TRUE(pattern2.match("a\\*c\\?"));
     }
 
     /* Matching ranges. */
     {
         const shwild::Pattern   pattern1("a[bc]c[defghijklm]");
 
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("accm"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcn"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("a[bc]c[defghijklm]"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern1.match("accm"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcn"));
+        BDUT_ASSERT_FALSE(pattern1.match("a[bc]c[defghijklm]"));
 
         /* All of the following the given pattern as if it is a
          * literal string.
          */
         const shwild::Pattern   pattern2("a[bc]c[defghijklm]", SHWILD_F_SUPPRESS_RANGE_SUPPORT);
 
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("aacd"));
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("accm"));
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("abcn"));
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("a[bc]c[defghijklm]"));
+        BDUT_ASSERT_FALSE(pattern2.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern2.match("aacd"));
+        BDUT_ASSERT_FALSE(pattern2.match("accm"));
+        BDUT_ASSERT_FALSE(pattern2.match("abcn"));
+        BDUT_ASSERT_TRUE(pattern2.match("a[bc]c[defghijklm]"));
     }
 
     /* Matching ranges with continuum. */
     {
         const shwild::Pattern   pattern1("a[b-c]c[d-m]");
 
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("accm"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcn"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern1.match("accm"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcn"));
 
         const shwild::Pattern   pattern2("a[b-c]c[d-m]", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_SUPPORT);
 
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("abcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("a-cd"));
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("accd"));
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern2.match("accm"));
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("accl"));
-        SHWILD_BDT_CHECK_FALSE(pattern2.match("abcn"));
+        BDUT_ASSERT_TRUE(pattern2.match("abcd"));
+        BDUT_ASSERT_TRUE(pattern2.match("a-cd"));
+        BDUT_ASSERT_TRUE(pattern2.match("accd"));
+        BDUT_ASSERT_FALSE(pattern2.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern2.match("accm"));
+        BDUT_ASSERT_FALSE(pattern2.match("accl"));
+        BDUT_ASSERT_FALSE(pattern2.match("abcn"));
     }
 
     /* Matching ranges with high-low continuum. */
     {
         const shwild::Pattern   pattern1("a[c-b]c[m-d]");
 
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("accm"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcn"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern1.match("accm"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcn"));
 
         try
         {
             const shwild::Pattern   pattern2("a[c-b]c[m-d]", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_HIGHLOW_SUPPORT);
 
-            SHWILD_BDT_CHECK_FALSE("Should not get here, since the continuum is high->low");
+            BDUT_ASSERT_FALSE("Should not get here, since the continuum is high->low");
 
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("aacd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("accd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("accm"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcn"));
+            BDUT_ASSERT_FALSE(pattern2.match("aacd"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcd"));
+            BDUT_ASSERT_FALSE(pattern2.match("accd"));
+            BDUT_ASSERT_FALSE(pattern2.match("accm"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcn"));
         }
         catch(shwild::PatternException&)
         {
@@ -168,21 +168,21 @@ static int main_(int /* argc */, char* /*argv*/[])
     {
         const shwild::Pattern   pattern1("a[b-C]c[d-M]");
 
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("aCcJ"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcn"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern1.match("aCcJ"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcn"));
 
         try
         {
             const shwild::Pattern   pattern2("a[b-C]c[d-M]", SHWILD_F_SUPPRESS_RANGE_CONTINUUM_CROSSCASE_SUPPORT);
 
-            SHWILD_BDT_CHECK_FALSE("Should not get here, since the continuum is cross-case");
+            BDUT_ASSERT_FALSE("Should not get here, since the continuum is cross-case");
 
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("aacd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("aCcJ"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcn"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcd"));
+            BDUT_ASSERT_FALSE(pattern2.match("aacd"));
+            BDUT_ASSERT_FALSE(pattern2.match("aCcJ"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcn"));
         }
         catch(shwild::PatternException&)
         {
@@ -193,25 +193,25 @@ static int main_(int /* argc */, char* /*argv*/[])
     {
         const shwild::Pattern   pattern1("a[*]c[?]");
 
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("a*c?"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abbbbbbbbcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("acd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abdc"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abc?"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcd"));
+        BDUT_ASSERT_TRUE(pattern1.match("a*c?"));
+        BDUT_ASSERT_FALSE(pattern1.match("abbbbbbbbcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("acd"));
+        BDUT_ASSERT_FALSE(pattern1.match("abdc"));
+        BDUT_ASSERT_FALSE(pattern1.match("abc?"));
 
         try
         {
             const shwild::Pattern   pattern2("a[*]c[?]", SHWILD_F_SUPPRESS_RANGE_LITERAL_WILDCARD_SUPPORT);
 
-            SHWILD_BDT_CHECK_FALSE("Should not get here, since the range contains literal wildcards");
+            BDUT_ASSERT_FALSE("Should not get here, since the range contains literal wildcards");
 
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("a*c?"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abbbbbbbbcd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("acd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abdc"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abc?"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcd"));
+            BDUT_ASSERT_FALSE(pattern2.match("a*c?"));
+            BDUT_ASSERT_FALSE(pattern2.match("abbbbbbbbcd"));
+            BDUT_ASSERT_FALSE(pattern2.match("acd"));
+            BDUT_ASSERT_FALSE(pattern2.match("abdc"));
+            BDUT_ASSERT_FALSE(pattern2.match("abc?"));
         }
         catch(shwild::PatternException&)
         {
@@ -222,23 +222,23 @@ static int main_(int /* argc */, char* /*argv*/[])
     {
         const shwild::Pattern   pattern1("a[-a-c]c[d-]");
 
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("acc-"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("a-c-"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abce"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcd"));
+        BDUT_ASSERT_TRUE(pattern1.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern1.match("acc-"));
+        BDUT_ASSERT_TRUE(pattern1.match("a-c-"));
+        BDUT_ASSERT_FALSE(pattern1.match("abce"));
 
         try
         {
             const shwild::Pattern   pattern2("a[-a-c]c[d-]", SHWILD_F_SUPPRESS_RANGE_LEADTRAIL_LITERAL_HYPHEN_SUPPORT);
 
-            SHWILD_BDT_CHECK_FALSE("Should not get here, since the range contains leading/trailing hyphens");
+            BDUT_ASSERT_FALSE("Should not get here, since the range contains leading/trailing hyphens");
 
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("aacd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("acc-"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("a-c-"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abce"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcd"));
+            BDUT_ASSERT_FALSE(pattern2.match("aacd"));
+            BDUT_ASSERT_FALSE(pattern2.match("acc-"));
+            BDUT_ASSERT_FALSE(pattern2.match("a-c-"));
+            BDUT_ASSERT_FALSE(pattern2.match("abce"));
         }
         catch(shwild::PatternException&)
         {
@@ -249,21 +249,21 @@ static int main_(int /* argc */, char* /*argv*/[])
     {
         const shwild::Pattern   pattern1("a[b-c]c[^d-m]");
 
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("abcd"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("aacd"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcc"));
-        SHWILD_BDT_CHECK_FALSE(pattern1.match("accm"));
-        SHWILD_BDT_CHECK_TRUE(pattern1.match("abcn"));
+        BDUT_ASSERT_FALSE(pattern1.match("abcd"));
+        BDUT_ASSERT_FALSE(pattern1.match("aacd"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcc"));
+        BDUT_ASSERT_FALSE(pattern1.match("accm"));
+        BDUT_ASSERT_TRUE(pattern1.match("abcn"));
 
         try
         {
             const shwild::Pattern   pattern2("a[b-c]c[^d-m]", SHWILD_F_SUPPRESS_RANGE_NOT_SUPPORT);
 
-            SHWILD_BDT_CHECK_TRUE(pattern2.match("abcd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("aacd"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcc"));
-            SHWILD_BDT_CHECK_TRUE(pattern2.match("accm"));
-            SHWILD_BDT_CHECK_FALSE(pattern2.match("abcn"));
+            BDUT_ASSERT_TRUE(pattern2.match("abcd"));
+            BDUT_ASSERT_FALSE(pattern2.match("aacd"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcc"));
+            BDUT_ASSERT_TRUE(pattern2.match("accm"));
+            BDUT_ASSERT_FALSE(pattern2.match("abcn"));
         }
         catch(shwild::PatternException&)
         {

@@ -3,7 +3,6 @@
 
 
 ## 21st December 2023 - 0.11.4
----------------------------
 
 * added `SHWILD_NO_STLSOFT` support, which means **b64** can now be built without reliance on **STLSoft**
 * **Doxygen** support
@@ -13,7 +12,6 @@
 
 
 ## 18th July 2020 - 0.11.1, 0.11.2, 0.11.3
----------------------------------------
 
 * added **Brain-Dead Testing** internal unit-testing
 * removed dependency on other projects - **Open-RJ**, **xCover**, **xTests**

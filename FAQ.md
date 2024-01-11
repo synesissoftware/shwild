@@ -16,7 +16,7 @@ See instructions in [INSTALL.md](./INSTALL.md).
 
 ## Q2: "Does shwild have its own unit-tests?"
 
-Yes, but to minimise dependencies it uses a simplistic, `assert()`-based, unit-test library - called **Brain-Dead Testing** - supplied in the file **include/shwild/bdt/bdt.h**.
+Yes, but to minimise dependencies it uses a simplistic, `assert()`-based, unit-test library - called **Brain-Dead Testing** - supplied in the file **include/shwild/bdut/bdut.h**.
 
 
 <!-- ########################### end of file ########################### -->
