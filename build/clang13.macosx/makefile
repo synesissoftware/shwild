@@ -5,7 +5,7 @@
 #           compiler, on MacOSX
 #
 # Created:  23rd November 2023
-# Updated:  24th November 2023
+# Updated:  28th January 2024
 #
 ############################################################################
 
@@ -13,9 +13,6 @@
 ############################################################################
 # environment check
 
-ifndef STLSOFT
-$(error STLSOFT must be defined)
-endif # !STLSOFT
 
 ############################################################################
 # symbols
@@ -90,9 +87,16 @@ PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
 
 COMMON_INCLUDES         =
 
+ifdef STLSOFT
 STLSOFT_INCLUDES		=\
  -I"$(STLSOFT)/include"\
  \
+
+else
+STLSOFT_INCLUDES		=\
+ \
+
+endif
 
 THIRDPARTY_INCLUDES		=\
  \
@@ -208,7 +212,7 @@ CMN_DEF_NO_IMPLICIT_LINK =\
  -DSHWILD_NO_IMPLICIT_LINK\
  \
 
-COMMON_DEFS             =   -Dunix
+COMMON_DEFS             =   -Dunix -DSHWILD_NO_STLSOFT
 
 CUSTOM_DEFS             =
 

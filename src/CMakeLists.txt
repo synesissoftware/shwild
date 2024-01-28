@@ -4,7 +4,7 @@ file(GLOB CORE_SRCS
 )
 
 add_library(shwild.core
-	${CORE_SRCS}
+    ${CORE_SRCS}
 )
 
 if (APPLE)
@@ -47,18 +47,18 @@ target_include_directories(shwild.core PUBLIC
 )
 
 target_compile_options(shwild.core PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
+    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+        -Werror -Wall -Wextra -pedantic
 
-		# -Wno-deprecated-copy-with-user-provided-copy
-		# -Wno-missing-braces
-		# -Wno-missing-field-initializers
-		# -Wno-unused-parameter
-		# -Wno-unused-value
+        # -Wno-deprecated-copy-with-user-provided-copy
+        # -Wno-missing-braces
+        # -Wno-missing-field-initializers
+        # -Wno-unused-parameter
+        # -Wno-unused-value
     >
     $<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+        /WX /W4
+    >
 )
 
 

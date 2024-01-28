@@ -5,7 +5,7 @@
 #           compiler, on UNIX
 #
 # Created:  29th April 2006
-# Updated:  18th July 2020
+# Updated:  28th January 2024
 #
 ############################################################################
 
@@ -13,9 +13,6 @@
 ############################################################################
 # environment check
 
-ifndef STLSOFT
-$(error STLSOFT must be defined)
-endif # !STLSOFT
 
 ############################################################################
 # symbols

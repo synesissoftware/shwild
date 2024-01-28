@@ -8,6 +8,7 @@
 
 ## Defect reports, fixes and suggestions (for which we are very grateful):
 
+* \<none>
 
 
 Contributions are welcomed.

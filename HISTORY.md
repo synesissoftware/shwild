@@ -2,6 +2,13 @@
 
 
 
+## 28th January 2024 - 0.11.6
+
+* **CMake** support minor improvements
+* improved project boilerplate, in particular **INSTALL.md**
+* all UNIX custom makefiles updated for `SHWILD_NO_STLSOFT`
+
+
 ## 11th January 2024 - 0.11.5
 
 * **CMake** support

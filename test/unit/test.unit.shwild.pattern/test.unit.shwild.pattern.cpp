@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API classes
  *
  * Created: 28th April 2006
- * Updated: 21st December 2023
+ * Updated: 28th January 2024s
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,8 +49,11 @@ using std::endl;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char* /*argv*/[])
+static int main_(int /* argc */, char* argv[])
 {
+    char const* const program_name = argv[0];
+
+
     /* Matching literal strings. */
     {
         const shwild::Pattern   pattern1("abcd");
@@ -269,6 +272,10 @@ static int main_(int /* argc */, char* /*argv*/[])
         {
         }
     }
+
+
+    fprintf(stdout, "%s: ALL TESTS PASSED\n", program_name);
+
 
     return EXIT_SUCCESS;
 }

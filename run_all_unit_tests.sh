@@ -15,7 +15,7 @@ while [[ $# -gt 0 ]]; do
 
             cat << EOF
 shwild is a small, standalone library, implemented in C++ with a C and a C++ API, that provides shell-compatible wildcard matching
-Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
 Runs all (matching) unit-test programs
 
@@ -60,7 +60,7 @@ status=0
 
 if make; then
 
-    for f in $(find $Dir -type f -perm +111 '(' -name 'test_*' -o -name 'test.*' ')')
+    for f in $(find $Dir -type f -perm +111 '(' -name 'test*unit*' -o -name 'test*component*' ')')
     do
 
         echo
