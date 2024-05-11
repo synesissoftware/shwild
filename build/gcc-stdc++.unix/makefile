@@ -5,7 +5,7 @@
 #           generic C++ support, on UNIX
 #
 # Created:  23rd November 2023
-# Updated:  24th November 2023
+# Updated:  28th January 2024
 #
 ############################################################################
 
@@ -86,6 +86,17 @@ INCLUDES_LEADER         =
 PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
 
 COMMON_INCLUDES         =
+
+ifdef STLSOFT
+STLSOFT_INCLUDES		=\
+ -I"$(STLSOFT)/include"\
+ \
+
+else
+STLSOFT_INCLUDES		=\
+ \
+
+endif
 
 THIRDPARTY_INCLUDES		=\
  \
