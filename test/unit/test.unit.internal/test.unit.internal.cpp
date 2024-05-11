@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for internal constructs
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 11th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -469,7 +469,7 @@ static int main_(int /* argc */, char* /* argv */[])
     defined(STLSOFT_COMPILER_IS_MSVC)
     ((void)&shwild_match_);
 #else /* ? compiler */
-    STLSOFT_SUPPRESS_UNUSED(shwild_match_);
+    STLSOFT_SUPPRESS_UNUSED(&shwild_match_);
 #endif /* compiler */
 
     return 0;
