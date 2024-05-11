@@ -1,11 +1,12 @@
 
+
 # ######################################################################## #
 # File:     /CMakeLists.txt
 #
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  11th January 2024
+# Updated:  11th May 2024
 #
 # ######################################################################## #
 
@@ -98,7 +99,7 @@ include(CTest)
 if(BUILD_TESTING)
 
     add_subdirectory(test)
-endif()
+endif(BUILD_TESTING)
 
 
 # ##########################################################
@@ -108,7 +109,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)
 
     add_subdirectory(examples)
-endif()
+endif(BUILD_EXAMPLES)
 
 
 # ##########################################################
