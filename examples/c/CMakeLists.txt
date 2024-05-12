@@ -1,4 +1,7 @@
-add_subdirectory(example.c.1)
+
+if(UNIX)
+    add_subdirectory(example.c.1)
+endif(UNIX)
 
 
 # ############################## end of file ############################# #

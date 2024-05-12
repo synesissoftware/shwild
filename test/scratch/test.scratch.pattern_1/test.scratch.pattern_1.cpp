@@ -4,7 +4,7 @@
  * Purpose: Scratch-test for shwild C++-API functions
  *
  * Created: 6th January 2008
- * Updated: 21st December 2023
+ * Updated: 11th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -13,12 +13,11 @@
 /* shwild Header Files */
 #include <shwild/shwild.hpp>
 
-/* STLSoft Header Files */
-#include <stlsoft/stlsoft.h>
-
-/* PlatformSTL Header Files */
-#include <platformstl/platformstl.hpp>
-
+#ifndef SHWILD_NO_STLSOFT
+ /* STLSoft Header Files */
+# include <stlsoft/stlsoft.h>
+# include <platformstl/platformstl.hpp>
+#endif /* !SHWILD_NO_STLSOFT */
 
 /* Standard C++ Header Files */
 #include <exception>
