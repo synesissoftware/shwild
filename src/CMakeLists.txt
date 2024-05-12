@@ -7,12 +7,12 @@ add_library(shwild.core
     ${CORE_SRCS}
 )
 
-if (APPLE)
+if(APPLE)
 
     message("-- -- adding '/usr/local/include' to include-directories for 'src'")
 
     include_directories("/usr/local/include")
-endif()
+endif(APPLE)
 
 if(UNIX)
 
@@ -22,8 +22,25 @@ endif(UNIX)
 
 if(WIN32)
 
-    message(FATAL_ERROR "Use of CMake on Windows not currently supported")
+	if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+
+		message (STATUS "Compiling for 64-bit Windows")
+
+		add_definitions(-DWIN64)
+	else()
+
+		message (STATUS "Compiling for 32-bit Windows")
+
+		add_definitions(-DWIN32)
+	endif()
+
+	add_definitions(-DNOMINMAX)
 endif(WIN32)
+
+if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+
+	add_compile_options("/Zc:__cplusplus")
+endif()
 
 
 # include_directories(${CMAKE_SOURCE_DIR}/include)

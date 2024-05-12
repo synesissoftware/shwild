@@ -1,5 +1,11 @@
 #  **shwild** Changes
 
+## 0.11.7 - 12th May 2024
+
+* Visual C++ 17 compatibility
+* **CMake** Windows compatibility
+
+
 ## 0.11.6 - 28th January 2024
 
 * **CMake** support minor improvements

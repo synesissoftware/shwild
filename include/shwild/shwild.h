@@ -4,7 +4,7 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 28th January 2024
+ * Updated: 12th May 2024
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
@@ -45,6 +45,7 @@
 #ifndef SHWILD_INCL_SHWILD_H_SHWILD
 #define SHWILD_INCL_SHWILD_H_SHWILD
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -52,8 +53,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    11
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        44
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    12
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        45
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -104,18 +105,21 @@
 # define SHWILD_VER_0_11_4                                  0x000b04ff
 # define SHWILD_VER_0_11_5                                  0x000b04ff
 # define SHWILD_VER_0_11_6                                  0x000b06ff
+# define SHWILD_VER_0_11_7                                  0x000b07ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR                                    0
 #define SHWILD_VER_MINOR                                    11
-#define SHWILD_VER_REVISION                                 6
-#define SHWILD_VER                                          SHWILD_VER_0_11_6
+#define SHWILD_VER_REVISION                                 7
+#define SHWILD_VER                                          SHWILD_VER_0_11_7
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #include <stddef.h>     /* for size_t */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
@@ -142,6 +146,7 @@
  *
  * C++ facades arouns the \ref group__shwild_api.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -199,6 +204,7 @@ public:
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 typedef struct shwild_slice_t   shwild_slice_t;
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants and definitions
@@ -263,8 +269,8 @@ typedef struct shwild_slice_t   shwild_slice_t;
 #define SHWILD_RC_ALLOC_ERROR                               (SHWILD_RC_ERROR_BASE_ - 1)     /*!< \brief Memory exhaustion */
 #define SHWILD_RC_PARSE_ERROR                               (SHWILD_RC_ERROR_BASE_ - 2)     /*!< \brief Parsing error */
 #define SHWILD_RC_UNSPECIFIED                               (SHWILD_RC_ERROR_BASE_ - 3)     /*!< \brief Unspecified exception */
-
 /** @} */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C API
@@ -401,6 +407,7 @@ shwild_destroy_pattern(
 } /* extern "C" */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -419,6 +426,7 @@ shwild_destroy_pattern(
 namespace shwild
 {
 #endif /* !SHWILD_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -500,8 +508,8 @@ destroy_pattern(
 }
 
 /** @} */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -510,6 +518,7 @@ destroy_pattern(
 #if !defined(SHWILD_NO_NAMESPACE)
 } /* namespace shwild */
 #endif /* !SHWILD_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -546,8 +555,8 @@ shwild_slice_t::shwild_slice_t(size_t n, char const* s)
 #  endif /* compiler */
 
 # endif /* __cplusplus */
-
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

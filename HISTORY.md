@@ -2,6 +2,12 @@
 
 
 
+## 12th May 2024 - 0.11.7
+
+* Visual C++ 17 compatibility
+* **CMake** Windows compatibility
+
+
 ## 28th January 2024 - 0.11.6
 
 * **CMake** support minor improvements
