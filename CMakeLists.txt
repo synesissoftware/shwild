@@ -78,8 +78,33 @@ include(GNUInstallDirs)
 
 # ##########################################################
 # STLSoft
+#
+# We provide flexibility here, as in:
+# 1. if a CMake variable STLSOFT is provided then it is used; otherwise
+# 2. if an environment variable STLSOFT is provided then it then it is used; otherwise
+# 3. we set the #define SHWILD_NO_STLSOFT.
 
-add_definitions(-DSHWILD_NO_STLSOFT)
+if(NOT DEFINED STLSOFT AND NOT DEFINED ENV{STLSOFT})
+
+	message("-- building library, examples, and tests without use of STLSoft")
+
+	add_definitions(-DSHWILD_NO_STLSOFT)
+else()
+
+	if(DEFINED STLSOFT)
+
+		message("-- STLSOFT provided as CMake variable with value ${STLSOFT}")
+
+		set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+	else()
+
+		message("-- STLSOFT provided as environment variable with value $ENV{STLSOFT}")
+
+		set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+	endif()
+
+	include_directories(${STLSOFT_INCLUDE_DIR})
+endif()
 
 
 # ##########################################################
