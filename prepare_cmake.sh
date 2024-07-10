@@ -3,46 +3,51 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakePath=$Dir/_build
+CMakeDir=$Dir/_build
 
 
+BDUTDirGiven=
 CMakeExamplesDisabled=0
 CMakeTestingDisabled=0
 CMakeVerboseMakefile=0
 Configuration=Release
 RunMake=0
-# STLSoftDirEnvVar=${STLSOFT}
-STLSoftDirGiven=
 
 
 # ##########################################################
 # command-line handling
 
 while [[ $# -gt 0 ]]; do
-    case $1 in
-        -v|--cmake-verbose-makefile)
 
-            CMakeVerboseMakefile=1
-            ;;
-        -d|--debug-configuration)
+  case $1 in
+    --bdut-root-dir)
 
-            Configuration=Debug
-            ;;
-        -E|--disable-examples)
+      shift
+      BDUTDirGiven=$1
+      ;;
+    -v|--cmake-verbose-makefile)
 
-            CMakeExamplesDisabled=1
-            ;;
-        -T|--disable-testing)
+      CMakeVerboseMakefile=1
+      ;;
+    -d|--debug-configuration)
 
-            CMakeTestingDisabled=1
-            ;;
-        -m|--run-make)
+      Configuration=Debug
+      ;;
+    -E|--disable-examples)
 
-            RunMake=1
-            ;;
-        --help)
+      CMakeExamplesDisabled=1
+      ;;
+    -T|--disable-testing)
 
-            cat << EOF
+      CMakeTestingDisabled=1
+      ;;
+    -m|--run-make)
+
+      RunMake=1
+      ;;
+    --help)
+
+      cat << EOF
 shwild is a small, standalone library, implemented in C++ with a C and a C++ API, that provides shell-compatible wildcard matching
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
@@ -53,6 +58,11 @@ $ScriptPath [ ... flags/options ... ]
 Flags/options:
 
     behaviour:
+
+    --bdut-root-dir <dir>
+        specifies the BDUT root-directory, which will be passed to CMake
+        as the variable BDUT_ROOT, from which the BDUT library will be used,
+        rather than using the bundled version
 
     -v
     --cmake-verbose-makefile
@@ -84,28 +94,30 @@ Flags/options:
 
 EOF
 
-            exit 0
-            ;;
-        *)
+      exit 0
+      ;;
+    *)
 
-            >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
+      >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
 
-            exit 1
-            ;;
-    esac
+      exit 1
+      ;;
+  esac
 
-    shift
+  shift
 done
 
 
 # ##########################################################
 # main()
 
-mkdir -p $CMakePath || exit 1
+mkdir -p $CMakeDir || exit 1
 
-cd $CMakePath
+cd $CMakeDir
 
 echo "Executing CMake"
+
+if [ -z $BDUTDirGiven ]; then CMakeBDUTVariable="" ; else CMakeBDUTVariable="-DBDUT_ROOT=$BDUTDirGiven/" ; fi
 
 if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 
@@ -114,29 +126,30 @@ if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMake
 if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 cmake \
-    -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
-    -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
-    -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
-    .. || (cd ->/dev/null ; exit 1)
+  $CMakeBDUTVariable \
+  -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
+  -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
+  -DCMAKE_BUILD_TYPE=$Configuration \
+  -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+  .. || (cd ->/dev/null ; exit 1)
 
 status=0
 
 if [ $RunMake -ne 0 ]; then
 
-    echo "Executing make"
+  echo "Executing make"
 
-    make
+  make
 
-    status=$?
+  status=$?
 fi
 
 cd ->/dev/null
 
 if [ $CMakeVerboseMakefile -ne 0 ]; then
 
-    echo -e "contents of $CMakePath:"
-    ls -al $CMakePath
+  echo -e "contents of $CMakeDir:"
+  ls -al $CMakeDir
 fi
 
 exit $status

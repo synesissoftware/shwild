@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for internal constructs
  *
  * Created: 17th June 2005
- * Updated: 11th May 2024
+ * Updated: 10th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -13,7 +13,9 @@
 
 /* shwild Header Files */
 #include <shwild/shwild.hpp>
-#include <shwild/bdut/bdut.h>
+
+/* BDUT Header Files */
+#include <bdut/bdut.h>
 
 #include "../../../src/matches.hpp"
 

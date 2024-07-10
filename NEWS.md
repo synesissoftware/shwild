@@ -3,6 +3,8 @@
 
 | Date               | News Item                                                                        |
 | ------------------ | -------------------------------------------------------------------------------- |
+| 10th July 2024     | Release of **shwild** 0.11.8                                                     |
+| 12th May 2024      | Release of **shwild** 0.11.7                                                     |
 | 28th January 2024  | Release of **shwild** 0.11.6                                                     |
 | 11th January 2024  | Release of **shwild** 0.11.5                                                     |
 | 11th January 2024  | Release of [**BDUT 0.2.0 (alpha-1)**](https://github.com/synesissoftware/BDUT9)  |

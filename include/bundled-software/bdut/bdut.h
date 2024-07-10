@@ -4,7 +4,9 @@
  * Purpose: Brain-Dead Unit-Testing
  *
  * Created: 18th July 2020
- * Updated: 11th January 2024
+ * Updated: 10th July 2024
+ *
+ * Home:    http://github.com/synesissoftware/BDUT
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -43,6 +45,7 @@
 #ifndef BDUT_INCL_BDUT_H_BDUT
 #define BDUT_INCL_BDUT_H_BDUT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -51,8 +54,9 @@
 # define BDUT_VER_BDUT_H_BDUT_MAJOR     2
 # define BDUT_VER_BDUT_H_BDUT_MINOR     0
 # define BDUT_VER_BDUT_H_BDUT_REVISION  2
-# define BDUT_VER_BDUT_H_BDUT_EDIT      6
+# define BDUT_VER_BDUT_H_BDUT_EDIT      8
 #endif /* !BDUT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * version
@@ -77,7 +81,8 @@
 #define BDUT_VER_MAJOR                                      0
 #define BDUT_VER_MINOR                                      2
 #define BDUT_VER_PATCH                                      0
-#define BDUT_VER                                            0x00020042
+#define BDUT_VER                                            0x00020046
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -130,6 +135,33 @@
  * @param actual The actual value
  */
 
+#define BDUT_ASSERT_EQ(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), ==, "actual value of `" #actual "` not equal-to expected value " #expected)
+#define BDUT_ASSERT_NE(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), !=, "actual value of `" #actual "` not unequal-to expected value " #expected)
+
+/** @def BDUT_ASSERT_GE(expected, actual)
+ *
+ * @brief Asserts the the \c actual value is greater than or equal to the \c expected value
+ *
+ * @param expected The expected value
+ * @param actual The actual value
+ */
+
+/** @def BDUT_ASSERT_GT(expected, actual)
+ *
+ * @brief Asserts the the \c actual value is greater than the \c expected value
+ *
+ * @param expected The expected value
+ * @param actual The actual value
+ */
+
+/** @def BDUT_ASSERT_LE(expected, actual)
+ *
+ * @brief Asserts the the \c actual value is less than or equal to the \c expected value
+ *
+ * @param expected The expected value
+ * @param actual The actual value
+ */
+
 /** @def BDUT_ASSERT_LT(expected, actual)
  *
  * @brief Asserts the the \c actual value is less than the \c expected value
@@ -138,9 +170,10 @@
  * @param actual The actual value
  */
 
-#define BDUT_ASSERT_EQ(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), ==, "actual value of `" #actual "` not equal to expected value " #expected)
-#define BDUT_ASSERT_NE(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), !=, "actual value of `" #actual "` not unequal to expected value " #expected)
-#define BDUT_ASSERT_LT(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), <, "actual value of `" #actual "` not less-than to expected value " #expected)
+#define BDUT_ASSERT_GE(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), >=, "actual value of `" #actual "` not greater-than-or-equal-to expected value " #expected)
+#define BDUT_ASSERT_GT(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), >, "actual value of `" #actual "` not greater-than expected value " #expected)
+#define BDUT_ASSERT_LE(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), <=, "actual value of `" #actual "` not less-than-or-equal-to expected value " #expected)
+#define BDUT_ASSERT_LT(expected, actual)                    BDUT_CHECK_COMPARE_((expected), (actual), <, "actual value of `" #actual "` not less-than expected value " #expected)
 
 /** @def BDUT_ASSERT_STRING_CONTAINS(needle, haystack)
  *
@@ -434,8 +467,9 @@ BDUT_report_string_contains_failure_and_abort_(
             }
         }
 
-        int const r = sprintf(
+        int const r = snprintf(
             message
+        ,   cch_message
         ,   fmt
         ,   width_haystack
         ,   haystack
@@ -474,7 +508,6 @@ BDUT_reference_all_impl_functions_(void)
     ((void)&BDUT_report_string_contains_failure_and_abort_);
 }
 # endif
-
 #endif /* !BDUT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -2,6 +2,12 @@
 
 
 
+## 10th July 2024 - 0.11.8
+
+* Boilerplate files improvements
+* Moved bundled **BDUT** header(s) into separate directory
+
+
 ## 12th May 2024 - 0.11.7
 
 * Visual C++ 17 compatibility

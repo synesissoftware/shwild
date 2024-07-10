@@ -1,12 +1,11 @@
 
-
 # ######################################################################## #
 # File:     /CMakeLists.txt
 #
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  11th May 2024
+# Updated:  10th July 2024
 #
 # ######################################################################## #
 
@@ -20,7 +19,7 @@ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if(EXISTS "${LOC_PATH}")
 
-    message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
+	message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
 
 # directory for CMake specific extensions and source files.
@@ -31,9 +30,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 # project
 
 project(shwild
-    DESCRIPTION "shwild is a small, standalone library, implemented in C++ with a C and a C++ API, that provides shell-compatible wildcard matching."
-    HOMEPAGE_URL "https://github.com/synesissoftware/shwild"
-    LANGUAGES C CXX
+	DESCRIPTION "shwild is a small, standalone library, implemented in C++ with a C and a C++ API, that provides shell-compatible wildcard matching."
+	HOMEPAGE_URL "https://github.com/synesissoftware/shwild"
+	LANGUAGES C CXX
 )
 
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
@@ -61,10 +60,10 @@ message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VER
 
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
@@ -77,34 +76,40 @@ include(GNUInstallDirs)
 
 
 # ##########################################################
-# STLSoft
-#
-# We provide flexibility here, as in:
-# 1. if a CMake variable STLSOFT is provided then it is used; otherwise
-# 2. if an environment variable STLSOFT is provided then it then it is used; otherwise
-# 3. we set the #define SHWILD_NO_STLSOFT.
+# BDUT
 
-if(NOT DEFINED STLSOFT AND NOT DEFINED ENV{STLSOFT})
+if(DEFINED BDUT_ROOT OR DEFINED ENV{BDUT_ROOT})
 
-	message("-- building library, examples, and tests without use of STLSoft")
+	if(DEFINED BDUT_ROOT)
 
-	add_definitions(-DSHWILD_NO_STLSOFT)
-else()
+		message("-- BDUT_ROOT provided as CMake variable with value ${BDUT_ROOT}")
 
-	if(DEFINED STLSOFT)
-
-		message("-- STLSOFT provided as CMake variable with value ${STLSOFT}")
-
-		set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+		set(BDUT_INCLUDE_DIR ${BDUT_ROOT}/include)
 	else()
 
-		message("-- STLSOFT provided as environment variable with value $ENV{STLSOFT}")
+		message("-- BDUT_ROOT provided as environment variable with value $ENV{BDUT_ROOT}")
 
-		set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+		set(BDUT_INCLUDE_DIR $ENV{BDUT_ROOT}/include)
 	endif()
 
-	include_directories(${STLSOFT_INCLUDE_DIR})
+	message("(before) INCLUDE_DIRECTORIES=${INCLUDE_DIRECTORIES}")
+
+	include_directories(BEFORE ${BDUT_INCLUDE_DIR})
+
+	message("(after) INCLUDE_DIRECTORIES=${INCLUDE_DIRECTORIES}")
+
+else()
+
+	include_directories(BEFORE include/bundled-software)
 endif()
+
+
+# ##########################################################
+# STLSoft
+
+# specify preprocessor object-like macro `SHWILD_NO_STLSOFT` to elide all
+# dependencies on STLSoft
+add_definitions(-DSHWILD_NO_STLSOFT)
 
 
 # ##########################################################
@@ -123,9 +128,9 @@ include(CTest)
 
 if(BUILD_TESTING)
 
-    message("-- enabled building of tests ...")
+	message("-- enabled building of tests ...")
 
-    add_subdirectory(test)
+	add_subdirectory(test)
 endif(BUILD_TESTING)
 
 
@@ -135,9 +140,9 @@ endif(BUILD_TESTING)
 option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)
 
-    message("-- enabled building of examples ...")
+	message("-- enabled building of examples ...")
 
-    add_subdirectory(examples)
+	add_subdirectory(examples)
 endif(BUILD_EXAMPLES)
 
 
@@ -146,10 +151,10 @@ endif(BUILD_EXAMPLES)
 
 
 install(
-    DIRECTORY ${CMAKE_SOURCE_DIR}/include/shwild/internal
-    DESTINATION include/shwild/
-    FILES_MATCHING
-    PATTERN "*.h*"
+	DIRECTORY ${CMAKE_SOURCE_DIR}/include/shwild/internal
+	DESTINATION include/shwild/
+	FILES_MATCHING
+	PATTERN "*.h*"
 )
 
 
@@ -161,32 +166,32 @@ include(CMakePackageConfigHelpers)
 set(EXPORT_NAME ${PROJECT_NAME_LOWER})
 
 configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
-    INSTALL_DESTINATION ${LIB_INSTALL_DIR}/${EXPORT_NAME}/cmake
+	${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
+	INSTALL_DESTINATION ${LIB_INSTALL_DIR}/${EXPORT_NAME}/cmake
 )
 
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY AnyNewerVersion
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
+	VERSION ${PROJECT_VERSION}
+	COMPATIBILITY AnyNewerVersion
 )
 
 export(EXPORT project-targets
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
-    NAMESPACE "${PROJECT_NAME}::"
+	FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
+	NAMESPACE "${PROJECT_NAME}::"
 )
 
 install(EXPORT project-targets
-    NAMESPACE "${PROJECT_NAME}::"
-    FILE "${EXPORT_NAME}-targets.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+	NAMESPACE "${PROJECT_NAME}::"
+	FILE "${EXPORT_NAME}-targets.cmake"
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
 install( FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
 

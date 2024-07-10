@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API classes
  *
  * Created: 28th April 2006
- * Updated: 28th January 2024s
+ * Updated: 10th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,7 +15,9 @@
 
 /* shwild Header Files */
 #include <shwild/shwild.hpp>
-#include <shwild/bdut/bdut.h>
+
+/* BDUT Header Files */
+#include <bdut/bdut.h>
 
 /* Standard C++ Header Files */
 #include <exception>

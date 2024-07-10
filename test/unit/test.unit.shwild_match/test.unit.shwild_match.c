@@ -4,14 +4,16 @@
  * Purpose: Unit-tests for shwild C-API
  *
  * Created: 27th April 2006
- * Updated: 28th January 2024s
+ * Updated: 10th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* shwild Header Files */
 #include <shwild/shwild.h>
-#include <shwild/bdut/bdut.h>
+
+/* BDUT Header Files */
+#include <bdut/bdut.h>
 
 /* Standard C Header Files */
 #include <stdio.h>

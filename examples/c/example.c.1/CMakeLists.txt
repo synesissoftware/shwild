@@ -1,17 +1,17 @@
 
 add_executable(example.c.1
-    example.c.1.c
+	example.c.1.c
 )
 
 target_link_libraries(example.c.1
-    shwild.core
+	shwild.core
 )
 
 target_compile_options(example.c.1 PRIVATE
-    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wextra -pedantic>
-    $<$<CXX_COMPILER_ID:MSVC>:
-        /WX /W4
-    >
+	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wextra -pedantic>
+	$<$<CXX_COMPILER_ID:MSVC>:
+		/WX /W4
+	>
 )
 
 
