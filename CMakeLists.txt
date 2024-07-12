@@ -76,6 +76,9 @@ include(GNUInstallDirs)
 
 
 # ##########################################################
+# dependencies
+
+# ######################################
 # BDUT
 
 if(DEFINED BDUT_ROOT OR DEFINED ENV{BDUT_ROOT})
@@ -104,7 +107,7 @@ else()
 endif()
 
 
-# ##########################################################
+# ######################################
 # STLSoft
 
 # specify preprocessor object-like macro `SHWILD_NO_STLSOFT` to elide all

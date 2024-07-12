@@ -95,6 +95,7 @@
     "queue": "cpp",
     "ratio": "cpp",
     "set": "cpp",
+    "shwild.h": "c",
     "sstream": "cpp",
     "stack": "cpp",
     "stdexcept": "cpp",
