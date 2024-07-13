@@ -71,13 +71,8 @@ if [ $RunMake -ne 0 ]; then
 
   cd $CMakeDir
 
-  if make; then
-
-    :
-  else
-
-    status=$?
-  fi
+  make
+  status=$?
 else
 
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
@@ -93,22 +88,22 @@ fi
 
 if [ $status -eq 0 ]; then
 
-    for f in $(find $Dir -type f '(' -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' ')' -exec test -x {} \; -print)
-    do
+  for f in $(find $Dir -type f '(' -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' ')' -exec test -x {} \; -print)
+  do
 
-        echo
-        echo "executing $f:"
+    echo
+    echo "executing $f:"
 
-        if $f; then
+    if $f; then
 
-            :
-        else
+      :
+    else
 
-            status=$?
+      status=$?
 
-            break 1
-        fi
-    done
+      break 1
+    fi
+  done
 fi
 
 cd ->/dev/null
