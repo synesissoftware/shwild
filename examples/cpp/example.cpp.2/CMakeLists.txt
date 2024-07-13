@@ -4,7 +4,9 @@ add_executable(example.cpp.2
 )
 
 target_link_libraries(example.cpp.2
-	shwild.core
+	PRIVATE
+		core
+		$<$<BOOL:${STLSoft_FOUND}>:STLSoft::STLSoft>
 )
 
 target_compile_options(example.cpp.2 PRIVATE

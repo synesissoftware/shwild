@@ -109,10 +109,55 @@ endif()
 
 # ######################################
 # STLSoft
+#
+# By default, shwild does not use STLSoft at all and, in that circumstance,
+# the symbol SHWILD_NO_STLSOFT is defined. Alternately, STLSoft can be used
+# in the following ways:
+#
+# * if the environment variable STLSOFT is defined, then it is assumed to
+#   specify a directory within which a viable STLSoft project resides. In
+#   this case, the CMake variable STLSOFT_INCLUDE_DIR is defined;
+# * if the CMake variable STLSOFT is defined, then it is assumed to specify
+#   a directory within which a viable STLSoft project resides. In this
+#   case, the CMake variable STLSOFT_INCLUDE_DIR is defined;
+# * if the CMake variable USE_STLSOFT_PKG is set to ON and neither the
+#   STLSoft environment nor CMake variable is defined, then STLSoft will be
+#   required as a CMake package; otherwise
+# * STLSoft is not used, so specify preprocessor object-like macro
+#   `SHWILD_NO_STLSOFT` to elide all dependencies on STLSoft
 
-# specify preprocessor object-like macro `SHWILD_NO_STLSOFT` to elide all
-# dependencies on STLSoft
-add_definitions(-DSHWILD_NO_STLSOFT)
+option(USE_STLSOFT_PKG "Depend on STLSoft CMake package" OFF)
+
+if(DEFINED STLSOFT)
+
+	message("-- STLSOFT provided as CMake variable with value ${STLSOFT}")
+
+	set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+elseif(DEFINED ENV{STLSOFT})
+
+	message("-- STLSOFT provided as environment variable with value $ENV{STLSOFT}")
+
+	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+elseif(USE_STLSOFT_PKG)
+
+	set(STLSoft_REQUIRED_VERSION_ 1.9.136)
+
+	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
+else()
+
+	add_definitions(-DSHWILD_NO_STLSOFT)
+endif()
+
+if(USE_STLSOFT_PKG)
+
+endif()
+
+if(DEFINED STLSOFT_INCLUDE_DIR)
+
+	include_directories(${STLSOFT_INCLUDE_DIR})
+endif()
 
 
 # ##########################################################
