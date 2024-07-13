@@ -4,9 +4,9 @@
  * Purpose: C++ root file for the shwild C++ API
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 13th July 2024
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +43,7 @@
 #ifndef SHWILD_INCL_SHWILD_HPP_SHWILD
 #define SHWILD_INCL_SHWILD_HPP_SHWILD
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -51,8 +52,9 @@
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
 # define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  3
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      13
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      14
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -61,6 +63,7 @@
 #ifndef __cplusplus
 # error This file can only be used in C++ compilation units
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +75,7 @@
 
 #include <stdexcept>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -79,6 +83,7 @@
 #ifdef __BORLANDC__
 # pragma warn -8026 /* Suppresses "Functions with exception specifications are not expanded inline" */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -88,6 +93,7 @@
 namespace shwild
 {
 #endif /* !SHWILD_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -104,9 +110,9 @@ class PatternException
 /// @{
 public:
     /// The parent exception type
-    typedef std::runtime_error  parent_class_type;
+    typedef std::runtime_error                              parent_class_type;
     /// This type
-    typedef PatternException    class_type;
+    typedef PatternException                                class_type;
 /// @}
 
 /// \name Construction
@@ -160,7 +166,7 @@ class Pattern
 /// @{
 public:
     /// This type
-    typedef Pattern     class_type;
+    typedef Pattern                                         class_type;
 /// @}
 
 /// \name Construction
@@ -236,6 +242,7 @@ private:
     int             m_numMatches;
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -330,6 +337,7 @@ inline bool Pattern::match(slice_t const& string) const
 
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -337,6 +345,7 @@ inline bool Pattern::match(slice_t const& string) const
 #if !defined(SHWILD_NO_NAMESPACE)
 } // namespace shwild
 #endif /* !SHWILD_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

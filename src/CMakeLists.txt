@@ -3,16 +3,9 @@ file(GLOB CORE_SRCS
 	*.cpp
 )
 
-add_library(shwild.core
+add_library(core
 	${CORE_SRCS}
 )
-
-if(APPLE)
-
-	message("-- -- adding '/usr/local/include' to include-directories for 'src' (on macOS)")
-
-	include_directories("/usr/local/include")
-endif(APPLE)
 
 if(UNIX)
 
@@ -39,39 +32,43 @@ endif(WIN32)
 
 if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
-	add_compile_options("/Zc:__cplusplus")
+	target_compile_definitions(core
+		PRIVATE
+			"/Zc:__cplusplus"
+	)
+	# add_compile_options("/Zc:__cplusplus")
+
+	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
 endif()
 
-
-# include_directories(${CMAKE_SOURCE_DIR}/include)
-
-#[====[
-]====]
 
 set(SHWILD_PUBLIC_HEADERS
 	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h"
 	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.hpp"
 )
 
-set_target_properties(shwild.core PROPERTIES
+set_target_properties(core PROPERTIES
 	OUTPUT_NAME "shwild.core"
 	PUBLIC_HEADER "${SHWILD_PUBLIC_HEADERS}"
 )
 
-target_include_directories(shwild.core PUBLIC
+target_include_directories(core PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
 	$<INSTALL_INTERFACE:include>
 )
 
-target_compile_options(shwild.core PRIVATE
+target_link_libraries(core
+	PRIVATE
+		$<$<BOOL:${STLSoft_FOUND}>:STLSoft::STLSoft>
+)
+
+target_compile_options(core PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic
-
-		# -Wno-deprecated-copy-with-user-provided-copy
-		# -Wno-missing-braces
-		# -Wno-missing-field-initializers
-		# -Wno-unused-parameter
-		# -Wno-unused-value
+	>
+	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
+	>
+	$<$<CXX_COMPILER_ID:GNU>:
 	>
 	$<$<CXX_COMPILER_ID:MSVC>:
 		/WX /W4
@@ -82,7 +79,7 @@ target_compile_options(shwild.core PRIVATE
 # ##########################################################
 # install
 
-install(TARGETS shwild.core
+install(TARGETS core
 	EXPORT project-targets
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

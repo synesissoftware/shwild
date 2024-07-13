@@ -1,5 +1,14 @@
 #  **shwild** Changes
 
+
+## 13th July 2024 - 0.12.1
+
+* Fully optional compatibility with STLSoft
+* CMake project renamed to `shwild::core`
+* Various CMake standardisations and simplifications
+* Compatibility with Visual C++ 17
+
+
 ## 10th July 2024 - 0.11.8
 
 * Boilerplate files improvements
