@@ -32,14 +32,15 @@ endif(WIN32)
 
 if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
-	add_compile_options("/Zc:__cplusplus")
+	target_compile_definitions(core
+		PRIVATE
+			"/Zc:__cplusplus"
+	)
+	# add_compile_options("/Zc:__cplusplus")
+
+	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
 endif()
 
-
-# include_directories(${CMAKE_SOURCE_DIR}/include)
-
-#[====[
-]====]
 
 set(SHWILD_PUBLIC_HEADERS
 	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h"
