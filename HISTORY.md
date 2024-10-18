@@ -1,6 +1,12 @@
 # shwild - History
 
 
+## 18th October 2024 - 0.12.2
+
+* MinGW compatility;
+* Significant enhancement of use of CMake;
+
+
 ## 13th July 2024 - 0.12.1
 
 * Fully optional compatibility with STLSoft
