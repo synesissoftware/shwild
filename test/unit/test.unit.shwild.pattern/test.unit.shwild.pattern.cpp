@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API classes
  *
  * Created: 28th April 2006
- * Updated: 10th July 2024
+ * Updated: 18th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,7 @@ using std::endl;
 # include <crtdbg.h>
 #endif /* _MSC_VER && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -49,7 +50,10 @@ using std::endl;
 # pragma warning(disable : 4189)    /* Suppresses: "'????' : local variable is initialized but not referenced" */
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char* argv[])
 {
@@ -320,6 +324,7 @@ int main(int argc, char* argv[])
 
     return iRet;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
