@@ -4,9 +4,9 @@
  * Purpose: Implementation of the shwild API
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 18th October 2024
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,6 +48,7 @@
 
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatiblity
  */
@@ -70,6 +71,7 @@ struct shwild_handle_t_
 {};
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -90,16 +92,17 @@ namespace
     using shwild::impl::MatchEnd;
 #endif /* !SHWILD_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 #ifndef SHWILD_NO_STLSOFT
-typedef stlsoft::shared_ptr<Match>                      Match_ptr;
+typedef stlsoft::shared_ptr<Match>                          Match_ptr;
 #else /* ? SHWILD_NO_STLSOFT */
-typedef std::shared_ptr<Match>                          Match_ptr;
+typedef std::shared_ptr<Match>                              Match_ptr;
 #endif /* !SHWILD_NO_STLSOFT */
-typedef ::shwild::impl::vector_maker<Match_ptr>::type   Matches;
+typedef ::shwild::impl::vector_maker<Match_ptr>::type       Matches;
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -109,6 +112,7 @@ typedef ::shwild::impl::vector_maker<Match_ptr>::type   Matches;
 static int  shwild_parseMatches_(Matches& matches, slice_t const* pattern, unsigned flags);
 static void shwild_tieMatches_(Matches& matches);
 static bool shwild_match_(Matches const& matches, slice_t const* string);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -143,6 +147,7 @@ private:
     Matches     m_matches;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -150,6 +155,7 @@ private:
 #ifdef SHWILD_API_USE_ANONYMOUS_NAMESPACE
 } // anonymous namespace
 #endif /* SHWILD_API_USE_ANONYMOUS_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -420,12 +426,16 @@ void shwild_destroy_pattern(shwild_handle_t hCompiledPattern)
 
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifdef SHWILD_API_USE_ANONYMOUS_NAMESPACE
 namespace
 {
 #endif /* SHWILD_API_USE_ANONYMOUS_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -566,6 +576,7 @@ static bool shwild_match_(Matches const& matches, slice_t const* string)
     return matches[0]->match(&string->ptr[0], &string->ptr[0] + string->len);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * PatternMatcher
  */
@@ -602,6 +613,7 @@ int PatternMatcher::match(slice_t const* string) const
 
     return shwild_match_(m_matches, string) ? 0 : 1;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
