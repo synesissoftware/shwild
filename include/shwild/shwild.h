@@ -4,7 +4,7 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 10th July 2024
+ * Updated: 18th October 2024
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
@@ -53,8 +53,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    13
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        46
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    14
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        47
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -107,19 +107,21 @@
 # define SHWILD_VER_0_11_6                                  0x000b06ff
 # define SHWILD_VER_0_11_7                                  0x000b07ff
 # define SHWILD_VER_0_11_8                                  0x000b08ff
+# define SHWILD_VER_0_12_1                                  0x000c01ff
+# define SHWILD_VER_0_12_2_a1                               0x000c0241
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR                                    0
-#define SHWILD_VER_MINOR                                    11
-#define SHWILD_VER_REVISION                                 7
-#define SHWILD_VER                                          SHWILD_VER_0_11_8
+#define SHWILD_VER_MINOR                                    12
+#define SHWILD_VER_REVISION                                 2
+#define SHWILD_VER                                          SHWILD_VER_0_12_2_a1
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-#include <stddef.h>     /* for size_t */
+#include <stddef.h> /* for size_t */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -265,11 +267,11 @@ typedef struct shwild_slice_t   shwild_slice_t;
  * @{
  */
 
-#define SHWILD_RC_SUCCESS                                   (0)                             /*!< \brief Operating completed successfully */
+#define SHWILD_RC_SUCCESS                                   (0)                         /*!< \brief Operating completed successfully */
 #define SHWILD_RC_ERROR_BASE_                               (-2000)
-#define SHWILD_RC_ALLOC_ERROR                               (SHWILD_RC_ERROR_BASE_ - 1)     /*!< \brief Memory exhaustion */
-#define SHWILD_RC_PARSE_ERROR                               (SHWILD_RC_ERROR_BASE_ - 2)     /*!< \brief Parsing error */
-#define SHWILD_RC_UNSPECIFIED                               (SHWILD_RC_ERROR_BASE_ - 3)     /*!< \brief Unspecified exception */
+#define SHWILD_RC_ALLOC_ERROR                               (SHWILD_RC_ERROR_BASE_ - 1) /*!< \brief Memory exhaustion */
+#define SHWILD_RC_PARSE_ERROR                               (SHWILD_RC_ERROR_BASE_ - 2) /*!< \brief Parsing error */
+#define SHWILD_RC_UNSPECIFIED                               (SHWILD_RC_ERROR_BASE_ - 3) /*!< \brief Unspecified exception */
 /** @} */
 
 

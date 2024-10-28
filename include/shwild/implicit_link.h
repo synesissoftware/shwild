@@ -4,9 +4,9 @@
  * Purpose: Implicit linking for the shwild API.
  *
  * Created: 27th April 2006
- * Updated: 21st December 2023
+ * Updated: 13th July 2024
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,16 +48,18 @@
 #ifndef SHWILD_INCL_SHWILD_H_IMPLICIT_LINK
 #define SHWILD_INCL_SHWILD_H_IMPLICIT_LINK
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version
  */
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MAJOR      1
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MINOR      5
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   5
-# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       17
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_MINOR      6
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_REVISION   1
+# define SHWILD_VER_SHWILD_H_IMPLICIT_LINK_EDIT       18
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -66,6 +68,7 @@
 #ifndef SHWILD_INCL_SHWILD_H_SHWILD
 # include <shwild/shwild.h>
 #endif /* !SHWILD_INCL_SHWILD_H_SHWILD */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * architecture discrimination
@@ -90,6 +93,7 @@
 # define SHWILD_ARCH_IS_X86
 #endif /* _M_?? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -100,12 +104,16 @@
       defined(__unix) || \
       defined(unix__) || \
       defined(__unix__)
+
 # define SHWILD_OS_IS_UNIX
 #elif defined(_WIN32)
+
 # define SHWILD_OS_IS_WINDOWS
 #else
+
 # error Operating system not discriminated
 #endif /* unix */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit linking
@@ -141,9 +149,9 @@
 
   /* major version */
 
-#  define SHWILD_IMPL_LINK_MAJOR_VERSION_s_(x)      #x
-#  define SHWILD_IMPL_LINK_MAJOR_VERSION_s(x)       SHWILD_IMPL_LINK_MAJOR_VERSION_s_(x)
-#  define SHWILD_IMPL_LINK_MAJOR_VERSION            "." SHWILD_IMPL_LINK_MAJOR_VERSION_s(SHWILD_VER_MAJOR)
+#  define SHWILD_IMPL_LINK_MAJOR_VERSION_s_(x)              #x
+#  define SHWILD_IMPL_LINK_MAJOR_VERSION_s(x)               SHWILD_IMPL_LINK_MAJOR_VERSION_s_(x)
+#  define SHWILD_IMPL_LINK_MAJOR_VERSION                    "." SHWILD_IMPL_LINK_MAJOR_VERSION_s(SHWILD_VER_MAJOR)
 
   /* module name */
 
@@ -235,6 +243,8 @@
 #     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc15"
 #    elif _MSC_VER <= 1929
 #     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc16"
+#    elif _MSC_VER <= 1940
+#     define SHWILD_IMPL_LINK_COMPILER_NAME                 "vc17"
 #    else
 #     error Visual C++ version that is >= vc16 is not recognised
 #    endif
@@ -351,6 +361,7 @@
 # endif /* SHWILD_IMPLICIT_LINK_SUPPORT */
 
 #endif /* Win-32 || Win-64 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

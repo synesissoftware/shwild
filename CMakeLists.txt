@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  10th July 2024
+# Updated:  18th October 2024
 #
 # ######################################################################## #
 
@@ -55,9 +55,6 @@ set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}")
-
-
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
 set(CMAKE_C_STANDARD 17)
@@ -67,19 +64,60 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+if(MSVC)
+
+	if(MSVC_VERSION LESS 1930)
+
+		set(CMAKE_C_STANDARD 90)
+		set(CMAKE_CXX_STANDARD 98)
+	endif()
+endif(MSVC)
+
 
 # ##########################################################
-# install
+# dependencies, includes, options
 
-# provides install directory variables as defined by the GNU Coding Standards.
-include(GNUInstallDirs)
+# ################################################
+# includes - 1
+
+include(BuildType)
+include(LanguageFullVersion)
+include(TargetMacros)
 
 
-# ##########################################################
-# dependencies
+# ################################################
+# dependencies and options
+
+option(BUILD_EXAMPLES "Build examples" ON)
+
+option(USE_STLSOFT_PKG "Depend on STLSoft CMake package" OFF)
+
 
 # ######################################
+# dependencies
+#
+# required:
+#
+# optional:
+# - BDUT - used if BDUT_ROOT CMake/environment variable specified, or if
+#    CMake project found;
+# - STLSoft - used if STLSOFT CMake/environment variable specified;
+
+# ############################
 # BDUT
+#
+# By default, shwild relies on the bundled version of BDUT. Alternatively,
+# BDUT can used in the following ways:
+#
+# * if the environment variable BDUT_ROOT is defined, then it is assumed to
+#   specify a directory within which a viable BDUT project resides. In
+#   this case, the CMake variable BDUT_INCLUDE_DIR is defined;
+# * if the CMake variable BDUT_ROOT is defined, then it is assumed to
+#   specify a directory within which a viable BDUT project resides. In this
+#   case, the CMake variable BDUT_INCLUDE_DIR is defined;
+# * if CMake can detect an installation of BDUT, then it will be used;
+#   otherwise
+# * the bundled version of BDUT is used.
 
 if(DEFINED BDUT_ROOT OR DEFINED ENV{BDUT_ROOT})
 
@@ -100,14 +138,23 @@ if(DEFINED BDUT_ROOT OR DEFINED ENV{BDUT_ROOT})
 	include_directories(BEFORE ${BDUT_INCLUDE_DIR})
 
 	message("(after) INCLUDE_DIRECTORIES=${INCLUDE_DIRECTORIES}")
-
 else()
 
-	include_directories(BEFORE include/bundled-software)
+	find_package(BDUT QUIET)
+
+	if(BDUT_FOUND)
+
+		message("-- CMake package BDUT found (version ${BDUT_VERSION})")
+	else(BDUT_FOUND)
+
+		message("-- CMake package BDUT found so using bundled version")
+
+		include_directories(BEFORE include/bundled-software)
+	endif(BDUT_FOUND)
 endif()
 
 
-# ######################################
+# ############################
 # STLSoft
 #
 # By default, shwild does not use STLSoft at all and, in that circumstance,
@@ -126,21 +173,19 @@ endif()
 # * STLSoft is not used, so specify preprocessor object-like macro
 #   `SHWILD_NO_STLSOFT` to elide all dependencies on STLSoft
 
-option(USE_STLSOFT_PKG "Depend on STLSoft CMake package" OFF)
-
 if(DEFINED STLSOFT)
 
-	message("-- STLSOFT provided as CMake variable with value ${STLSOFT}")
+	message("-- STLSOFT provided as CMake variable with value '${STLSOFT}'")
 
 	set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
 elseif(DEFINED ENV{STLSOFT})
 
-	message("-- STLSOFT provided as environment variable with value $ENV{STLSOFT}")
+	message("-- STLSOFT provided as environment variable with value '$ENV{STLSOFT}'")
 
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 elseif(USE_STLSOFT_PKG)
 
-	set(STLSoft_REQUIRED_VERSION_ 1.9.136)
+	set(STLSoft_REQUIRED_VERSION_ 1.11.1)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
@@ -150,48 +195,59 @@ else()
 	add_definitions(-DSHWILD_NO_STLSOFT)
 endif()
 
-if(USE_STLSOFT_PKG)
-
-endif()
-
 if(DEFINED STLSOFT_INCLUDE_DIR)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
 
 
-# ##########################################################
-# build
+# ################################################
+# includes - 2
 
-# load/default `CMAKE_BUILD_TYPE`
-include(BuildType)
+include(CMakePackageConfigHelpers)
+if(BUILD_TESTING)
+
+	include(CTest)
+endif(BUILD_TESTING)
+include(GNUInstallDirs)
+
+
+# ##########################################################
+# targets
+
+# ################################################
+# main library
 
 add_subdirectory(src)
 
 
-# ##########################################################
-# test
+# ################################################
+# examples
 
-include(CTest)
+if(BUILD_EXAMPLES)
+
+	message("-- enabled building of examples ...")
+
+	add_subdirectory(examples)
+else(BUILD_EXAMPLES)
+
+	message("-- disabled building of examples - define BUILD_EXAMPLES to enable")
+endif(BUILD_EXAMPLES)
+
+
+# ################################################
+# tests
+
 
 if(BUILD_TESTING)
 
 	message("-- enabled building of tests ...")
 
 	add_subdirectory(test)
+else(BUILD_TESTING)
+
+	message("-- disabled building of tests - define BUILD_TESTING to enable")
 endif(BUILD_TESTING)
-
-
-# ##########################################################
-# examples
-
-option(BUILD_EXAMPLES "Build examples" ON)
-if(BUILD_EXAMPLES)
-
-	message("-- enabled building of examples ...")
-
-	add_subdirectory(examples)
-endif(BUILD_EXAMPLES)
 
 
 # ##########################################################
@@ -241,6 +297,12 @@ install( FILES
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
+
+
+# ##########################################################
+# completion
+
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}")
 
 
 # ############################## end of file ############################# #

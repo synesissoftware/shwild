@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C-API
  *
  * Created: 27th April 2006
- * Updated: 10th July 2024
+ * Updated: 18th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,7 +19,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -225,6 +228,7 @@ int main(int argc, char* argv[])
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

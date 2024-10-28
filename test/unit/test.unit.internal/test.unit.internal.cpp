@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for internal constructs
  *
  * Created: 17th June 2005
- * Updated: 10th July 2024
+ * Updated: 18th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,6 +33,7 @@
 #endif /* 0 */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -41,6 +42,7 @@
 # pragma warn -8026 /* Suppresses "Functions with exception specifications are not expanded inline" */
 # pragma warn -8004 /* Suppresses "'????' is assigned a value that is never used ..." */
 #endif /* compiler */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -53,6 +55,7 @@ typedef std::shared_ptr<shwild::impl::Match>        Match_ptr;
 typedef std::vector<Match_ptr>                      Matches;
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -62,7 +65,10 @@ static void shwild_tieMatches_(Matches& matches);
 static bool shwild_match_(Matches const& matches, char const* pattern, char const* string);
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char* argv[])
 {
@@ -523,7 +529,10 @@ int main(int argc, char* argv[])
     return r;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementations
+ */
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
 
@@ -544,6 +553,7 @@ void shwild_tieMatches_(Matches& matches)
     }
 }
 #endif /* compiler */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

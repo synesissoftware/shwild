@@ -11,6 +11,13 @@
 /ipch/
 /lib/
 
+/doc/
+/dox/
+/ideas/
+/releases/
+/scratch/
+/temp/
+
 /include/b64/
 /include/xcontract/
 /include/xcover/
@@ -50,12 +57,9 @@ Unicode Release Multithreaded/
 Win32/
 x64/
 
-build/CMakeFiles/
-
 
 # directories (by pattern)
 
-/dox/*/
 /include-*/
 
 
@@ -81,9 +85,6 @@ test/testpatterns.orj
 
 
 # files (by pattern)
-
-RCa0*
-RCb0*
 
 *~
 *.a
@@ -123,4 +124,11 @@ RCb0*
 *.vcxproj*.user
 *.xcuserstate
 *.zip
+
+RCa0*
+RCb0*
+
+build/*.tmplgen
+build/*.tmpl
+build/*.tools.xml
 
