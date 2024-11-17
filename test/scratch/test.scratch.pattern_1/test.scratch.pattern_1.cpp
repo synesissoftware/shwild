@@ -4,7 +4,7 @@
  * Purpose: Scratch-test for shwild C++-API functions
  *
  * Created: 6th January 2008
- * Updated: 11th May 2024
+ * Updated: 17th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -78,11 +78,6 @@ int main(int argc, char* argv[])
 
     try
     {
-#if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-        puts("test.scratch.pattern_1: " __STLSOFT_COMPILER_LABEL_STRING);
-#endif /* debug */
-
         res = main_(argc, argv);
     }
     catch(std::exception& x)
