@@ -1,7 +1,7 @@
 #  **shwild** Changes
 
 
-## 0.12.2 - 18th October 2024
+## 0.12.2 (alpha 2) - 18th October 2024
 
 * fixed dependency on STLSoft;
 * updated **BDUT** to 0.3.1;
