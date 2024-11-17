@@ -3,6 +3,7 @@
 
 | Date                | News Item                                                                       |
 | ------------------- | ------------------------------------------------------------------------------- |
+| 18th November 2024  | Release of **shwild** 0.12.3                                                    |
 | 18th November 2024  | Release of **shwild** 0.12.3 (alpha1)                                           |
 | 18th October 2024   | Release of **shwild** 0.12.2                                                    |
 | 13th July 2024      | Release of **shwild** 0.12.1                                                    |

@@ -1,6 +1,12 @@
 # shwild - History
 
 
+## 18th November 2024 - 0.12.3
+
+* added CMake MSVC MT support;
+* CMake MSVC fix;
+
+
 ## 18th November 2024 - 0.12.3-alpha1
 
 * fixed dependency on STLSoft;

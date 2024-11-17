@@ -53,8 +53,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    15
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        48
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    16
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        49
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -110,12 +110,13 @@
 # define SHWILD_VER_0_12_1                                  0x000c01ff
 # define SHWILD_VER_0_12_2                                  0x000c02ff
 # define SHWILD_VER_0_12_3_a1                               0x000c0341
+# define SHWILD_VER_0_12_3                                  0x000c03ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR                                    0
 #define SHWILD_VER_MINOR                                    12
 #define SHWILD_VER_REVISION                                 3
-#define SHWILD_VER                                          SHWILD_VER_0_12_3_a1
+#define SHWILD_VER                                          SHWILD_VER_0_12_3
 
 
 /* /////////////////////////////////////////////////////////////////////////
