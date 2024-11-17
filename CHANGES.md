@@ -1,7 +1,13 @@
 #  **shwild** Changes
 
 
-## 0.12.3 (alpha 1) - 18th October 2024
+## 0.12.3 - 18th November 2024
+
+* added CMake MSVC MT support;
+* CMake MSVC fix;
+
+
+## 0.12.3 (alpha 1) - 18th November 2024
 
 * fixed dependency on STLSoft;
 * updated **BDUT** to 0.3.1;
