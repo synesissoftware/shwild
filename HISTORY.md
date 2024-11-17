@@ -1,7 +1,7 @@
 # shwild - History
 
 
-## 18th October 2024 - 0.12.2
+## 18th October 2024 - 0.12.2-alpha1
 
 * MinGW compatility;
 * Significant enhancement of use of CMake;

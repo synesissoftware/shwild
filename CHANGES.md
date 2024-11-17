@@ -3,6 +3,12 @@
 
 ## 0.12.2 - 18th October 2024
 
+* fixed dependency on STLSoft;
+* updated **BDUT** to 0.3.1;
+
+
+## 0.12.2 (alpha 1) - 18th October 2024
+
 * MinGW compatility;
 * Significant enhancement of use of CMake;
 
