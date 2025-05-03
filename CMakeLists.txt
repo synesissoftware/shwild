@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  17th November 2024
+# Updated:  3rd May 2025
 #
 # ######################################################################## #
 
@@ -75,6 +75,13 @@ if(MSVC)
 	if(MSVC_USE_MT)
 
 		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+	endif(MSVC_USE_MT)
+else(MSVC)
+
+	if(MSVC_USE_MT)
+
+		# this here just to absorb warning about not using `MSVC_USE_MT` (to
+		# enable **prepare_cmake.sh** to be simple)
 	endif(MSVC_USE_MT)
 endif(MSVC)
 
