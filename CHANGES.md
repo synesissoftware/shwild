@@ -1,6 +1,11 @@
 #  **shwild** Changes
 
 
+## 0.12.4 (alpha 1) - 3rd May 2025
+
+* CMake MSVC warning fix;
+
+
 ## 0.12.3 - 18th November 2024
 
 * added CMake MSVC MT support;

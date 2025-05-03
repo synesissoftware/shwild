@@ -1,6 +1,11 @@
 # shwild - History
 
 
+## 3rd May 2025 - 0.12.4 (alpha 1)
+
+* CMake MSVC warning fix;
+
+
 ## 18th November 2024 - 0.12.3
 
 * added CMake MSVC MT support;
