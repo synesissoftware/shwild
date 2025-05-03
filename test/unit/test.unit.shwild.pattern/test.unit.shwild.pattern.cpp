@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API classes
  *
  * Created: 28th April 2006
- * Updated: 18th October 2024
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -168,7 +168,7 @@ static int main_(int /* argc */, char* argv[])
             BDUT_ASSERT_FALSE(pattern2.match("accm"));
             BDUT_ASSERT_FALSE(pattern2.match("abcn"));
         }
-        catch(shwild::PatternException&)
+        catch (shwild::PatternException&)
         {
         }
     }
@@ -193,7 +193,7 @@ static int main_(int /* argc */, char* argv[])
             BDUT_ASSERT_FALSE(pattern2.match("aCcJ"));
             BDUT_ASSERT_FALSE(pattern2.match("abcn"));
         }
-        catch(shwild::PatternException&)
+        catch (shwild::PatternException&)
         {
         }
     }
@@ -222,7 +222,7 @@ static int main_(int /* argc */, char* argv[])
             BDUT_ASSERT_FALSE(pattern2.match("abdc"));
             BDUT_ASSERT_FALSE(pattern2.match("abc?"));
         }
-        catch(shwild::PatternException&)
+        catch (shwild::PatternException&)
         {
         }
     }
@@ -249,7 +249,7 @@ static int main_(int /* argc */, char* argv[])
             BDUT_ASSERT_FALSE(pattern2.match("a-c-"));
             BDUT_ASSERT_FALSE(pattern2.match("abce"));
         }
-        catch(shwild::PatternException&)
+        catch (shwild::PatternException&)
         {
         }
     }
@@ -274,7 +274,7 @@ static int main_(int /* argc */, char* argv[])
             BDUT_ASSERT_TRUE(pattern2.match("accm"));
             BDUT_ASSERT_FALSE(pattern2.match("abcn"));
         }
-        catch(shwild::PatternException&)
+        catch (shwild::PatternException&)
         {
         }
     }
@@ -304,13 +304,13 @@ int main(int argc, char* argv[])
     {
         iRet = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
 
         iRet = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         cerr << "Unhandled unknown error" << endl;
 
