@@ -1,7 +1,30 @@
 #  **shwild** Changes
 
 
-## 13th July 2024 - 0.12.1
+## 0.12.4 (alpha 1) - 3rd May 2025
+
+* CMake MSVC warning fix;
+
+
+## 0.12.3 - 18th November 2024
+
+* added CMake MSVC MT support;
+* CMake MSVC fix;
+
+
+## 0.12.3 (alpha 1) - 18th November 2024
+
+* fixed dependency on STLSoft;
+* updated **BDUT** to 0.3.1;
+
+
+## 0.12.2 - 18th October 2024
+
+* MinGW compatility;
+* Significant enhancement of use of CMake;
+
+
+## 0.12.1 - 13th July 2024
 
 * Fully optional compatibility with STLSoft
 * CMake project renamed to `shwild::core`
@@ -9,10 +32,15 @@
 * Compatibility with Visual C++ 17
 
 
-## 10th July 2024 - 0.11.8
+## 0.11.8 - 10th July 2024
 
 * Boilerplate files improvements
 * Moved bundled **BDUT** header(s) into separate directory
+
+
+## 0.11.8 - 10th July 2024
+
+* Boilerplate files improvements
 
 
 ## 0.11.7 - 12th May 2024

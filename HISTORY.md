@@ -1,6 +1,29 @@
 # shwild - History
 
 
+## 3rd May 2025 - 0.12.4 (alpha 1)
+
+* CMake MSVC warning fix;
+
+
+## 18th November 2024 - 0.12.3
+
+* added CMake MSVC MT support;
+* CMake MSVC fix;
+
+
+## 18th November 2024 - 0.12.3-alpha1
+
+* fixed dependency on STLSoft;
+* updated **BDUT** to 0.3.1;
+
+
+## 18th October 2024 - 0.12.2
+
+* MinGW compatility;
+* Significant enhancement of use of CMake;
+
+
 ## 13th July 2024 - 0.12.1
 
 * Fully optional compatibility with STLSoft
@@ -13,6 +36,11 @@
 
 * Boilerplate files improvements
 * Moved bundled **BDUT** header(s) into separate directory
+
+
+## 10th July 2024 - 0.11.8
+
+* Boilerplate files improvements
 
 
 ## 12th May 2024 - 0.11.7

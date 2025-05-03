@@ -1,26 +1,2 @@
-
-add_executable(example.c.1
-	example.c.1.c
-)
-
-target_link_libraries(example.c.1
-	PRIVATE
-		core
-)
-
-target_compile_options(example.c.1 PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-	>
-	$<$<CXX_COMPILER_ID:GNU>:
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
-
-
-# ############################## end of file ############################# #
-
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_automated_test_program(example.c.1 example.c.1.c)
