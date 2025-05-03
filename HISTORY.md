@@ -1,6 +1,12 @@
 # shwild - History
 
 
+## 3rd May 2025 - 0.12.4
+
+* Compatibility with older compilers (incl. Visual C++ 14);
+* Compatibility with older operating systems (incl. Windows Vista);
+
+
 ## 3rd May 2025 - 0.12.4 (alpha 1)
 
 * CMake MSVC warning fix;

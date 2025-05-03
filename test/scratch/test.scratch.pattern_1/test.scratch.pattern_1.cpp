@@ -4,7 +4,7 @@
  * Purpose: Scratch-test for shwild C++-API functions
  *
  * Created: 6th January 2008
- * Updated: 17th November 2024
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,18 @@
     defined(_DEBUG)
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * warning suppression
+ */
+
+#if 0
+#elif defined(_MSC_VER)
+# if _MSC_VER <= 1900
+#  pragma warning(disable : 4702)
+# endif
+#endif /* compiler */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,13 +99,13 @@ int main(int argc, char* argv[])
     {
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 

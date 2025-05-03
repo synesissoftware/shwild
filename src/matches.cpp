@@ -5,9 +5,9 @@
  *          classes
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 7th September 2024
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -251,9 +251,10 @@ bool MatchRange::matchContents(char ch) const
 
     typedef char* (*pfn_t)(char const*, int);
 
-    pfn_t   pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
-                        ? shwild_strichr
-                        : shwild_strchr;
+    pfn_t const pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
+                            ? shwild_strichr
+                            : shwild_strchr
+                            ;
 
     return NULL != (*pfn)(m_chars.c_str(), ch);
 }
@@ -421,11 +422,12 @@ bool MatchLiteral::match(char const* first, char const* last) const
 
     typedef int (*pfn_t)(char const*, char const*, size_t);
 
-    const size_t    len =   m_contents.length();
+    size_t const    len =   m_contents.length();
 
-    pfn_t pfn = (m_flags & SHWILD_F_IGNORE_CASE)
-                    ? shwild_strnicmp
-                    : shwild_strncmp;
+    pfn_t const     pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
+                                ? shwild_strnicmp
+                                : shwild_strncmp
+                                ;
 
     if (static_cast<size_t>(last - first) < len)
     {
@@ -460,9 +462,10 @@ char const* MatchLiteral::nextSub(char const* first, char const* last, size_t* n
     typedef char* (*pfn_t)(char const*, char const*);
 
     char const* next;
-    pfn_t       pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
+    pfn_t const pfn =   (m_flags & SHWILD_F_IGNORE_CASE)
                             ? shwild_stristr
-                            : shwild_strstr;
+                            : shwild_strstr
+                            ;
 
     if (NULL == (next = (*pfn)(first, m_contents.c_str())))
     {

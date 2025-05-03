@@ -4,9 +4,9 @@
  * Purpose: C++ root file for the shwild C++ API
  *
  * Created: 17th June 2005
- * Updated: 13th July 2024
+ * Updated: 3rd May 2025
  *
- * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2025, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
-# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  3
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      14
+# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  4
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      16
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -187,7 +187,7 @@ public:
     /// Releases any resources associated with the instance
     ~Pattern();
 
-# if __cplusplus >= 201103L
+#if __cplusplus >= 201103L
     /// Move constructor
     Pattern(class_type&& rhs)
         : m_hCompiledPattern(rhs.m_hCompiledPattern)
@@ -196,10 +196,14 @@ public:
         rhs.m_hCompiledPattern = nullptr;
         rhs.m_numMatches = -1;
     }
-# endif /* C++-11+ */
+#endif /* C++-11+ */
 private:
+#if !defined(_MSC_VER) ||\
+    _MSC_VER > 1900
     Pattern(class_type const&);
+#endif
     void operator =(class_type const&);
+
 /// @}
 
 /// \name Operations

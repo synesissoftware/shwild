@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API functions
  *
  * Created: 28th April 2006
- * Updated: 18th October 2024
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,6 +47,9 @@ using std::endl;
 #elif defined(__INTEL_COMPILER)
 # pragma warning(disable : 981)     /* Suppresses: "operands are evaluated in unspecified order" */
 #elif defined(_MSC_VER)
+# if _MSC_VER <= 1900
+#  pragma warning(disable : 4702)
+# endif
 # pragma warning(disable : 4189)    /* Suppresses: "'????' : local variable is initialized but not referenced" */
 #endif /* compiler */
 
@@ -251,13 +254,13 @@ int main(int argc, char* argv[])
     {
         iRet = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
 
         iRet = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         cerr << "Unhandled unknown error" << endl;
 
