@@ -51,8 +51,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MAJOR     1
 # define SHWILD_VER_SHWILD_HPP_SHWILD_MINOR     2
-# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  3
-# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      15
+# define SHWILD_VER_SHWILD_HPP_SHWILD_REVISION  4
+# define SHWILD_VER_SHWILD_HPP_SHWILD_EDIT      16
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -198,7 +198,10 @@ public:
     }
 #endif /* C++-11+ */
 private:
+#if !defined(_MSC_VER) ||\
+    _MSC_VER > 1900
     Pattern(class_type const&);
+#endif
     void operator =(class_type const&);
 
 /// @}

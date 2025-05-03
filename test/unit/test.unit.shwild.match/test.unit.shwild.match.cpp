@@ -47,6 +47,9 @@ using std::endl;
 #elif defined(__INTEL_COMPILER)
 # pragma warning(disable : 981)     /* Suppresses: "operands are evaluated in unspecified order" */
 #elif defined(_MSC_VER)
+# if _MSC_VER <= 1900
+#  pragma warning(disable : 4702)
+# endif
 # pragma warning(disable : 4189)    /* Suppresses: "'????' : local variable is initialized but not referenced" */
 #endif /* compiler */
 
