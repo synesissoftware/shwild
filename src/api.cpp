@@ -4,9 +4,9 @@
  * Purpose: Implementation of the shwild API
  *
  * Created: 17th June 2005
- * Updated: 18th October 2024
+ * Updated: 3rd May 2025
  *
- * Copyright (c) 2005-2024, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2025, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -259,13 +259,13 @@ int shwild_match_s(shwild_slice_t const* pattern, shwild_slice_t const* string, 
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         SHWILD_COVER_MARK_LINE();
 
         return SHWILD_RC_ALLOC_ERROR;
     }
-    catch(std::exception&)
+    catch (std::exception&)
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -311,14 +311,14 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
 #if defined(STLSOFT_CF_EXCEPTION_SUPPORT)
         }
 # if defined(STLSOFT_CF_THROW_BAD_ALLOC)
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {
             SHWILD_COVER_MARK_LINE();
 
             pm = NULL;
         }
 # endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-        catch(std::exception&)
+        catch (std::exception&)
         {
             SHWILD_COVER_MARK_LINE();
 
@@ -355,13 +355,13 @@ int shwild_compile_pattern_s(shwild_slice_t const* pattern, unsigned flags, shwi
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         SHWILD_COVER_MARK_LINE();
 
         return SHWILD_RC_ALLOC_ERROR;
     }
-    catch(std::exception&)
+    catch (std::exception&)
     {
         SHWILD_COVER_MARK_LINE();
 
@@ -400,13 +400,13 @@ int shwild_match_pattern_s(shwild_handle_t hCompiledPattern, shwild_slice_t cons
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         SHWILD_COVER_MARK_LINE();
 
         return SHWILD_RC_ALLOC_ERROR;
     }
-    catch(std::exception&)
+    catch (std::exception&)
     {
         SHWILD_COVER_MARK_LINE();
 

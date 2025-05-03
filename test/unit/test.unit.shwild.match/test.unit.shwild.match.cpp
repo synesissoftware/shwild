@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API functions
  *
  * Created: 28th April 2006
- * Updated: 18th October 2024
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -251,13 +251,13 @@ int main(int argc, char* argv[])
     {
         iRet = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
 
         iRet = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         cerr << "Unhandled unknown error" << endl;
 

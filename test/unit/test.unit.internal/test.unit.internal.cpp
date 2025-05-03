@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for internal constructs
  *
  * Created: 17th June 2005
- * Updated: 18th October 2024
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -508,14 +508,14 @@ int main(int argc, char* argv[])
         r = main_(argc, argv);
     }
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         r = EXIT_FAILURE;
     }
 #endif /* compiler */
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 
