@@ -197,7 +197,14 @@ elseif(DEFINED ENV{STLSOFT})
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 elseif(USE_STLSOFT_PKG)
 
-	set(STLSoft_REQUIRED_VERSION_ 1.11.1)
+	# NOTE: if you wish to use STLSoft 1.9, then you will need to:
+	#
+	# - limit CMAKE_C_STANDARD to 17;
+	# - limit CMAKE_CXX_STANDARD to 14;
+	#
+	# set(STLSoft_REQUIRED_VERSION_ 1.9.136)
+
+	set(STLSoft_REQUIRED_VERSION_ 1.11)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 

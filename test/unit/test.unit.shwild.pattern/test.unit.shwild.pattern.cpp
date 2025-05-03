@@ -198,7 +198,7 @@ static int main_(int /* argc */, char* argv[])
         }
     }
 
-    /* Matching ranges with cross-case continuum. */
+    /* Matching ranges with wildcards as literals. */
     {
         const shwild::Pattern   pattern1("a[*]c[?]");
 

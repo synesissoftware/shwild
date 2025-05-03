@@ -2,7 +2,7 @@
  */
 /*
  * Created: 24th November 2023
- * Updated: 24th November 2023
+ * Updated: 6th September 2024
  */
 
 #include <shwild/shwild.h>
@@ -16,8 +16,8 @@
 /* ////////////////////////////////////////////////////////////////////// */
 
 int list_for_pattern(
-        char const* directory
-    ,   char const* pattern
+    char const* directory
+,   char const* pattern
 )
 {
     DIR* d = opendir(directory);
