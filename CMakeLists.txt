@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  3rd May 2025
+# Updated:  6th May 2025
 #
 # ######################################################################## #
 
@@ -98,11 +98,18 @@ include(TargetMacros)
 
 
 # ################################################
-# dependencies and options
+# dependencies, features, and options
+
+# ######################################
+# options
 
 option(BUILD_EXAMPLES "Build examples" ON)
 
 option(USE_STLSOFT_PKG "Depend on STLSoft CMake package" OFF)
+
+
+# ######################################
+# features
 
 
 # ######################################
@@ -235,7 +242,7 @@ include(GNUInstallDirs)
 # targets
 
 # ################################################
-# main library
+# main libraries
 
 add_subdirectory(src)
 
@@ -321,7 +328,7 @@ install( FILES
 # ##########################################################
 # completion
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}")
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}, with build type ${CMAKE_BUILD_TYPE}")
 
 
 # ############################## end of file ############################# #
