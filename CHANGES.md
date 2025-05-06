@@ -1,6 +1,12 @@
 #  **shwild** Changes
 
 
+## 6th May 2025 - 0.12.5
+
+* Miscellaneous minor CMake driver script improvements;
+* updated **BDUT** to 0.3.2-rc1;
+
+
 ## 3rd May 2025 - 0.12.4
 
 * Compatibility with older compilers (incl. Visual C++ 14);
