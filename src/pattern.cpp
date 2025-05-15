@@ -4,9 +4,9 @@
  * Purpose: C string object for shwild implementation
  *
  * Created: 17th June 2005
- * Updated: 21st December 2023
+ * Updated: 15th May 2025
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Sean Kelly
+ * Copyright (c) 2005-2025, Matthew Wilson and Sean Kelly
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -259,8 +259,10 @@ static int get_literal(shwild_slice_t& content, node_buffer_t& scratch, char con
 
     SHWILD_COVER_MARK_LINE();
 
+    SHWILD_ASSERT(scratch.size() >= 1);
+
     content.len =   scratch.size() - 1;
-    content.ptr =   &scratch[1];
+    content.ptr =   &scratch[0] + 1;
 
     *len = static_cast<size_t>(pos - buf);
 
@@ -603,8 +605,10 @@ int get_node(node_t* node, node_buffer_t& scratch, char const* buf, size_t* len,
 
                 scratch.swap(xstr);
 
+                SHWILD_ASSERT(scratch.size() >= 1);
+
                 node->data.len   =   scratch.size() - 1;
-                node->data.ptr   =   &scratch[1];
+                node->data.ptr   =   &scratch[0] + 1;
             }
         }
         break;
