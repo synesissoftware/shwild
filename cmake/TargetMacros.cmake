@@ -57,6 +57,7 @@ function(define_example_program program_name entry_point_source_name)
 
 	target_link_libraries(${program_name}
 		core
+		$<$<BOOL:${BDUT_FOUND}>:BDUT::BDUT>
 		$<$<BOOL:${STLSoft_FOUND}>:STLSoft::STLSoft>
 	)
 
