@@ -3,6 +3,7 @@
 
 | Date                | News Item                                                                       |
 | ------------------- | ------------------------------------------------------------------------------- |
+| 15th May 2025       | Release of **shwild** 0.12.6                                                    |
 | 6th May 2025        | Release of **shwild** 0.12.5                                                    |
 | 3rd May 2025        | Release of **shwild** 0.12.4                                                    |
 | 3rd May 2025        | Release of **shwild** 0.12.4 (alpha1)                                           |

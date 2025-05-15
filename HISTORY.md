@@ -1,6 +1,14 @@
 # shwild - History
 
 
+## 15th May 2025 - 0.12.6
+
+* Fixing (_very_ old) offset defect that manifests when building without STLSoft;
+* Now defines `SHWILD_VER_PATCH` and adjusted **CMakeLists.txt**;
+* Added **libver** scratch test;
+* Updated **BDUT** to 0.3.2;
+
+
 ## 6th May 2025 - 0.12.5
 
 * Miscellaneous minor CMake driver script improvements;
