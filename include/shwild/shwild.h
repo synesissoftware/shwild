@@ -4,7 +4,7 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 6th May 2025
+ * Updated: 15th May 2025
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
@@ -53,8 +53,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    19
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        53
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    20
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        54
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /** \def SHWILD_VER_MAJOR
@@ -114,12 +114,23 @@
 # define SHWILD_VER_0_12_4_a1                               0x000c0441
 # define SHWILD_VER_0_12_4                                  0x000c04ff
 # define SHWILD_VER_0_12_5                                  0x000c05ff
+# define SHWILD_VER_0_12_6                                  0x000c06ff
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 #define SHWILD_VER_MAJOR                                    0
 #define SHWILD_VER_MINOR                                    12
-#define SHWILD_VER_REVISION                                 5
-#define SHWILD_VER                                          SHWILD_VER_0_12_5
+#define SHWILD_VER_PATCH                                    6
+#define SHWILD_VER_ALPHABETA                                0xff
+
+#define SHWILD_VER \
+    (0\
+        |   (   SHWILD_VER_MAJOR        << 24   ) \
+        |   (   SHWILD_VER_MINOR        << 16   ) \
+        |   (   SHWILD_VER_PATCH        <<  8   ) \
+        |   (   SHWILD_VER_ALPHABETA    <<  0   ) \
+    )
+
+#define SHWILD_VER_REVISION                                 SHWILD_VER_PATCH
 
 
 /* /////////////////////////////////////////////////////////////////////////
