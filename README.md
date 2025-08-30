@@ -1,8 +1,15 @@
 # shwild <!-- omit in toc -->
+
+![Language](https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![GitHub release](https://img.shields.io/github/v/release/synesissoftware/shwild.svg)](https://github.com/synesissoftware/shwild/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/shwild)](https://github.com/synesissoftware/shwild/commits/master)
+[![CMake on multiple platforms](https://github.com/synesissoftware/shwild/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/synesissoftware/shwild/actions/workflows/cmake-multi-platform.yml)
+
 **SH**ell-compatible **WILD**cards
 
-## Table of Contents <!-- omit in toc -->
 
+## Table of Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
 - [Installation](#installation)
