@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for internal constructs
  *
  * Created: 17th June 2005
- * Updated: 3rd May 2025
+ * Updated: 30th August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -70,11 +70,8 @@ static bool shwild_match_(Matches const& matches, char const* pattern, char cons
  * main()
  */
 
-static int main_(int /* argc */, char* argv[])
+static int main_(int argc, char* argv[])
 {
-    char const* const program_name = argv[0];
-
-
     {
         {
             static const char   PATTERN[]   =   "abc*";
@@ -484,10 +481,7 @@ static int main_(int /* argc */, char* argv[])
 #endif /* compiler */
 
 
-    fprintf(stdout, "%s: ALL TESTS PASSED\n", program_name);
-
-
-    return EXIT_SUCCESS;
+    return BDUT_TESTS_PASSED(argc, argv);
 }
 
 int main(int argc, char* argv[])

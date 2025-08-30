@@ -1,6 +1,11 @@
 #  **shwild** Changes
 
 
+## 30th August 2025 - 0.12.7
+
+* updated **BDUT** to 0.4.0;
+
+
 ## 15th May 2025 - 0.12.6
 
 * Fixing (_very_ old) offset defect that manifests when building without STLSoft;
