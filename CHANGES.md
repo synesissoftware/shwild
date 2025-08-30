@@ -3,6 +3,7 @@
 
 ## 30th August 2025 - 0.12.7
 
+* refactoring CMake support files;
 * removed Visual Studio project/solution/workspace files;
 * ignores;
 
