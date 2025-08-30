@@ -29,8 +29,13 @@ if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 	add_compile_options("/Zc:__cplusplus")
 endif()
 
-add_subdirectory(scratch)
-add_subdirectory(unit)
+foreach(d component performance scratch unit)
+
+	if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${d}")
+
+		add_subdirectory(${d})
+	endif()
+endforeach()
 
 
 # ############################## end of file ############################# #
