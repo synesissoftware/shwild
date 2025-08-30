@@ -3,8 +3,9 @@
 
 ## 30th August 2025 - 0.12.7
 
-* refactoring CMake support files;
+* updated **BDUT** to 0.4.0;
 * removed Visual Studio project/solution/workspace files;
+* refactoring CMake support files;
 * ignores;
 
 
