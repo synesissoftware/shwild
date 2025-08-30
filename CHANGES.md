@@ -1,6 +1,16 @@
 #  **shwild** Changes
 
 
+## 30th August 2025 - 0.12.7
+
+* GitHub Actions;
+* CTest compatibility;
+* updated **BDUT** to 0.4.0;
+* removed Visual Studio project/solution/workspace files;
+* refactoring CMake support files;
+* ignores;
+
+
 ## 15th May 2025 - 0.12.6
 
 * Fixing (_very_ old) offset defect that manifests when building without STLSoft;

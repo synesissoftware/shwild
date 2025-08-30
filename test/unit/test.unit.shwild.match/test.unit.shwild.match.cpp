@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for shwild C++-API functions
  *
  * Created: 28th April 2006
- * Updated: 3rd May 2025
+ * Updated: 30th August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,11 +58,8 @@ using std::endl;
  * main()
  */
 
-static int main_(int /* argc */, char* argv[])
+static int main_(int argc, char* argv[])
 {
-    char const* const program_name = argv[0];
-
-
     /* Matching literal strings. */
     {
         const char  pattern[]   =   "abcd";
@@ -230,10 +227,7 @@ static int main_(int /* argc */, char* argv[])
     }
 
 
-    fprintf(stdout, "%s: ALL TESTS PASSED\n", program_name);
-
-
-    return EXIT_SUCCESS;
+    return BDUT_TESTS_PASSED(argc, argv);
 }
 
 int main(int argc, char* argv[])
