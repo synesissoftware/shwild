@@ -3,21 +3,28 @@
 SETLOCAL
 
 SET SCRIPT_DIRECTORY=%~dp0
+SET SCRIPT_PATH_DOC=%~n0[%~x0]
+IF DEFINED SIS_CMAKE_BUILD_DIR (
+
+    SET CMAKE_DIR=%SIS_CMAKE_BUILD_DIR%
+) ELSE (
+
+    SET CMAKE_DIR=%SCRIPT_DIRECTORY%_build
+)
 
 FOR %%a IN (%*) DO (
 	IF /I {--help}=={%%a} (
+		IF EXIST "%SCRIPT_DIRECTORY%.sis\script_info_lines.txt" (
+
+					type "%SCRIPT_DIRECTORY%.sis\script_info_lines.txt"
+		)
 		ECHO ^
-shwild is a small, standalone library, implemented in C++ with a C and a C++ API, that provides shell-compatible wildcard matching ^
 
-Copyright ^(c^) 2019-2024, Matthew Wilson and Synesis Information Systems ^
-
-Copyright ^(c^) 2005-2023, Matthew Wilson and Sean Kelly ^
-
-Runs all ^(matching^) unit-test programs ^
+Runs all ^(matching^) component-test and unit-test programs ^
 
 ^
 
-%SCRIPT_DIRECTORY% [ ... flags/options ... ] ^
+%SCRIPT_PATH_DOC% [ ... flags/options ... ] ^
 
 ^
 
@@ -44,8 +51,14 @@ Flags/options: ^
 	)
 )
 
+if NOT EXIST "%CMAKE_DIR%" (
 
-FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S %SCRIPT_DIRECTORY% ^| FINDSTR /I test.*unit.*\.exe$`) DO (
+    ECHO "CMake build directory '%CMAKE_DIR%' does not exist"
+
+    EXIT /B 1
+)
+
+FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S %CMAKE_DIR% ^| FINDSTR /I test.*unit.*\.exe$`) DO (
 	ECHO .
 	ECHO executing %%f
 	%%f

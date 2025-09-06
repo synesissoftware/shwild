@@ -7,8 +7,9 @@ CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 [[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
 MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
-CMakeVerbose=
+ListOnly=0
 RunMake=1
+Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
@@ -17,19 +18,24 @@ RunMake=1
 while [[ $# -gt 0 ]]; do
 
   case $1 in
+    --list-only|-l)
+
+      ListOnly=1
+      ;;
     --no-make|-M)
 
       RunMake=0
       ;;
-    --verbose|-V)
+    --verbosity)
 
-      CMakeVerbose=--verbose
+      shift
+      Verbosity=$1
       ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs CMake's CTest test program(s)
+Runs all (matching) performance-test and scratch-test programs
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -37,13 +43,16 @@ Flags/options:
 
     behaviour:
 
+    -l
+    --list-only
+        lists the target programs but does not execute them
+
     -M
     --no-make
         does not execute CMake and make before running tests
 
-    -V
-    --verbose
-        verbose test output
+    --verbosity <verbosity>
+        specifies an explicit verbosity for the unit-test(s)
 
 
     standard flags:
@@ -74,16 +83,19 @@ status=0
 
 if [ $RunMake -ne 0 ]; then
 
-  echo "Executing build (via command \`$MakeCmd\`) and then running all component and unit test programs"
+  if [ $ListOnly -eq 0 ]; then
 
-  mkdir -p $CMakeDir || exit 1
+    echo "Executing build (via command \`$MakeCmd\`) and then running all scratch test programs"
 
-  cd $CMakeDir
+    mkdir -p $CMakeDir || exit 1
 
-  $MakeCmd
-  status=$?
+    cd $CMakeDir
 
-  cd ->/dev/null
+    $MakeCmd
+    status=$?
+
+    cd ->/dev/null
+  fi
 else
 
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
@@ -94,10 +106,36 @@ fi
 
 if [ $status -eq 0 ]; then
 
-  echo "Running CMake tests"
+  if [ $ListOnly -ne 0 ]; then
 
-  ctest --test-dir $CMakeDir $CMakeVerbose
-  status=$?
+    echo "Listing all scratch (and performance) test programs"
+  else
+
+    echo "Running all scratch (and performance) test programs"
+  fi
+
+  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)
+  do
+
+    if [ $ListOnly -ne 0 ]; then
+
+      echo "would execute $f:"
+
+      continue
+    fi
+
+    if [ $Verbosity -ge 3 ]; then
+
+      echo
+    fi
+    if [ $Verbosity -ge 2 ]; then
+
+      echo "executing $f:"
+    fi
+
+    # NOTE: we do not break on fail, because, this being a unit-testing library, some tests actually fail intentionally
+    $f
+  done
 fi
 
 exit $status
