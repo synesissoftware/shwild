@@ -85,7 +85,7 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all scratch test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all scratch (and performance) test programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -133,8 +133,13 @@ if [ $status -eq 0 ]; then
       echo "executing $f:"
     fi
 
-    # NOTE: we do not break on fail, because, this being a unit-testing library, some tests actually fail intentionally
-    $f
+    if $f; then
+
+      :
+    else
+
+      status=$?
+    fi
   done
 fi
 

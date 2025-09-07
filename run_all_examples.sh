@@ -105,7 +105,7 @@ if [ $status -eq 0 ]; then
     echo "Running all example programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'example.c.*' -o -name 'example.cpp.*' ')' -exec test -x {} \; -print)
+  for f in $(find $CMakeDir/examples -type f -exec test -x {} \; -print)
   do
 
     if [ $ListOnly -ne 0 ]; then
@@ -118,7 +118,6 @@ if [ $status -eq 0 ]; then
     echo
     echo "executing $f:"
 
-    # NOTE: we do not break on fail, because, this being a unit-testing library, the scratch-tests actually fail
     $f
   done
 fi
