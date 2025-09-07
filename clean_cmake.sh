@@ -37,6 +37,7 @@ EOF
       exit 0
       ;;
     *)
+
       >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
 
       exit 1
@@ -74,6 +75,7 @@ else
     status=$?
 
     cd ->/dev/null
+
     exit $status
   fi
 fi

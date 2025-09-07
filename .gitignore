@@ -18,30 +18,26 @@
 /scratch/
 /temp/
 
-/include/b64/
-/include/xcontract/
-/include/xcover/
-/include/xtests/
-
-/src/b64/
-/src/xcontract/
-/src/xcover/
-/src/xtests/
-
+Debug Multithreaded DLL/
 Debug Multithreaded Dll/
 Debug Multithreaded/
 Debug/
+DebugDLL/
 DebugDll/
 DebugMTDLL/
+DebugMTDll/
 DebugMt/
 DebugNox/
 DebugUNIX/
 DebugUnix/
+Release Multithreaded DLL/
 Release Multithreaded Dll/
 Release Multithreaded/
 Release/
+ReleaseDLL/
 ReleaseDll/
 ReleaseMTDLL/
+ReleaseMTDll/
 ReleaseMt/
 ReleaseNox/
 ReleaseUnix/
@@ -49,8 +45,10 @@ UDebug/
 UDebugMt/
 URelease/
 UReleaseMt/
+Unicode Debug Multithreaded DLL/
 Unicode Debug Multithreaded Dll/
 Unicode Debug Multithreaded/
+Unicode Release Multithreaded DLL/
 Unicode Release Multithreaded Dll/
 Unicode Release Multithreaded/
 
@@ -73,14 +71,12 @@ list_changes.cmd
 logging-bailout.txt
 prepare.cmd
 sh.exe.stackdump
+tidydir.cmd
 update_deps.cmd
 
-build/CMakeCache.txt
 build/makefile.tmpl
 build/makefile.tools.xml
 build/shwild.tmplgen
-include/stlsoft/dos2unix.has.been.performed
-include/stlsoft/internal/dos2unix.has.been.performed
 test/testpatterns.orj
 
 
