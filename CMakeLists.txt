@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  15th May 2025
+# Updated:  7th September 2025
 #
 # ######################################################################## #
 
@@ -242,6 +242,36 @@ include(GNUInstallDirs)
 # targets
 
 # ################################################
+# custom definitions
+
+if(UNIX)
+
+	set(_BUILD_AS_UNIX 1)
+
+	message("-- Operating system Unix")
+else(UNIX)
+
+	if(WIN32)
+
+		if(USE_UNIXEM)
+
+			set(_BUILD_AS_UNIX 1)
+
+			message("-- Operating system Unix (synthesised on Windows)")
+		else(USE_UNIXEM)
+
+			set(_BUILD_AS_WIN32 1)
+
+			message("-- Operating system Windows")
+		endif(USE_UNIXEM)
+	else(WIN32)
+
+		message("-- Operating system unknown")
+	endif(WIN32)
+endif(UNIX)
+
+
+# ################################################
 # main libraries
 
 add_subdirectory(src)
@@ -263,7 +293,6 @@ endif(BUILD_EXAMPLES)
 
 # ################################################
 # tests
-
 
 if(BUILD_TESTING)
 
@@ -318,7 +347,7 @@ install(EXPORT project-targets
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
-install( FILES
+install(FILES
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
