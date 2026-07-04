@@ -1,13 +1,26 @@
-# shwild - TODO list
+# shwild - TODO <!-- omit in toc -->
 
-## shwild 0.11.x TODOs:
+
+## Table of Contents <!-- omit in toc -->
+
+- [Functional improvements](#functional-improvements)
+- [Performance improvements](#performance-improvements)
+- [Packaging improvements](#packaging-improvements)
+
+
+## Functional improvements
 
 * \<none>
 
-## shwild 0.12+ TODOs:
+
+## Performance improvements
+
+* \<none>
+
+
+## Packaging improvements
 
 * \<none>
 
 
 <!-- ########################### end of file ########################### -->
-
