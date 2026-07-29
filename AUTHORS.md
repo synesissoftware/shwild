@@ -1,4 +1,4 @@
-# shwild - Authors
+# shwild - Authors <!-- omit in toc -->
 
 ## Major Contributors:
 

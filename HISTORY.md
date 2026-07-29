@@ -1,4 +1,4 @@
-# shwild - History
+# shwild - History <!-- omit in toc -->
 
 
 ## 15th May 2025 - 0.12.6

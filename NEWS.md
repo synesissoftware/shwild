@@ -1,4 +1,4 @@
-# shwild - News
+# shwild - News <!-- omit in toc -->
 
 
 | Date                | News Item                                                                       |

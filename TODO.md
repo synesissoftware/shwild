@@ -1,4 +1,4 @@
-# shwild - TODO list
+# shwild - TODO list <!-- omit in toc -->
 
 ## shwild 0.11.x TODOs:
 
