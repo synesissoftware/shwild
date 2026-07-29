@@ -1,13 +1,14 @@
-# shwild - TODO list <!-- omit in toc -->
+# shwild - TODO <!-- omit in toc -->
 
-## shwild 0.11.x TODOs:
 
-* \<none>
+## Functional improvements
 
-## shwild 0.12+ TODOs:
+\<none>
 
-* \<none>
+
+## Performance improvements
+
+\<none>
 
 
 <!-- ########################### end of file ########################### -->
-
