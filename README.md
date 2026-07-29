@@ -1,5 +1,8 @@
 # shwild <!-- omit in toc -->
 
+**SH**ell-compatible **WILD**cards
+
+
 ![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
@@ -7,23 +10,21 @@
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/shwild)](https://github.com/synesissoftware/shwild/commits/master)
 [![CMake on multiple platforms](https://github.com/synesissoftware/shwild/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/synesissoftware/shwild/actions/workflows/cmake-multi-platform.yml)
 
-**SH**ell-compatible **WILD**cards
-
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Components](#components)
-  - [C API / core library](#c-api--core-library)
-  - [C++ API](#c-api)
-- [Examples](#examples)
-- [Project Information](#project-information)
-  - [Where to get help](#where-to-get-help)
-  - [Contribution guidelines](#contribution-guidelines)
-  - [Dependencies](#dependencies)
-  - [Related projects](#related-projects)
-  - [License](#license)
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Components](#components)
+	* [C API / core library](#c-api--core-library)
+	* [C++ API](#c-api)
+* [Examples](#examples)
+* [Project Information](#project-information)
+	* [Where to get help](#where-to-get-help)
+	* [Contribution guidelines](#contribution-guidelines)
+	* [Dependencies](#dependencies)
+	* [Related projects](#related-projects)
+	* [License](#license)
 
 
 ## Introduction
@@ -101,7 +102,6 @@ assert( pattern.match("X0"));
 assert( pattern.match("X8abc"));
 assert(!pattern.match("X"));
 assert(!pattern.match("Y0"));
-
 ```
 
 
@@ -157,4 +157,3 @@ Projects in which **shwild** is used for testing include:
 
 
 <!-- ########################### end of file ########################### -->
-
