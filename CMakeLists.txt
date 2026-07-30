@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  7th September 2025
+# Updated:  30th July 2026
 #
 # ######################################################################## #
 
@@ -66,6 +66,11 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 if(MSVC)
 
+	if(MSVC_VERSION LESS 1800)
+
+		add_compile_options("/wd4996")
+	endif()
+
 	if(MSVC_VERSION LESS 1930)
 
 		set(CMAKE_C_STANDARD 90)
@@ -104,6 +109,8 @@ include(TargetMacros)
 # options
 
 option(BUILD_EXAMPLES "Build examples" ON)
+
+option(BUILD_TESTING "Build tests" ON)
 
 option(USE_STLSOFT_PKG "Depend on STLSoft CMake package" OFF)
 
@@ -222,6 +229,8 @@ else()
 endif()
 
 if(DEFINED STLSOFT_INCLUDE_DIR)
+
+	get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
