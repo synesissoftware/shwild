@@ -16,15 +16,15 @@
 * [Introduction](#introduction)
 * [Installation](#installation)
 * [Components](#components)
-	* [C API / core library](#c-api--core-library)
-	* [C++ API](#c-api)
+  * [C API / core library](#c-api--core-library)
+  * [C++ API](#c-api)
 * [Examples](#examples)
 * [Project Information](#project-information)
-	* [Where to get help](#where-to-get-help)
-	* [Contribution guidelines](#contribution-guidelines)
-	* [Dependencies](#dependencies)
-	* [Related projects](#related-projects)
-	* [License](#license)
+  * [Where to get help](#where-to-get-help)
+  * [Contribution guidelines](#contribution-guidelines)
+  * [Dependencies](#dependencies)
+  * [Related projects](#related-projects)
+  * [License](#license)
 
 
 ## Introduction
