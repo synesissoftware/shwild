@@ -1,6 +1,25 @@
 # **shwild** Changes <!-- omit in toc -->
 
 
+## 0.12.10 - 2nd August 2026
+
+* Added modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke coverage;
+* Removed **HISTORY.md** (content merged into **CHANGES.md**);
+* Modernised **CHANGES.md** (version-first headings; trailing semicolons);
+* README CI badge now targets **ci.yml**; tagline and TOC tidy;
+* CMake improvements (incl. `BUILD_TESTING`, legacy MSVC warning suppression, absolute **STLSoft** include path);
+* Enhanced **run_all_unit_tests.sh** (`--unit-only` / `--component-only` and `--no-make` guard);
+* Project boilerplate updates (**.gitattributes**, **.vimrc**, **.vscode/settings.json**, **AUTHORS.md**, **NEWS.md**, **TODO.md**, **LICENSE**);
+
+
+## 0.12.9 - 7th September 2025
+
+* CMake OS discrimination and install tidy;
+* CMake helper script improvements;
+* **.gitignore** and **.vscode/settings.json** updates;
+* Copyright year update;
+
+
 ## 0.12.8 - 6th September 2025
 
 * badges;

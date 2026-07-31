@@ -3,6 +3,8 @@
 
 | Date                | News Item                                                                       |
 | ------------------- | ------------------------------------------------------------------------------- |
+| 2nd August 2026     | Release of [**shwild** 0.12.10](https://github.com/synesissoftware/shwild/releases/tag/0.12.10) |
+| 7th September 2025  | Release of [**shwild** 0.12.9](https://github.com/synesissoftware/shwild/releases/tag/0.12.9)  |
 | 6th September 2025  | Release of [**shwild** 0.12.8](https://github.com/synesissoftware/shwild/releases/tag/0.12.8)  |
 | 15th May 2025       | Release of **shwild** 0.12.6                                                    |
 | 6th May 2025        | Release of **shwild** 0.12.5                                                    |
