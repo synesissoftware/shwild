@@ -6,10 +6,11 @@
 * Added modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke coverage;
 * Removed **HISTORY.md** (content merged into **CHANGES.md**);
 * Modernised **CHANGES.md** (version-first headings; trailing semicolons);
-* README CI badge now targets **ci.yml**; tagline and TOC tidy;
+* Trimmed **INSTALL.md** and **README.md** to CMake-only guidance; README CI badge now targets **ci.yml**;
+* Removed legacy custom makefiles under **build/** and leftover Visual Studio filter files;
 * CMake improvements (incl. `BUILD_TESTING`, legacy MSVC warning suppression, absolute **STLSoft** include path);
 * Enhanced **run_all_unit_tests.sh** (`--unit-only` / `--component-only` and `--no-make` guard);
-* Project boilerplate updates (**.gitattributes**, **.vimrc**, **.vscode/settings.json**, **AUTHORS.md**, **NEWS.md**, **TODO.md**, **LICENSE**);
+* Project boilerplate updates (**.gitattributes**, **.gitignore**, **.vimrc**, **.vscode/settings.json**, **AUTHORS.md**, **NEWS.md**, **TODO.md**, **LICENSE**);
 
 
 ## 0.12.9 - 7th September 2025
