@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  30th July 2026
+# Updated:  4th August 2026
 #
 # ######################################################################## #
 
@@ -210,13 +210,6 @@ elseif(DEFINED ENV{STLSOFT})
 
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 elseif(USE_STLSOFT_PKG)
-
-	# NOTE: if you wish to use STLSoft 1.9, then you will need to:
-	#
-	# - limit CMAKE_C_STANDARD to 17;
-	# - limit CMAKE_CXX_STANDARD to 14;
-	#
-	# set(STLSoft_REQUIRED_VERSION_ 1.9.136)
 
 	set(STLSoft_REQUIRED_VERSION_ 1.11)
 

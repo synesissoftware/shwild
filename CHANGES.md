@@ -1,6 +1,14 @@
 # **shwild** Changes <!-- omit in toc -->
 
 
+## 0.12.11 - 4th August 2026
+
+* Updated bundled **BDUT** to 0.4.2;
+* Simplified **STLSoft** dependency guidance in **README.md** (single **STLSoft** repo; dropped 1.9/1.10 split recommendations);
+* Removed obsolete **STLSoft** 1.9 CMake language-standard note from **CMakeLists.txt**;
+* Refreshed **STLSoft** requirement messaging/URL in **shwild.stlsoft.h**;
+
+
 ## 0.12.10 - 2nd August 2026
 
 * Added modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke coverage;
