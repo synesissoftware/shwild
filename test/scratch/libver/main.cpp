@@ -15,6 +15,7 @@
 
 #define PROGRAM_NAME                                        "libver"
 
+
 template<
     typename T_stream
 ,   typename T_integer
@@ -22,13 +23,16 @@ template<
 void
 version(
     T_stream&   stm
+,   char const* prefix
 ,   char const* libname
+,   char const* macroname
 ,   T_integer   libver
 )
 {
     stm
+        << prefix
         << libname
-        << " v"
+        << ": v"
         << ((libver >> 24) & 0xff)
         << '.'
         << ((libver >> 16) & 0xff)
@@ -36,6 +40,13 @@ version(
         << ((libver >> 8) & 0xff)
         << '.'
         << ((libver >> 0) & 0xff)
+        << " ("
+        << macroname
+        << " = 0x"
+        << std::hex << std::setfill('0') << std::setw(8)
+        << static_cast<unsigned>(libver)
+        << std::dec
+        << ")"
         << std::endl
         ;
 }
@@ -44,23 +55,25 @@ version(
 int main(int /* argc */, char* /* argv */[])
 {
     {
-        auto const libver = SHWILD_VER;
+        unsigned const libver = SHWILD_VER;
 
-        version(std::cout, "\tshwild", libver);
+        version(std::cout, "", "shwild", "SHWILD_VER", libver);
     }
 
-    {
-        auto const libver = BDUT_VER;
+    std::cout << "\n" << "efferent dependencies:" << std::endl;
 
-        version(std::cout, "\tBDUT", libver);
+    {
+        unsigned const libver = BDUT_VER;
+
+        version(std::cout, "\t", "BDUT", "BDUT_VER", libver);
     }
 
 #ifdef SHWILD_HAS_STLSoft
 
     {
-        auto const libver = _STLSOFT_VER;
+        unsigned const libver = _STLSOFT_VER;
 
-        version(std::cout, "\tSTLSoft", libver);
+        version(std::cout, "\t", "STLSoft", "_STLSOFT_VER", libver);
     }
 #endif
 
