@@ -7,7 +7,7 @@ if(_BUILD_AS_UNIX)
 	add_definitions(-Dunix)
 endif(_BUILD_AS_UNIX)
 
-if(WIN_BUILD_AS_WIN3232)
+if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
