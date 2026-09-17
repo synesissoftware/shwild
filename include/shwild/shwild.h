@@ -4,7 +4,7 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 2nd August 2026
+ * Updated: 17th September 2026
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
@@ -88,7 +88,9 @@
         |   (   SHWILD_VER_ALPHABETA   <<  0   ) \
     )
 
-#define SHWILD_VER_REVISION    SHWILD_VER_PATCH
+#ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+# define SHWILD_VER_REVISION                                SHWILD_VER_PATCH
+#endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
