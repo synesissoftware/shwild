@@ -5,7 +5,7 @@
  *          version
  *
  * Created: 11th February 2009
- * Updated: 21st December 2023
+ * Updated: 4th August 2026
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -30,7 +30,7 @@
  */
 
 #ifndef SHWILD_NO_STLSOFT
-# include <stlsoft/stlsoft.h> /* If the compiler cannot find this, you are not using STLSoft 1.9 or later, as required. */
+# include <stlsoft/stlsoft.h> /* If the compiler cannot find this, you are not using STLSoft as required. */
 #endif /* !SHWILD_NO_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@
 #ifndef SHWILD_NO_STLSOFT
 # if !defined(_STLSOFT_VER) || \
     _STLSOFT_VER < 0x010986ff
-#  error Requires STLSoft 1.9.134, or later. (www.stlsoft.org/downloads.html)
+#  error Requires STLSoft 1.9.134, or later. (https://github.com/synesissoftware/STLSoft)
 # endif /* STLSoft version */
 #endif /* !SHWILD_NO_STLSOFT */
 

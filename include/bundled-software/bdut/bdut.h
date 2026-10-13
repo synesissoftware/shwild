@@ -4,11 +4,11 @@
  * Purpose: Brain-Dead Unit-Testing
  *
  * Created: 18th July 2020
- * Updated: 6th September 2025
+ * Updated: 4th August 2026
  *
  * Home:    http://github.com/synesissoftware/BDUT
  *
- * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef BDUT_DOCUMENTATION_SKIP_SECTION
 # define BDUT_VER_BDUT_H_BDUT_MAJOR     2
 # define BDUT_VER_BDUT_H_BDUT_MINOR     2
-# define BDUT_VER_BDUT_H_BDUT_REVISION  0
-# define BDUT_VER_BDUT_H_BDUT_EDIT      20
+# define BDUT_VER_BDUT_H_BDUT_REVISION  3
+# define BDUT_VER_BDUT_H_BDUT_EDIT      24
 #endif /* !BDUT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,7 +80,7 @@
 
 #define BDUT_VER_MAJOR                                      0
 #define BDUT_VER_MINOR                                      4
-#define BDUT_VER_PATCH                                      0
+#define BDUT_VER_PATCH                                      2
 #define BDUT_VER_ALPHABETA                                  0xFF
 
 #define BDUT_VER \
@@ -208,7 +208,12 @@
  *   assertions
  */
 
-#define BDUT_ASSERT_STRING_CONTAINS(needle, haystack)       ( !BDUT_strcontains_(haystack, needle) ? BDUT_report_string_contains_failure_and_abort_(__FILE__, __LINE__, BDUT_FUNCTION_, needle, haystack) : BDUT_STATIC_CAST_(void, 0) )
+#define BDUT_ASSERT_STRING_CONTAINS(needle, haystack) \
+    do { \
+        if (!BDUT_strcontains_((haystack), (needle))) { \
+            BDUT_report_string_contains_failure_and_abort_(__FILE__, __LINE__, BDUT_FUNCTION_, (needle), (haystack)); \
+        } \
+    } while (0)
 
 
 /** @def BDUT_TESTS_PASSED(argc, argv)
@@ -257,7 +262,12 @@
  */
 
 
-# define BDUT_ASSERT_(expr, msg)                            ( (!(expr)) ? BDUT_report_assertion_failure_and_abort_(__FILE__, __LINE__, BDUT_FUNCTION_, #expr, msg) : BDUT_STATIC_CAST_(void, 0) )
+# define BDUT_ASSERT_(expr, msg) \
+    do { \
+        if (!(expr)) { \
+            BDUT_report_assertion_failure_and_abort_(__FILE__, __LINE__, BDUT_FUNCTION_, #expr, msg); \
+        } \
+    } while (0)
 
 # define BDUT_CHECK_COMPARE_(expected, actual, op, msg)     BDUT_ASSERT_((expected) op (actual), msg)
 
@@ -325,6 +335,25 @@
 #  endif
 #  define BDUT_STATIC_CAST_(t, v)                           ((t)(v))
 # endif
+
+# if defined(__cplusplus) && \
+     __cplusplus >= 201402L
+
+#  define BDUT_NORETURN_                                    [[noreturn]]
+# elif defined(_MSC_VER)
+
+#  define BDUT_NORETURN_                                    __declspec(noreturn)
+# elif defined(__GNUC__) || defined(__clang__)
+
+#  define BDUT_NORETURN_                                    __attribute__((noreturn))
+# elif defined(__STDC_VERSION__) && \
+       __STDC_VERSION__ >= 201112L
+
+#  define BDUT_NORETURN_                                    _Noreturn
+# else
+
+#  define BDUT_NORETURN_
+# endif
 #endif /* !BDUT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -353,9 +382,46 @@ BDUT_isatty_(
 #ifdef _WIN32
 
     return _isatty(_fileno(stm));
-#else
+#elif 0 ||\
+    (   1 &&\
+        defined(_POSIX_C_SOURCE) &&\
+        (_POSIX_C_SOURCE >= 1) &&\
+        1) ||\
+    defined(_BSD_SOURCE) ||\
+    defined(_DEFAULT_SOURCE) ||\
+    defined(_GNU_SOURCE) ||\
+    defined(_XOPEN_SOURCE) ||\
+    !defined(__STRICT_ANSI__) ||\
+    0
+
+    /* `fileno()` is POSIX. Prefer it when feature-test macros or a
+     * non-strict dialect indicate that POSIX declarations are visible.
+     */
 
     return isatty(fileno(stm));
+#else
+
+    /* Strict ISO C (e.g. -std=c11): glibc/musl typically do not declare
+     * `fileno()`. Map the three standard streams via unistd.h constants
+     instead.
+     */
+
+    if (stm == stdout)
+    {
+        return isatty(STDOUT_FILENO);
+    }
+    else if (stm == stderr)
+    {
+        return isatty(STDERR_FILENO);
+    }
+    else if (stm == stdin)
+    {
+        return isatty(STDIN_FILENO);
+    }
+    else
+    {
+        return 0;
+    }
 #endif
 }
 
@@ -402,6 +468,7 @@ BDUT_strcontains_(
  * @param expr The expression. Currently unused
  * @param message The message
  */
+BDUT_NORETURN_
 BDUT_INLINE_
 void
 BDUT_report_assertion_failure_and_abort_(
@@ -430,7 +497,7 @@ BDUT_report_assertion_failure_and_abort_(
     char const* clr_pre = "";
     char const* clr_post = "";
 
-    if (BDUT_isatty_(stdout))
+    if (BDUT_isatty_(stderr))
     {
         clr_pre = "\x1B[1;31m";
         clr_post = "\033[0m";
@@ -477,6 +544,7 @@ BDUT_report_assertion_failure_and_abort_(
  * @param needle The string to be found within \c haystack
  * @param haystack The string in which to find \c needle
  */
+BDUT_NORETURN_
 BDUT_INLINE_
 void
 BDUT_report_string_contains_failure_and_abort_(

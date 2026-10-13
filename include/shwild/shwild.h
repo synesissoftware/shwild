@@ -4,7 +4,7 @@
  * Purpose: Root header file for the shwild library
  *
  * Created: 17th June 2005
- * Updated: 17th September 2026
+ * Updated: 13th October 2026
  *
  * Home:    https://github.com/synesissoftware/shwild
  *
@@ -53,8 +53,8 @@
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
 # define SHWILD_VER_SHWILD_H_SHWILD_MAJOR       1
 # define SHWILD_VER_SHWILD_H_SHWILD_MINOR       3
-# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    24
-# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        61
+# define SHWILD_VER_SHWILD_H_SHWILD_REVISION    27
+# define SHWILD_VER_SHWILD_H_SHWILD_EDIT        64
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -70,6 +70,10 @@
  *
  * The patch number of the shwild library
  *
+ * \def SHWILD_VER_RELSTATUS
+ *
+ * The release-status discriminator (low byte of \c SHWILD_VER)
+ *
  * \def SHWILD_VER
  *
  * The composite version of the shwild library
@@ -77,18 +81,19 @@
 
 #define SHWILD_VER_MAJOR       0
 #define SHWILD_VER_MINOR       12
-#define SHWILD_VER_PATCH       10
-#define SHWILD_VER_ALPHABETA   0xC1
+#define SHWILD_VER_PATCH       12
+#define SHWILD_VER_RELSTATUS   0xFF
 
 #define SHWILD_VER \
     (0\
         |   (   SHWILD_VER_MAJOR       << 24   ) \
         |   (   SHWILD_VER_MINOR       << 16   ) \
         |   (   SHWILD_VER_PATCH       <<  8   ) \
-        |   (   SHWILD_VER_ALPHABETA   <<  0   ) \
+        |   (   SHWILD_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef SHWILD_DOCUMENTATION_SKIP_SECTION
+# define SHWILD_VER_ALPHABETA                               SHWILD_VER_RELSTATUS
 # define SHWILD_VER_REVISION                                SHWILD_VER_PATCH
 #endif /* !SHWILD_DOCUMENTATION_SKIP_SECTION */
 

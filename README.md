@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/shwild.svg)](https://github.com/synesissoftware/shwild/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/shwild)](https://github.com/synesissoftware/shwild/commits/master)
-[![CMake on multiple platforms](https://github.com/synesissoftware/shwild/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/shwild/actions/workflows/ci.yml)
+[![CI](https://github.com/synesissoftware/shwild/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/shwild/actions/workflows/ci.yml)
 
 
 ## Table of Contents <!-- omit in toc -->
@@ -126,10 +126,9 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 The original (~2005) implementation used **STLSoft** for discrimination of compilers and for library support. For modern compilers with broad support for the latest language standards this is not necessary. Hence, if the preprocessor symbol `SHWILD_NO_STLSOFT` is specified then all dependencies on **STLSoft** are removed and basic **C++-14** features are used instead. (This is done in the **CMake** configuration provided - see [INSTALL.md](./INSTALL.md).)
 
-If you _do_ need **STLSoft**, then version 1.10.6 or later is recommended. If you're using a _very_ old compiler you may wish to use STLSoft-1.9, for which version 1.9.136 is recommended. Further, the makefiles require definition of the environment variable `STLSOFT` that should be set to the root directory of a clone of **STLSoft**.
+If you _do_ need **STLSoft**, obtain it from [**STLSoft**](https://github.com/synesissoftware/STLSoft/). Further, the makefiles require definition of the environment variable `STLSOFT` that should be set to the root directory of a clone of **STLSoft**.
 
-* [STLSoft 1.9](http://github.com/synesissoftware/STLSoft-1.9/)
-* [STLSoft 1.10](http://github.com/synesissoftware/STLSoft-1.10/) (Recommended)
+* [**STLSoft**](https://github.com/synesissoftware/STLSoft/)
 
 
 ### Related projects
