@@ -8,6 +8,7 @@
 * Gold-copied examples/scratch **run_all_*** tip ATF runners from **misc-dev-scripts**;
 * Set `PROGRAM_NAME` to `test.scratch.versions` in the scratch versions reporter;
 * Added **.github/actions/install-sis-deps**; reworked **ci-cell.yml** for **STLSoft**/**BDUT**, execute-bit restore, and Windows **.cmd** dogfood;
+* Execute-bit restore excludes `CMakeFiles/` and `*.d` / `*.o` / `*.obj` so dependency sidecars are not discovered as programs;
 * Fixed component CI to call **run_all_component_tests** (not unit with `--component-only`);
 * Set push branches to the canon set; expanded **NEWS.md** to three-column **Details**;
 * Tidied README CI badge label;
