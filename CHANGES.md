@@ -1,4 +1,26 @@
-# **shwild** Changes <!-- omit in toc -->
+# shwild - Changes <!-- omit in toc -->
+
+
+## 0.12.12 - 13th October 2026
+
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+* Gold-copied examples/scratch **run_all_*** tip ATF runners from **misc-dev-scripts**;
+* Set `PROGRAM_NAME` to `test.scratch.versions` in the scratch versions reporter;
+* Added **.github/actions/install-sis-deps**; reworked **ci-cell.yml** for **STLSoft**/**BDUT**, execute-bit restore, and Windows **.cmd** dogfood;
+* Execute-bit restore excludes `CMakeFiles/` and `*.d` / `*.o` / `*.obj` so dependency sidecars are not discovered as programs;
+* Fixed component CI to call **run_all_component_tests** (not unit with `--component-only`);
+* Set push branches to the canon set; expanded **NEWS.md** to three-column **Details**;
+* Tidied README CI badge label;
+* Migrated version low-byte to `SHWILD_VER_RELSTATUS` (legacy `SHWILD_VER_ALPHABETA` retained as alias);
+
+
+## 0.12.11 - 4th August 2026
+
+* Updated bundled **BDUT** to 0.4.2;
+* Simplified **STLSoft** dependency guidance in **README.md** (single **STLSoft** repo; dropped 1.9/1.10 split recommendations);
+* Removed obsolete **STLSoft** 1.9 CMake language-standard note from **CMakeLists.txt**;
+* Refreshed **STLSoft** requirement messaging/URL in **shwild.stlsoft.h**;
 
 
 ## 0.12.11 - 4th August 2026
