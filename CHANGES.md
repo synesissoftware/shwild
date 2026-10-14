@@ -1,6 +1,12 @@
 # shwild - Changes <!-- omit in toc -->
 
 
+## 0.12.13 - 14th October 2026
+
+* Synced tip **cmake-helpers** runners;
+* Phase **4c** polish: `PROGRAM_NAME` **test.scratch.versions**;
+
+
 ## 0.12.12 - 13th October 2026
 
 * Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
