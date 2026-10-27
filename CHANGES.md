@@ -1,6 +1,12 @@
 # shwild - Changes <!-- omit in toc -->
 
 
+## 0.12.14 - 27th October 2026
+
+* Defined `HAS_BDUT` when **BDUT** is acquired, and `HAS_STLSOFT` / `HAS_STLSoft` when **STLSoft** is located;
+* **test.scratch.versions** prints **STLSoft** under `HAS_STLSoft`;
+
+
 ## 0.12.13 - 14th October 2026
 
 * Synced tip **cmake-helpers** runners;

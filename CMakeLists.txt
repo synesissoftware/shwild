@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for shwild
 #
 # Created:  21st December 2023
-# Updated:  4th August 2026
+# Updated:  27th October 2026
 #
 # ######################################################################## #
 
@@ -179,6 +179,8 @@ else()
 	endif(BDUT_FOUND)
 endif()
 
+add_compile_definitions(HAS_BDUT)
+
 
 # ############################
 # STLSoft
@@ -226,6 +228,12 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
+endif()
+
+if(DEFINED STLSOFT_INCLUDE_DIR OR DEFINED STLSoft_FOUND)
+
+	add_compile_definitions(HAS_STLSOFT)
+	add_compile_definitions(HAS_STLSoft)
 endif()
 
 
