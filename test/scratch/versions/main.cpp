@@ -3,7 +3,7 @@
 
 #include <bdut/bdut.h>
 
-#ifdef SHWILD_HAS_STLSoft
+#ifdef HAS_STLSoft
 # include <stlsoft/stlsoft.h>
 #endif
 
@@ -65,7 +65,7 @@ int main(int /* argc */, char* /* argv */[])
         version(std::cout, "\t", "BDUT", "BDUT_VER", libver);
     }
 
-#ifdef SHWILD_HAS_STLSoft
+#ifdef HAS_STLSoft
 
     {
         unsigned const libver = _STLSOFT_VER;
