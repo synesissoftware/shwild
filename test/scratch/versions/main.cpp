@@ -51,13 +51,18 @@ version(
 
 int main(int /* argc */, char* /* argv */[])
 {
+    int efferents_count = 0;
+
     {
         unsigned const libver = SHWILD_VER;
 
         version(std::cout, "", "shwild", "SHWILD_VER", libver);
     }
 
-    std::cout << "\n" << "efferent dependencies:" << std::endl;
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = BDUT_VER;
@@ -66,6 +71,11 @@ int main(int /* argc */, char* /* argv */[])
     }
 
 #ifdef HAS_STLSoft
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = _STLSOFT_VER;
