@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.pattern_1.cpp
+ * File:    test/scratch/test.scratch.pattern_1/test.scratch.pattern_1.cpp
  *
  * Purpose: Scratch-test for shwild C++-API functions
  *
  * Created: 6th January 2008
- * Updated: 3rd May 2025
+ * Updated: 30th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

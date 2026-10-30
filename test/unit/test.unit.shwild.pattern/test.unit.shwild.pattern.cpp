@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.shwild.pattern.cpp
+ * File:    test/unit/test.unit.shwild.pattern/test.unit.shwild.pattern.cpp
  *
  * Purpose: Unit-tests for shwild C++-API classes
  *
  * Created: 28th April 2006
- * Updated: 30th August 2025
+ * Updated: 30th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
