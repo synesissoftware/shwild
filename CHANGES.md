@@ -1,6 +1,16 @@
 # shwild - Changes <!-- omit in toc -->
 
 
+## 0.12.15 - 1st November 2026
+
+* testing:
+  * `File:` labels under **test** name the project-relative path;
+* build:
+  * the **Check test names** job runs **STLSoft** **check_unit_test_names.rb** over **examples** and **test**;
+* documentation and boilerplate:
+  * **Doxyfile** `PROJECT_NUMBER` is **0.12.15**;
+
+
 ## 0.12.14 - 27th October 2026
 
 * Defined `HAS_BDUT` when **BDUT** is acquired, and `HAS_STLSOFT` / `HAS_STLSoft` when **STLSoft** is located;

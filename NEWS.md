@@ -3,6 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
+| 1st November 2026  | Release of [shwild 0.12.15](https://github.com/synesissoftware/shwild/releases/tag/0.12.15) | `File:` labels use the project-relative path; **Check test names** |
 | 27th October 2026  | Release of [shwild 0.12.14](https://github.com/synesissoftware/shwild/releases/tag/0.12.14) | `HAS_BDUT`; `HAS_STLSoft` when **STLSoft** is located |
 | 14th October 2026  | [**shwild** 0.12.13](https://github.com/synesissoftware/shwild/releases/tag/0.12.13) | Tip ATF helpers; Phase **4c** `PROGRAM_NAME` |
 | 13th October 2026   | [**shwild** 0.12.12](https://github.com/synesissoftware/shwild/releases/tag/0.12.12) | Tip ATF helpers; `test.scratch.versions`; **install-sis-deps** + Windows **.cmd** + xbit; `SHWILD_VER_RELSTATUS`; **NEWS** Details |

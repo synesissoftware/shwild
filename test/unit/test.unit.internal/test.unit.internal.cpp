@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.internal.cpp
+ * File:    test/unit/test.unit.internal/test.unit.internal.cpp
  *
  * Purpose: Unit-tests for internal constructs
  *
  * Created: 17th June 2005
- * Updated: 30th August 2025
+ * Updated: 30th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
