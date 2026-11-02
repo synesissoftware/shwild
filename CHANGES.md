@@ -1,6 +1,11 @@
 # shwild - Changes <!-- omit in toc -->
 
 
+## 0.12.16 - 2nd November 2026
+
+* build:
+  * **STLSoft** minimum is **1.11.5** when `USE_STLSOFT_PKG` is on;
+
 ## 0.12.15 - 1st November 2026
 
 * testing:
